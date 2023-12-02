@@ -8,7 +8,7 @@ import Calendar_view from './Components/Calendar_view/Calendar_view';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import My_page from './My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
-
+//test 2
 function SettingsScreen() {
     return (
         <View
