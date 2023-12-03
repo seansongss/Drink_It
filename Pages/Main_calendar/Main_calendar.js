@@ -7,51 +7,51 @@ import { Component } from 'react';
 
 import styles from "./styles";
 
-const databaseURL = "https://drink-it-5910f-default-rtdb.firebaseio.com";
+//const databaseURL = "https://drink-it-5910f-default-rtdb.firebaseio.com";
 
-class Data_base extends Component {
-    constructor() {
-        super();
-        this.state = {
-            Combination: {}
-        };
-    }
+// class Data_base extends Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             Combination: {}
+//         };
+//     }
 
-    _get() {
-        fetch(`${databaseURL}/Combination.json`).then(res => {
-            if (res.status != 200) {
-                throw new Error(res.statusText);
-            }
-            return res.json();
-        }).then(Combination => this.setState({ Combination: Combination }));
-    }
-    shouldComponentUdate(nextProps, nextState) {
-        return nextState.Combination != this.state.Combination;
-    }
-    componentDidMount() {
-        this._get();
-    }
-    render() {
-        return (
-            <View>
-                {Object.keys(this.state.Combination).map(id => {
-                    const combination = this.state.Combination[id];
-                    return (
-                        <View>
-                            <Text>
-                                {Combination.Ingredient}
-                            </Text>
-                        </View>
-                    )
-                })}
-            </View>
-        )
-    }
-}
+//     _get() {
+//         fetch(`${databaseURL}/Combination.json`).then(res => {
+//             if (res.status != 200) {
+//                 throw new Error(res.statusText);
+//             }
+//             return res.json();
+//         }).then(Combination => this.setState({ Combination: Combination }));
+//     }
+//     shouldComponentUdate(nextProps, nextState) {
+//         return nextState.Combination != this.state.Combination;
+//     }
+//     componentDidMount() {
+//         this._get();
+//     }
+//     render() {
+//         return (
+//             <View>
+//                 {Object.keys(this.state.Combination).map(id => {
+//                     const combination = this.state.Combination[id];
+//                     return (
+//                         <View>
+//                             <Text>
+//                                 {Combination.Ingredient}
+//                             </Text>
+//                         </View>
+//                     )
+//                 })}
+//             </View>
+//         )
+//     }
+// }
 
-function Data_combination (){
+// function Data_combination (){
     
-}
+// }
 
 function Main_calendar (){
     return(
@@ -61,7 +61,6 @@ function Main_calendar (){
                 <Funfact_card />
                 <Stat_simple />
             </View>
-            <Data_base />
         </SafeAreaView>
     );
 }
