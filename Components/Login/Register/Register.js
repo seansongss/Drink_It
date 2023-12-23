@@ -2,31 +2,57 @@ import { View, ImageBackground, StyleSheet, SafeAreaView, TouchableOpacity, Text
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
 
-import Register from '../../Components/Login/Register/Register';
-
-const onPressLogin = () => {
-    // Do something about login operation
-};
-const onPressForgotPassword = () => {
-    // Do something about forgot password operation
-};
-
-function Login({ navigation }) {
+function Sign_up({ navigation }) {
     const [state, setState] = useState({
         username: '',
+        email: '',
         password: '',
+        confirm: '',
+        first_name: '',
+        last_name: '',
     })
+    const onPressSignUp = (state) => {
+            if (state.confirm != state.password) {
+                alert("not equal")
+            }
+    }
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.title}>Login now</Text>
+            <Text style={styles.title}>Sign Up</Text>
 
             {/* Login input Box */}
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.inputText}
-                    placeholder="Username"
+                    secureTextEntry
+                    placeholder="First Name"
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => setState({ first_name: text })}
+                />
+            </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.inputText}
+                    secureTextEntry
+                    placeholder="Last Name"
                     placeholderTextColor="#003f5c"
                     onChangeText={text => setState({ username: text })}
+                />
+            </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.inputText}
+                    placeholder="Username"
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => setState({ email: text })}
+                />
+            </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.inputText}
+                    placeholder="Email"
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => setState({ email: text })}
                 />
             </View>
             <View style={styles.inputView}>
@@ -38,25 +64,24 @@ function Login({ navigation }) {
                     onChangeText={text => setState({ password: text })}
                 />
             </View>
+            <View style={styles.inputView}>
+                <TextInput
+                    style={styles.inputText}
+                    secureTextEntry
+                    placeholder="Confirm Password"
+                    placeholderTextColor="#003f5c"
+                    onChangeText={text => setState({ confirm: text })}
+                />
+            </View>
 
-            {/* Login Button */}
+            {/* Sign up button */}
             <TouchableOpacity
-                onPress={onPressForgotPassword}
-                style={styles.forgot}>
-                <Text style={styles.forgotAndSignUpText}>Forgot Password?</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={onPressLogin}
-                style={styles.loginBtn}>
-                <Text style={styles.loginText}>LOGIN </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                onPress={() => navigation.navigate('Sign_up')}
+                onPress={onPressSignUp}
                 style={styles.loginBtn}>
                 <Text style={styles.loginText}>SIGN UP</Text>
             </TouchableOpacity>
 
-            <Button title="Go to home" onPress={() => navigation.navigate('Main', { screen: 'Home' })} />
+            <Button title="Back to login" onPress={() => navigation.navigate('Login')} />
         </SafeAreaView>
     );
 }
@@ -87,7 +112,7 @@ const styles = StyleSheet.create({
         color: "white"
     },
     forgot: {
-        marginBottom: 30,  
+        marginBottom: 50,
     },
     forgotAndSignUpText: {
         color: "white",
@@ -104,4 +129,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Login;
+export default Sign_up;

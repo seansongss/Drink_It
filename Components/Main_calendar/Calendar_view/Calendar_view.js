@@ -10,6 +10,7 @@ import styles from './styles';
 
 import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';
+import Login from '../../../Pages/Login/Login';
 
 let customFonts = {
     'Jaldi': require('../../../assets/fonts/Jaldi-Bold.ttf'),

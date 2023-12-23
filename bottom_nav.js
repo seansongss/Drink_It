@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Button } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -9,9 +9,19 @@ import Calendar_view from './Components/Main_calendar/Calendar_view/Calendar_vie
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import My_page from './Pages/My_page/My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
+import Login from './Pages/Login/Login';
+import Sign_up from './Components/Login/Register/Register';
 
 function EmptyScreen() {
     return <View />;
+}
+
+function AddScreen({ navigation }) {
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Button title="Go to login page" onPress={() => navigation.navigate('Login')} />
+        </View>
+    )
 }
 
 const Tab = createBottomTabNavigator();
@@ -46,7 +56,7 @@ function Bottom_nav() {
                 tabBarStyle: { backgroundColor: '#597A82', height: 90 }
             })}>
             <Tab.Screen name="Home" component={Main_calendar} />
-            <Tab.Screen name="Add" component={EmptyScreen} />
+            <Tab.Screen name="Add" component={AddScreen} />
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     );
@@ -57,7 +67,8 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen name="Main" component={Bottom_nav} options={{ headerShown: false }} />
-                <Stack.Screen name="Login" component={EmptyScreen} />
+                <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
+                <Stack.Screen name="Sign_up" component={Sign_up} options={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
