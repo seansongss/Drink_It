@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import Profile_components from "./Profile_component";
-import Placeholer from "./Components/Placeholder";
+import Profile_components from "../../Components/My_page/Profile_component";
+import Placeholer from "../../Components/My_page/Placeholder";
 import { Icon } from "@rneui/base";
-import Stat_card from "./Stat_card";
+import Stat_card from "../../Components/My_page/Stat_card";
 
 const UserBox = () => {
     return (

@@ -4,9 +4,9 @@ import { Text, View, Image } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Calendar_view from './Components/Calendar_view/Calendar_view';
+import Calendar_view from './Components/Main_calendar/Calendar_view/Calendar_view';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import My_page from './My_page';
+import My_page from './Pages/My_page/My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
 //test 2
 function SettingsScreen() {

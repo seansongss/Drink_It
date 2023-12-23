@@ -1,7 +1,7 @@
-import Funfact_card from "../../Components/Funfact_card/Funfact_card";
-import Stat_simple from "../../Components/Stat_simple/Stat_simple";
-import LinearProgressAPI from "../../Components/Stat_simple/Stat_simple2";
-import Calendar_view from "../../Components/Calendar_view/Calendar_view";
+import Funfact_card from "../../Components/Main_calendar/Funfact_card/Funfact_card";
+import Stat_simple from "../../Components/Main_calendar/Stat_simple/Stat_simple";
+import LinearProgressAPI from "../../Components/Main_calendar/Stat_simple/Stat_simple2";
+import Calendar_view from "../../Components/Main_calendar/Calendar_view/Calendar_view";
 import { SafeAreaView, View } from "react-native";
 import { Component } from 'react';
 
@@ -49,10 +49,6 @@ class Data_base extends Component {
     }
 }
 
-function Data_combination (){
-    
-}
-
 function Main_calendar (){
     return(
         <SafeAreaView>
@@ -61,7 +57,6 @@ function Main_calendar (){
                 <Funfact_card />
                 <Stat_simple />
             </View>
-            <Data_base />
         </SafeAreaView>
     );
 }

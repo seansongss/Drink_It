@@ -12,8 +12,8 @@ import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';
 
 let customFonts = {
-    'Jaldi': require('../../assets/fonts/Jaldi-Bold.ttf'),
-    'Jaldi-bold': require('../..//assets/fonts/Jaldi-Bold.ttf'),
+    'Jaldi': require('../../../assets/fonts/Jaldi-Bold.ttf'),
+    'Jaldi-bold': require('../../../assets/fonts/Jaldi-Bold.ttf'),
 };
 
 
@@ -147,16 +147,16 @@ class Calendar_view extends Component {
                 }
 
                 if (item == 5 || item == 8) {
-                    image = require('../../assets/alcohol/beer_logo.png');
+                    image = require('../../../assets/alcohol/beer_logo.png');
                     if (item_id == 30) {
                         item_id++;
                     }
                 } else if (item == 9) {
-                    image = require('../../assets/alcohol/wine_logo.png');
+                    image = require('../../../assets/alcohol/wine_logo.png');
                 } else if (item == 14) {
-                    image = require('../../assets/alcohol/soju_logo.png');
+                    image = require('../../../assets/alcohol/soju_logo.png');
                 } else if (item == 24) {
-                    image = require('../../assets/alcohol/vodka_logo.png');
+                    image = require('../../../assets/alcohol/vodka_logo.png');
                 } else {
                     image = null;
                 }
@@ -164,10 +164,10 @@ class Calendar_view extends Component {
                 return (
                     <ImageBackground
                         key={id}
-                        source={item == 5 || item == 21? require('../../assets/alcohol/beer_logo.png') :
-                            item == 9 ? require('../../assets/alcohol/wine_logo.png') :
-                                item == 14 ? require('../../assets/alcohol/soju_logo.png') :
-                                    item == 24 ? require('../../assets/alcohol/vodka_logo.png') : null}
+                        source={item == 5 || item == 21? require('../../../assets/alcohol/beer_logo.png') :
+                            item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
+                                item == 14 ? require('../../../assets/alcohol/soju_logo.png') :
+                                    item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
                         imageStyle={item==5||item==9||item==14||item==21||item==24? {opacity:1}:{opacity:0}}
                         resizeMode='center'
                         style={styles.image}

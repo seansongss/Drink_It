@@ -1,10 +1,10 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Avatar, LinearProgress } from "@rneui/base";
-import Placeholer from "./Components/Placeholder";
+import Placeholer from "./Placeholder";
 
 let customFonts = {
-    Jaldi: require("./assets/fonts/Jaldi-Regular.ttf"),
-    "Jaldi-bold": require("./assets/fonts/Jaldi-Bold.ttf"),
+    "Jaldi": require("../../assets/fonts/Jaldi-Regular.ttf"),
+    "Jaldi-bold": require("../../assets/fonts/Jaldi-Bold.ttf"),
 };
 
 const Profile_components = (props) => {
