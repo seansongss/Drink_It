@@ -11,6 +11,7 @@ import My_page from './Pages/My_page/My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
 import Login from './Pages/Login/Login';
 import Sign_up from './Components/Login/Register/Register';
+import Add_live from './Pages/Add_live/Add_live';
 
 function EmptyScreen() {
     return <View />;
@@ -56,7 +57,7 @@ function Bottom_nav() {
                 tabBarStyle: { backgroundColor: '#597A82', height: 90 }
             })}>
             <Tab.Screen name="Home" component={Main_calendar} />
-            <Tab.Screen name="Add" component={AddScreen} />
+            <Tab.Screen name="Add" component={Add_live} />
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     );
