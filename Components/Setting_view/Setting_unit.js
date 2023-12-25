@@ -1,6 +1,6 @@
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { Icon } from "@rneui/base";
-import { Text, Divider, useTheme, Button } from "@rneui/themed";
+import { Text } from "@rneui/themed";
 
 const Setting_unit = ({ title, onClick }) => {
     return (

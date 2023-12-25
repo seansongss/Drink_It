@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import Profile_components from "../Profile_component/Profile_component";
 import Placeholer from "../Placeholder";
 import { Icon } from "@rneui/base";
@@ -18,11 +18,21 @@ const UserBox = () => {
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => alert("Button 1 pressed")}
-                    ></TouchableOpacity>
+                    >
+                        <Image
+                            style={styles.button}
+                            source={require("../../assets/my_page/my_favorites.png")}
+                        />
+                    </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
                         onPress={() => alert("Button 2 pressed")}
-                    ></TouchableOpacity>
+                    >
+                        <Image
+                            style={styles.button}
+                            source={require("../../assets/my_page/my_combinations.png")}
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -34,7 +44,11 @@ const StatBox = () => {
     return (
         <View style={styles.statBox}>
             <View style={styles.statTop}>
-                <Icon name="equalizer" size={60} color="white" />
+                <Image
+                    source={require("../../assets/my_page/stat.png")}
+                    style={{ width: 60, height: 45 }}
+                    resizeMode="stretch"
+                />
                 <TouchableOpacity>
                     <Icon name="navigate-next" size={50} />
                 </TouchableOpacity>

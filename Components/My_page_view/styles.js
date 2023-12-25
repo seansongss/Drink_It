@@ -24,10 +24,10 @@ const styles = StyleSheet.create({
     userBox: {
         flexDirection: "row", // Horizontal layout
         width: "90%",
-        height: "20%",
+        height: "17%",
         margin: "5%",
         backgroundColor: "#E0EED0",
-        justifyContent: "space-evenly",
+        justifyContent: "space-between",
         paddingHorizontal: 10,
     },
     userInfo: {
@@ -39,18 +39,13 @@ const styles = StyleSheet.create({
     },
     buttonsRow: {
         flexDirection: "row", // Horizontal layout
-        justifyContent: "spacebetween",
+        justifyContent: "space-around",
     },
     button: {
-        backgroundColor: "lightblue",
-        padding: 10,
-        borderRadius: 10,
-        width: 30,
-        height: 30,
-        borderWidth: 1,
-        borderColor: "blue",
-        alignItems: "center",
-        margin: 10,
+        width: 40,
+        height: 40,
+        marginHorizontal: 7,
+        marginTop: -3,
     },
 });
 
