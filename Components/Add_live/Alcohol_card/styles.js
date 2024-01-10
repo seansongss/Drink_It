@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
         objectFit: 'fill',
     },
     addView: {
-
         borderRadius: 200,
         borderColor: 'white',
         borderWidth: 2,
