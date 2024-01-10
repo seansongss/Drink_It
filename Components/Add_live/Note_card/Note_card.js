@@ -6,8 +6,8 @@ import default_styles from '../../../styles';
 
 function Note_card() {
     return (
-        <View>
-            
+        <View style={styles.container}>
+            <Image source={require('../../../assets/Add_live/bright_note.png')} style={styles.noteImage} />
         </View>
     );
 };
