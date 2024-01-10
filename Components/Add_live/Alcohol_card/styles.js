@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         width: '80%',
         backgroundColor: '#FFFFF0',
         borderRadius: 30,
-        borderColor: '#FFFFFF',
+        borderColor: 'yellow',
         borderWidth: 3,
         alignItems: 'center',
     },
@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     alcoholView: {
+        width: '100%',
         marginVertical: 20,
+        paddingHorizontal: 20,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',

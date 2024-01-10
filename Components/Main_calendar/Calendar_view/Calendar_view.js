@@ -13,7 +13,7 @@ import Stat_simple from '../Stat_simple/Stat_simple';
 import Login from '../../../Pages/Login/Login';
 
 let customFonts = {
-    'Jaldi': require('../../../assets/fonts/Jaldi-Bold.ttf'),
+    'Jaldi': require('../../../assets/fonts/Jaldi-Regular.ttf'),
     'Jaldi-bold': require('../../../assets/fonts/Jaldi-Bold.ttf'),
 };
 

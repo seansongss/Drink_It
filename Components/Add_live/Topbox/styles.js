@@ -4,15 +4,17 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#597A82',
         width: '100%',
-        height: '30%',
+        height: '25%',
+        justifyContent: 'flex-end',
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         left: -10,
+        marginBottom: 20,
     },
     emptyBox: {
-        height: '50%',
+        height: '60%',
     },
     timer: {
         flexDirection: 'row',

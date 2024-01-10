@@ -16,7 +16,7 @@ import Add_live from './Pages/Add_live/Add_live';
 import styles from './styles';
 
 let customFonts = {
-    'Jaldi': require('./assets/fonts/Jaldi-Bold.ttf'),
+    'Jaldi': require('./assets/fonts/Jaldi-Regular.ttf'),
     'Jaldi-bold': require('./assets/fonts/Jaldi-Bold.ttf'),
 };
 
