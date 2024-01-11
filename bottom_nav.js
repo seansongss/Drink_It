@@ -8,26 +8,8 @@ import { Colors } from "react-native/Libraries/NewAppScreen";
 import My_page from "./Components/My_page_view/My_page";
 import Main_calendar from "./Pages/Main_calendar/Main_calendar";
 import Setting_view from "./Components/Setting_view/Setting_view";
+import Add_live from "./Pages/Add_live_page/Add_live";
 //test 2
-function SettingsScreen() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-            <Text>Settings!</Text>
-        </View>
-    );
-}
-
-function AddScreen() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-            <Text>Add!</Text>
-        </View>
-    );
-}
 
 function Recipe() {
     return (
@@ -82,7 +64,7 @@ function Bottom_nav() {
             })}
         >
             <Tab.Screen name="Home" component={Main_calendar} />
-            <Tab.Screen name="Add" component={AddScreen} />
+            <Tab.Screen name="Add" component={Add_live} />
             <Tab.Screen name="My_page" component={My_page} />
             <Tab.Screen name="setting" component={Setting_view} />
         </Tab.Navigator>
