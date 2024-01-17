@@ -1,14 +1,16 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {},
+    container: { backgroundColor: "#b2d8b2" },
     stage: {
-        backgroundColor: "white",
-        height: "100%",
+        backgroundColor: "#e5eef4",
+        // minHeight: "100%",
     },
     add_unit_container: {
         borderRadius: 10,
-        backgroundColor: "#fff9da",
+        borderColor: "#fef9d4",
+        borderWidth: 4,
+        backgroundColor: "white",
         width: "80%",
         marginHorizontal: "10%",
         marginVertical: 10,
@@ -23,9 +25,13 @@ const styles = StyleSheet.create({
         width: "80%",
         marginHorizontal: "10%",
         fontFamily: "Jaldi-bold",
+        padding: 20,
     },
     feeling_wrapper: {
+        marginVertical: 10,
+        display: "flex",
         flexDirection: "row",
+        justifyContent: "space-around",
     },
 });
 
