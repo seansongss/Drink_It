@@ -1,7 +1,6 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { Avatar, Icon } from "@rneui/base";
 import { LinearProgress } from "@rneui/themed";
-import Placeholer from "../Placeholder";
 import styles from "./styles";
 
 let customFonts = {
@@ -26,7 +25,6 @@ const Profile_components = (props) => {
                         }}
                     />
                 </View>
-                <Placeholer width={20} />
                 <View style={styles.profie_info}>
                     <TouchableOpacity style={styles.button}>
                         <Icon name="settings" color="white" />

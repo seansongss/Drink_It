@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Image, TouchableOpacity } from "react-native";
 import Profile_components from "../Profile_component/Profile_component";
-import Placeholer from "../Placeholder";
 import { Icon } from "@rneui/base";
 import Stat_card from "./Stat_card";
 import styles from "./styles";
@@ -12,7 +11,6 @@ const UserBox = () => {
             <View style={styles.userInfo}>
                 <Profile_components nickname="test_id_1123" exp={0.3} />
             </View>
-            <Placeholer width={20} />
             <View style={styles.buttonContainer}>
                 <View style={styles.buttonsRow}>
                     <TouchableOpacity

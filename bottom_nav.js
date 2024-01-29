@@ -7,7 +7,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Calendar_view from './Components/Main_calendar/Calendar_view/Calendar_view';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import My_page from './Pages/My_page/My_page';
+import My_page from './Components/My_page_view/My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
 import Login from './Pages/Login/Login';
 import Sign_up from './Components/Login/Register/Register';
@@ -74,7 +74,6 @@ function Bottom_nav() {
             <Tab.Screen name="Home" component={Main_calendar} />
             <Tab.Screen name="Add" component={Add_live} />
             <Tab.Screen name="My_page" component={My_page} />
-            <Tab.Screen name="setting" component={Setting_view} />
         </Tab.Navigator>
     );
 }
