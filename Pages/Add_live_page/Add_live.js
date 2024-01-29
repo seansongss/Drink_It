@@ -6,6 +6,7 @@ import Add_details from "./Add_details";
 import { useState } from "react";
 import { useTheme } from "@react-navigation/native";
 import { Icon } from "@rneui/base";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const getAlchoholIcon = (name) => {
     switch (name) {
@@ -192,7 +193,7 @@ const Add_live = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text>{changed}</Text>
             <Add_header />
             <Add_details />
@@ -213,7 +214,7 @@ const Add_live = () => {
                 <Add_new_unit />
                 <Add_feeling />
             </ScrollView>
-        </View>
+        </SafeAreaView>
     );
 };
 

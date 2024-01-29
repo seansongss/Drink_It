@@ -11,7 +11,7 @@ import My_page from './Components/My_page_view/My_page';
 import Main_calendar from './Pages/Main_calendar/Main_calendar';
 import Login from './Pages/Login/Login';
 import Sign_up from './Components/Login/Register/Register';
-import Add_live from './Pages/Add_live/Add_live';
+import Add_live from './Pages/Add_live_page/Add_live';
 
 
 import styles from './styles';
