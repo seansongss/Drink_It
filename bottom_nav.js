@@ -39,34 +39,42 @@ const Stack = createNativeStackNavigator();
 function Bottom_nav() {
     return (
         <Tab.Navigator
-            sceneContainerStyle={{ backgroundColor: '#A2B69F' }}
+            sceneContainerStyle={{ backgroundColor: "#A2B69F" }}
             screenOptions={({ route }) => ({
                 //Icon Setting
                 tabBarIcon: ({ focused, color, size }) => {
-                    if (route.name === 'Home') {
-                        image = focused ? require('./assets/nav_bar/home.png') : require('./assets/nav_bar/home.png');
+                    if (route.name === "Home") {
+                        image = focused
+                            ? require("./assets/nav_bar/home.png")
+                            : require("./assets/nav_bar/home.png");
                         width = 50;
                         height = 42;
-                    } else if (route.name === 'My_page') {
-                        image = focused ? require('./assets/nav_bar/person.png') : require('./assets/nav_bar/person.png');
+                    } else if (route.name === "My_page") {
+                        image = focused
+                            ? require("./assets/nav_bar/person.png")
+                            : require("./assets/nav_bar/person.png");
                         width = 47;
                         height = 45;
-                    } else if (route.name == 'Add') {
-                        image = focused ? require('./assets/nav_bar/button.png') : require('./assets/nav_bar/button.png');
+                    } else if (route.name == "Add") {
+                        image = focused
+                            ? require("./assets/nav_bar/button.png")
+                            : require("./assets/nav_bar/button.png");
                         width = 40;
                         height = 40;
                     }
-                    return <Image source={image} style={{ width: width, height: height, }} />
+                    return <Image source={image} style={{width: width, height:height,}} />
                 },
                 //Show Label
                 tabBarShowLabel: false,
                 headerShown: false,
                 //tabBar setting
-                tabBarStyle: { backgroundColor: '#597A82', height: 90 }
-            })}>
+                tabBarStyle: { backgroundColor: "#597A82", height: 90 },
+            })}
+        >
             <Tab.Screen name="Home" component={Main_calendar} />
             <Tab.Screen name="Add" component={Add_live} />
             <Tab.Screen name="My_page" component={My_page} />
+            <Tab.Screen name="setting" component={Setting_view} />
         </Tab.Navigator>
     );
 }
