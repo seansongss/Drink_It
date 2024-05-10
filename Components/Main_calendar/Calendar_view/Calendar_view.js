@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
 
-import styles from './styles';
+import styles from '../styles1';
 
 import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';

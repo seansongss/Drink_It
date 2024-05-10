@@ -6,11 +6,12 @@ import { SafeAreaView, View } from "react-native";
 import { Component } from 'react';
 
 import styles from "./styles";
+import CalendarView from "../../Components/Main_calendar/Calendar_view/CalendarView";
 
 function Main_calendar (){
     return(
         <SafeAreaView>
-            <Calendar_view />
+            <CalendarView />
             <View style={styles.cards}>
                 <Funfact_card />
                 <Stat_simple />

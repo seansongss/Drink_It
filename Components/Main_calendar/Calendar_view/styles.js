@@ -1,29 +1,21 @@
-import { StyleSheet } from 'react-native';
+import React from "react";
+import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    header: {
+    calendar: {
+        backgroundColor: 'yellow',
+        height: 430,
+    },
+    monthRow: {
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        columnGap: -10,
+        padding: 8,
     },
     month: {
         fontFamily: 'Jaldi-bold',
         fontSize: 25,
-    },
-    days: {
-        fontFamily: 'Jaldi-bold',
-        fontSize: 22,
-        flex: 1,
-        textAlign: 'center',
-    },
-    item: {
-        fontFamily: 'Jaldi-bold',
-        fontSize: 22,
-        textAlign: 'center',
-    },
-    image: {
-        flex: 1,
+        marginHorizontal: 10,
     },
     dayRow: {
         flexDirection: 'row',
@@ -31,33 +23,33 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    rowItem: {
-        flexDirection: 'row',
-        padding: 17,
+    day: {
+        flex: 1,
+        padding: 8,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    longrowItem: {
+    dayText: {
+        fontFamily: 'Jaldi-bold',
+        fontSize: 22,
+        textAlign: 'center',
+    },
+    dateRow: {
         flexDirection: 'row',
-        padding: 10,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
-    divider: {
-        marginHorizontal: 17,
-        marginBottom: 15,
+    date: {
+        fontFamily: 'Jaldi-bold',
+        fontSize: 22,
+        textAlign: 'center',
     },
-    calendar: {
-        backgroundColor: 'white',
-        borderRadius: 20,
-        height: 430,
-        marginHorizontal: 20,
-        marginTop: -5,
-        paddingBottom: 15,
-    },
-    cards: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
+    image: {
+        flex: 1,
+        borderColor: 'black',
+        // borderWidth: 1,
+        height: 50,
+        justifyContent: 'center',
     },
 });
 

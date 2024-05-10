@@ -4,7 +4,6 @@ import Add_header from "./Add_header";
 import Add_details from "./Add_details";
 
 import { useState } from "react";
-import { useTheme } from "@react-navigation/native";
 import { Icon } from "@rneui/base";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -42,7 +41,7 @@ const getfeelingicon = (feeling) => {
 };
 
 const Add_live = () => {
-    const [al_list, set_al_list] = useState(["soju", "wine"]);
+    const [al_list] = useState(["soju", "wine"]);
     const [count_list, set_count_list] = useState([1, 2]);
     const [before, set_before] = useState(3);
     const [during, set_during] = useState(3);
