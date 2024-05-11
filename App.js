@@ -28,6 +28,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
-    <CalendarView />
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#FFF3D6' }}>
+      <CalendarView />
+      <View style={{ flex: 1, backgroundColor: '#FFF3D6' }} />
+    </SafeAreaView>
   );
 }
