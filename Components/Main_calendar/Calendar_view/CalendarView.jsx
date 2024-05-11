@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, ImageBackground, Button, SafeAreaView } from 'react-native';
+import { View, Text, ImageBackground, Button } from 'react-native';
 import { Divider } from '@rneui/themed';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import styles from './styles';
 
@@ -59,7 +60,7 @@ function CalendarView() {
     }
 
     const matrix = generateMatrix();
-    
+
     const day_row = weekDays.map((day, i) => {
         let d = day.map((item, i) => {
             return (
@@ -104,29 +105,30 @@ function CalendarView() {
         )
     });
 
+    // Safe area calculation
+    const inset = useSafeAreaInsets();
+
     return (
-        <SafeAreaView style={styles.calendarContainer}>
-            <View style={styles.calendar}>
-                {/* Month navigation */}
-                <View style={styles.monthRow}>
-                    <Button
-                        title='Prev'
-                        onPress={() => changeMonth(-1)} />
-                    <Divider orientation="horizontal" />
-                    <Text style={styles.month}>
-                        {months[activeDate.getMonth()]} {activeDate.getFullYear()}
-                    </Text>
-                    <Divider orientation="horizontal" />
-                    <Button
-                        title='Next'
-                        onPress={() => changeMonth(1)} />
-                </View>
-                {/* Days of the week */}
-                {day_row}
-                {/* Dates */}
-                {date_row}
+        <View style={{ flex: 1, marginTop: inset.top, backgroundColor: 'yellow' }}>
+            {/* Month navigation */}
+            <View style={styles.monthRow}>
+                <Button
+                    title='Prev'
+                    onPress={() => changeMonth(-1)} />
+                <Divider orientation="horizontal" />
+                <Text style={styles.month}>
+                    {months[activeDate.getMonth()]} {activeDate.getFullYear()}
+                </Text>
+                <Divider orientation="horizontal" />
+                <Button
+                    title='Next'
+                    onPress={() => changeMonth(1)} />
             </View>
-        </SafeAreaView>
+            {/* Days of the week */}
+            {day_row}
+            {/* Dates */}
+            {date_row}
+        </View>
     )
 }
 
