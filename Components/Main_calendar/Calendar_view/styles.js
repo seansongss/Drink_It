@@ -40,16 +40,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     date: {
-        fontFamily: 'Jaldi-bold',
-        fontSize: 22,
-        textAlign: 'center',
-    },
-    image: {
         flex: 1,
-        borderColor: 'black',
+        // // border checking
+        // borderColor: 'black',
         // borderWidth: 1,
         height: 50,
         justifyContent: 'center',
+    },
+    dateText: {
+        fontFamily: 'Jaldi-bold',
+        fontSize: 22,
+        textAlign: 'center',
     },
 });
 

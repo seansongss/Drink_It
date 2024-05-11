@@ -82,10 +82,10 @@ function CalendarView() {
                                 item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
                     // imageStyle={item == 5 || item == 9 || item == 14 || item == 21 || item == 24 ? { opacity: 1 } : { opacity: 0 }}
                     resizeMode='center'
-                    style={styles.image}
+                    style={styles.date}
                     onPress=''>
                     <Text
-                        style={styles.date}>
+                        style={styles.dateText}>
                         {item != -1 ? item : ''}
                     </Text>
                 </ImageBackground>
