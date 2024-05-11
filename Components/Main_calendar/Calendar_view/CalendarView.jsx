@@ -51,6 +51,10 @@ function CalendarView() {
             }
         }
 
+        if (matrix[5][0] == -1) {
+            matrix.pop();
+        }
+
         return matrix;
     }
 
@@ -59,13 +63,15 @@ function CalendarView() {
     const day_row = weekDays.map((day, i) => {
         let d = day.map((item, i) => {
             return (
-                <Text style={styles.days} key={`day_${i}`}>
-                    {item}
-                </Text>
+                <View style={styles.date} key={`day_${i}`}>
+                    <Text style={styles.dateText} key={`day_${i}`}>
+                        {item}
+                    </Text>
+                </View>
             )
         });
         return (
-            <View style={styles.dayRow} key={`day_row`}>
+            <View style={styles.dateRow} key={`day_row`}>
                 {d}
             </View>
         )
@@ -76,9 +82,9 @@ function CalendarView() {
             return (
                 <ImageBackground
                     key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`}
-                    source={item == 5 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
+                    source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                         item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
-                            item == 14 ? require('../../../assets/alcohol/soju_logo.png') :
+                            item == 14 || item == 17 ? require('../../../assets/alcohol/soju_logo.png') :
                                 item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
                     // imageStyle={item == 5 || item == 9 || item == 14 || item == 21 || item == 24 ? { opacity: 1 } : { opacity: 0 }}
                     resizeMode='center'
@@ -99,7 +105,7 @@ function CalendarView() {
     });
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.calendarContainer}>
             <View style={styles.calendar}>
                 {/* Month navigation */}
                 <View style={styles.monthRow}>

@@ -2,9 +2,16 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+    calendarContainer: {
+        flex: 1,
+        backgroundColor: '#FFF3D6',
+    },
     calendar: {
+        flex: 1,
+        // height: '50%',
+        // width: '80%',
+        marginHorizontal: 20,
         backgroundColor: 'yellow',
-        height: 430,
     },
     monthRow: {
         flexDirection: 'row',
@@ -25,9 +32,9 @@ const styles = StyleSheet.create({
     },
     day: {
         flex: 1,
-        padding: 8,
-        justifyContent: 'space-around',
-        alignItems: 'center',
+        // justifyContent: 'space-around',
+        // alignItems: 'center',
+        textAlign: 'center',
     },
     dayText: {
         fontFamily: 'Jaldi-bold',
@@ -35,22 +42,28 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     dateRow: {
+        flex: 1,
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
+        // justifyContent: 'space-around',
+        // alignItems: 'center',
     },
     date: {
         flex: 1,
         // // border checking
-        // borderColor: 'black',
-        // borderWidth: 1,
-        height: 50,
+        borderColor: 'black',
+        borderWidth: 1,
         justifyContent: 'center',
     },
     dateText: {
+        // flex: 1,
         fontFamily: 'Jaldi-bold',
+        // borderColor: 'black',
+        // borderWidth: 1,
         fontSize: 22,
+        
         textAlign: 'center',
+        // textAlignVertical: 'center',
+        // justifyContent: 'center',
     },
 });
 
