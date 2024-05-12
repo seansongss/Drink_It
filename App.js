@@ -6,6 +6,7 @@ import Bottom_nav from './bottom_nav';
 import BottomNav from './bottom_nav';
 import CalendarView from './Components/Main_calendar/Calendar_view/CalendarView';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import MainCalendar from './Pages/Main_calendar/MainCalendar';
 
 // const theme = createTheme({
 //   lightColors: {
@@ -32,8 +33,7 @@ export default function App() {
     // },
     // SafeAreaProvider is used to provide padding to the app
     <SafeAreaProvider style={{ backgroundColor: '##FFF3D6' }}>
-      <CalendarView />
-      <View style={{ flex: 1, backgroundColor: '#FFF3D6' }} />
+      <MainCalendar />
     </SafeAreaProvider>
   );
 }

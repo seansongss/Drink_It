@@ -1,18 +1,18 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    long: {
+    statContainer: {
+        flex: 1,
         width: "40%",
-        height: 150,
         marginTop: 25,
-
     },
-    stat: {
+    statBox: {
         height: 40,
         borderRadius: 30,
-        borderColor: "#FFFFFF",
+        borderColor: "green",
         borderWidth: 2,
         marginVertical: 7,
+        marginHorizontal: 10,
     },
 });
 

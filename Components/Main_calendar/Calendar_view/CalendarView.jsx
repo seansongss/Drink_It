@@ -73,7 +73,7 @@ function CalendarView() {
         let d = day.map((item, i) => {
             return (
                 <View style={styles.date} key={`day_${i}`}>
-                    <Text style={styles.dateText} key={`day_${i}`}>
+                    <Text style={styles.dateText} key={`dayText_${i}`}>
                         {item}
                     </Text>
                 </View>
