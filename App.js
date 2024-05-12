@@ -27,6 +27,9 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
   return (
+    // Text.defaultProps = {
+    //   style: { fontFamily: 'Jaldi', fontweight: 'bold' }
+    // },
     // SafeAreaProvider is used to provide padding to the app
     <SafeAreaProvider style={{ backgroundColor: '#FFF3D6' }}>
       <CalendarView />

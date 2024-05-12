@@ -8,8 +8,6 @@ const styles = StyleSheet.create({
     },
     calendar: {
         flex: 1,
-        // height: '50%',
-        // width: '80%',
         marginHorizontal: 20,
         backgroundColor: 'yellow',
     },
@@ -17,12 +15,49 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
+        borderColor: 'black',
+        borderWidth: 1,
         padding: 8,
     },
+    monthContainer: {
+        flex: 2.5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    },
+    emptyContainer: {
+        flex: 1,
+        borderColor: 'black',
+        borderWidth: 1,
+    },
+    rankingContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    monthButton: {
+        borderColor: 'black',
+        borderWidth: 1,
+    },
     month: {
-        fontFamily: 'Jaldi-bold',
-        fontSize: 25,
-        marginHorizontal: 10,
+        flex: 1,
+        fontFamily: 'Jaldi_700Bold',
+        fontSize: 22,
+        textAlign: 'center',
+        borderColor: 'black',
+        borderWidth: 1,
+    },
+    ranking: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    rankingImage: {
+        flex: 1,
+        width: 50,
+        height: 50,
+        borderColor: 'black',
+        borderWidth: 1,
     },
     dayRow: {
         flexDirection: 'row',
@@ -32,20 +67,16 @@ const styles = StyleSheet.create({
     },
     day: {
         flex: 1,
-        // justifyContent: 'space-around',
-        // alignItems: 'center',
         textAlign: 'center',
     },
     dayText: {
-        fontFamily: 'Jaldi-bold',
+        fontFamily: 'Jaldi_700Bold',
         fontSize: 22,
         textAlign: 'center',
     },
     dateRow: {
         flex: 1,
         flexDirection: 'row',
-        // justifyContent: 'space-around',
-        // alignItems: 'center',
     },
     date: {
         flex: 1,
@@ -55,15 +86,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     dateText: {
-        // flex: 1,
-        fontFamily: 'Jaldi-bold',
-        // borderColor: 'black',
-        // borderWidth: 1,
+        fontFamily: 'Jaldi_700Bold',
         fontSize: 22,
-        
         textAlign: 'center',
-        // textAlignVertical: 'center',
-        // justifyContent: 'center',
     },
 });
 

@@ -1025,6 +1025,11 @@
     "@babel/helper-validator-identifier" "^7.24.5"
     to-fast-properties "^2.0.0"
 
+"@expo-google-fonts/jaldi@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/jaldi/-/jaldi-0.2.3.tgz#528648f2a27ef8dbc20839b4b6d5bc13df062fca"
+  integrity sha512-k2kTYcjs8A5eGfG07Frg3eqMmsWw7StsKeT5LRs2zngqltalZ4DROiBeMSmRBrn9RMzBj7pYbo01XnKUgdsXKw==
+
 "@expo/bunyan@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@expo/bunyan/-/bunyan-4.0.0.tgz#be0c1de943c7987a9fbd309ea0b1acd605890c7b"
@@ -3114,7 +3119,7 @@ expo-file-system@~17.0.1:
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-17.0.1.tgz#b9f8af8c1c06ec71d96fd7a0d2567fa9e1c88f15"
   integrity sha512-dYpnZJqTGj6HCYJyXAgpFkQWsiCH3HY1ek2cFZVHFoEc5tLz9gmdEgTF6nFHurvmvfmXqxi7a5CXyVm0aFYJBw==
 
-expo-font@~12.0.4:
+expo-font@^12.0.4, expo-font@~12.0.4:
   version "12.0.4"
   resolved "https://registry.yarnpkg.com/expo-font/-/expo-font-12.0.4.tgz#c3d9b7fc152286c1e2beae80f97b94ca4622db34"
   integrity sha512-VtOQB7MEeFMVwo46/9/ntqzrgraTE7gAsnfi2NukFcCpDmyAU3G1R7m287LUXltE46SmGkMgAvM6+fflXFjaJA==

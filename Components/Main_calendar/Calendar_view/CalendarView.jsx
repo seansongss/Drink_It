@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, ImageBackground, Button } from 'react-native';
-import { Divider } from '@rneui/themed';
+import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { Divider, Button } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 
 import styles from './styles';
 
@@ -10,6 +12,12 @@ import Stat_simple from '../Stat_simple/Stat_simple';
 import Login from '../../../Pages/Login/Login';
 
 function CalendarView() {
+    // reference at node_modules/@expo-google-fonts/jaldi
+    let [fontsLoaded] = useFonts({
+        Jaldi_400Regular,
+        Jaldi_700Bold,
+    });
+
     const [activeDate, setActiveDate] = useState(new Date());
 
     // month array
@@ -112,20 +120,40 @@ function CalendarView() {
         <View style={{ flex: 1, marginTop: inset.top, backgroundColor: 'yellow' }}>
             {/* Month navigation */}
             <View style={styles.monthRow}>
-                <Button
-                    title='Prev'
-                    onPress={() => changeMonth(-1)} />
-                <Divider orientation="horizontal" />
-                <Text style={styles.month}>
-                    {months[activeDate.getMonth()]} {activeDate.getFullYear()}
-                </Text>
-                <Divider orientation="horizontal" />
-                <Button
-                    title='Next'
-                    onPress={() => changeMonth(1)} />
+                <View style={styles.monthContainer}>
+                    <MaterialIcons
+                        name='keyboard-arrow-left'
+                        size={50}
+                        color="#FFC870"
+                        style={styles.monthButton}
+                        onPress={() => changeMonth(-1)} />
+                    <Text style={styles.month}>
+                        {months[activeDate.getMonth()]} {activeDate.getFullYear()}
+                    </Text>
+                    <MaterialIcons
+                        name='keyboard-arrow-right'
+                        size={50}
+                        color="#FFC870"
+                        style={styles.monthButton}
+                        onPress={() => changeMonth(+1)} />
+                </View>
+                <View style={styles.emptyContainer} />
+                <View style={styles.rankingContainer}>
+                    <TouchableOpacity style={styles.ranking} >
+                        <Image source={require('../../../assets/Calendar_view/last_night.png')}
+                            style={styles.rankingImage}
+                            resizeMode='contain' />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.ranking} >
+                        <Image source={require('../../../assets/Calendar_view/last_night.png')}
+                            style={styles.rankingImage}
+                            resizeMode='contain' />
+                    </TouchableOpacity>
+                </View>
             </View>
             {/* Days of the week */}
             {day_row}
+            <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
             {/* Dates */}
             {date_row}
         </View>
