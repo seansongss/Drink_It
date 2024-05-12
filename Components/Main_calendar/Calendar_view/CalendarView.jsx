@@ -89,21 +89,24 @@ function CalendarView() {
     const date_row = matrix.map((row, i) => {
         let days = row.map((item, i) => {
             return (
-                <ImageBackground
-                    key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`}
-                    source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
-                        item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
-                            item == 14 || item == 17 ? require('../../../assets/alcohol/soju_logo.png') :
-                                item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
-                    // imageStyle={item == 5 || item == 9 || item == 14 || item == 21 || item == 24 ? { opacity: 1 } : { opacity: 0 }}
-                    resizeMode='center'
-                    style={styles.date}
-                    onPress=''>
-                    <Text
-                        style={styles.dateText}>
-                        {item != -1 ? item : ''}
-                    </Text>
-                </ImageBackground>
+                <TouchableOpacity style={styles.date}>
+
+                    <ImageBackground
+                        key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`}
+                        source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
+                            item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
+                                item == 14 || item == 17 ? require('../../../assets/alcohol/soju_logo.png') :
+                                    item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
+                        // imageStyle={item == 5 || item == 9 || item == 14 || item == 21 || item == 24 ? { opacity: 1 } : { opacity: 0 }}
+                        resizeMode='center'
+                        style={styles.dateBox}
+                        onPress=''>
+                        <Text
+                            style={styles.dateText}>
+                            {item != -1 ? item : ''}
+                        </Text>
+                    </ImageBackground>
+                </TouchableOpacity>
             )
         });
         return (
@@ -117,36 +120,36 @@ function CalendarView() {
     const inset = useSafeAreaInsets();
 
     return (
-        <View style={{ flex: 1, marginTop: inset.top, backgroundColor: 'yellow' }}>
+        <View style={{ flex: 1, marginTop: inset.top, backgroundColor: 'white', marginHorizontal: 20 }}>
             {/* Month navigation */}
             <View style={styles.monthRow}>
                 <View style={styles.monthContainer}>
                     <MaterialIcons
                         name='keyboard-arrow-left'
-                        size={50}
+                        size={40}
                         color="#FFC870"
-                        style={styles.monthButton}
+                        style={[styles.monthButton]}
                         onPress={() => changeMonth(-1)} />
                     <Text style={styles.month}>
                         {months[activeDate.getMonth()]} {activeDate.getFullYear()}
                     </Text>
                     <MaterialIcons
                         name='keyboard-arrow-right'
-                        size={50}
+                        size={40}
                         color="#FFC870"
-                        style={styles.monthButton}
+                        style={[styles.monthButton]}
                         onPress={() => changeMonth(+1)} />
                 </View>
-                <View style={styles.emptyContainer} />
+                <View style={{ flex: 1 }} />
                 <View style={styles.rankingContainer}>
-                    <TouchableOpacity style={styles.ranking} >
+                    <TouchableOpacity style={{marginRight: 5}} onPress={() => setActiveDate(new Date())}>
                         <Image source={require('../../../assets/Calendar_view/last_night.png')}
-                            style={styles.rankingImage}
+                            style={{ width: 40, height: 40 }}
                             resizeMode='contain' />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.ranking} >
+                    <TouchableOpacity>
                         <Image source={require('../../../assets/Calendar_view/last_night.png')}
-                            style={styles.rankingImage}
+                            style={{ width: 40, height: 40 }}
                             resizeMode='contain' />
                     </TouchableOpacity>
                 </View>
