@@ -3,11 +3,11 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     statContainer: {
         flex: 1,
-        width: "40%",
-        marginTop: 25,
+        margin: 10,
+        justifyContent: "space-evenly",
     },
     statBox: {
-        height: 40,
+        flex: 1,
         borderRadius: 30,
         borderColor: "green",
         borderWidth: 2,

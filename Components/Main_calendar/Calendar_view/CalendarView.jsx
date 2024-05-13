@@ -73,7 +73,7 @@ function CalendarView() {
         let d = day.map((item, i) => {
             return (
                 <View style={styles.date} key={`day_${i}`}>
-                    <Text style={styles.dateText} key={`dayText_${i}`}>
+                    <Text style={styles.dateText}>
                         {item}
                     </Text>
                 </View>
@@ -89,10 +89,9 @@ function CalendarView() {
     const date_row = matrix.map((row, i) => {
         let days = row.map((item, i) => {
             return (
-                <TouchableOpacity style={styles.date}>
-
+                <TouchableOpacity style={styles.date}
+                    key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`} >
                     <ImageBackground
-                        key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`}
                         source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                             item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
                                 item == 14 || item == 17 ? require('../../../assets/alcohol/soju_logo.png') :
@@ -106,7 +105,7 @@ function CalendarView() {
                             {item != -1 ? item : ''}
                         </Text>
                     </ImageBackground>
-                </TouchableOpacity>
+                </TouchableOpacity >
             )
         });
         return (
@@ -120,7 +119,7 @@ function CalendarView() {
     const inset = useSafeAreaInsets();
 
     return (
-        <View style={{ flex: 1, marginTop: inset.top, backgroundColor: 'white', marginHorizontal: 20 }}>
+        <View style={styles.calendarViewContainer}>
             {/* Month navigation */}
             <View style={styles.monthRow}>
                 <View style={styles.monthContainer}>
@@ -142,7 +141,7 @@ function CalendarView() {
                 </View>
                 <View style={{ flex: 1 }} />
                 <View style={styles.rankingContainer}>
-                    <TouchableOpacity style={{marginRight: 5}} onPress={() => setActiveDate(new Date())}>
+                    <TouchableOpacity style={{ marginRight: 5 }} onPress={() => setActiveDate(new Date())}>
                         <Image source={require('../../../assets/Calendar_view/last_night.png')}
                             style={{ width: 40, height: 40 }}
                             resizeMode='contain' />
@@ -154,11 +153,13 @@ function CalendarView() {
                     </TouchableOpacity>
                 </View>
             </View>
-            {/* Days of the week */}
-            {day_row}
-            <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
-            {/* Dates */}
-            {date_row}
+            <View style={styles.calendarContainer}>
+                {/* Days of the week */}
+                {day_row}
+                <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
+                {/* Dates */}
+                {date_row}
+            </View>
         </View>
     )
 }

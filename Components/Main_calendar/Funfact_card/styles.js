@@ -2,10 +2,10 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     funfactContainer: {
-        width: "45%",
+        flex: 1,
         backgroundColor: "#FFFAE0",
         borderRadius: 10,
-        marginTop: 30,
+        margin: 10,
     },
 });
 

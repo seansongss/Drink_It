@@ -32,7 +32,7 @@ export default function App() {
     //   style: { fontFamily: 'Jaldi', fontweight: 'bold' }
     // },
     // SafeAreaProvider is used to provide padding to the app
-    <SafeAreaProvider style={{ backgroundColor: '##FFF3D6' }}>
+    <SafeAreaProvider style={{ backgroundColor: '#FFF3D6' }}>
       <MainCalendar />
     </SafeAreaProvider>
   );

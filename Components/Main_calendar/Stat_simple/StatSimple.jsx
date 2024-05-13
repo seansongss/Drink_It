@@ -9,6 +9,7 @@ const StatSimple = () => {
             <View style={styles.statBox} />
             <View style={styles.statBox} />
             <View style={styles.statBox} />
+            <View style={styles.statBox} />
         </View>
     )
 }

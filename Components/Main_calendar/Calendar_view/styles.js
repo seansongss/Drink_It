@@ -3,9 +3,8 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    calendarContainer: {
-        flex: 1,
-        backgroundColor: '#FFF3D6',
+    calendarViewContainer: {
+        flex: 2,
     },
     calendar: {
         flex: 1,
@@ -13,6 +12,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
     },
     monthRow: {
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
@@ -43,6 +43,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // borderColor: 'black',
         // borderWidth: 1,
+    },
+    calendarContainer: {   
+        flex: 8,
+        backgroundColor: 'white',
+        borderRadius: 30,
     },
     dayRow: {
         flexDirection: 'row',
