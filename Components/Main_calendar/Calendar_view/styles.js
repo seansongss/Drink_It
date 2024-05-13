@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     },
     calendarContainer: {   
         flex: 8,
-        backgroundColor: 'white',
+        backgroundColor: '#FFF3D6',
         borderRadius: 30,
     },
     dayRow: {
