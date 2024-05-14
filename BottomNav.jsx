@@ -6,6 +6,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import MainCalendar from './Pages/Main_calendar/MainCalendar';
 import Add_live_page from './Pages/Add_live_page/Add_live_page';
 import Login from './Pages/Login/Login';
+import My_page from './Components/My_page_view/My_page';
+import AddHeader from './Components/AddLive/Header/AddHeader';
 
 const Tab = createBottomTabNavigator();
 
@@ -38,8 +40,8 @@ const BottomNav = () => {
                 tabBarStyle: { backgroundColor: "#597A82", height: 90 },
             })}>
             <Tab.Screen name="Home" component={MainCalendar} />
-            <Tab.Screen name="Add" component={Add_live_page} />
-            <Tab.Screen name="My_page" component={Login} />
+            <Tab.Screen name="Add" component={AddHeader} />
+            <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     )
 }
