@@ -17,7 +17,7 @@
     "@react-navigation/native": "^6.1.9",
     "@rneui/base": "^4.0.0-rc.8",
     "@rneui/themed": "^4.0.0-rc.8",
-    "expo": "^51.0.5",
+    "expo": "~51.0.7",
     "expo-font": "12.0.5",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
@@ -28,5 +28,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.0"
-  }
+  },
+  "packageManager": "yarn@4.2.2"
 }
