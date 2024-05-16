@@ -17,14 +17,12 @@ const BottomNav = () => {
     return (
         <Tab.Navigator
             backBehavior='history'
-            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F" }}
+            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top, borderWidth: 1 }}
             screenOptions={({ route }) => ({
                 //Icon Setting
                 tabBarIcon: ({ focused, color, size }) => {
                     if (route.name === "Home") {
                         image = focused ? require("./assets/nav_bar/home.png") : require("./assets/nav_bar/home.png");
-                        width = 50;
-                        height = 42;
                     } else if (route.name === "My_page") {
                         image = focused ? require("./assets/nav_bar/person.png") : require("./assets/nav_bar/person.png");
                     } else if (route.name == "Add") {
@@ -32,7 +30,7 @@ const BottomNav = () => {
                     }
                     return <Image source={image} resizeMode='center' style={{ width: 45, height: 45 }} />
                 },
-                tabBarItemStyle: { justifyContent:'space-evenly', marginHorizontal: 30, marginTop: 10},
+                tabBarItemStyle: { marginHorizontal: 20, marginTop: 10 },
                 //Show Label
                 tabBarShowLabel: false,
                 headerShown: false,

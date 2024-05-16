@@ -30,7 +30,7 @@ import { NavigationContainer } from '@react-navigation/native';
 export default function App() {
   return (
     // SafeAreaProvider is used to provide padding to the app
-    <SafeAreaProvider style={{ flex: 1, backgroundColor: 'white' }}>
+    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
       <NavigationContainer style={{ flex: 1 }}>
         <BottomNav />
       </NavigationContainer>
