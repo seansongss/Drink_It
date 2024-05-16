@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-evenly",
-        // borderColor: "black",
+        paddingVertical: 10,
         // borderWidth: 1,
     },
 });

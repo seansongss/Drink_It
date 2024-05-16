@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     calendarViewContainer: {
-        flex: 2,
+        flex: 2.5,
     },
     calendar: {
         flex: 1,
