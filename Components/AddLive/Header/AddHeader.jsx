@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -16,23 +16,21 @@ const AddHeader = () => {
     }, []);
 
     return (
-        <SafeAreaView>
-            <View style={styles.headerContainer}>
-                <View style={styles.date}>
-                    <Text style={styles.text}>
-                        {today.getMonth() + 1}/{today.getDate()}
-                    </Text>
-                </View>
-                <View style={styles.time}>
-                    <Text style={styles.text}>
-                        {Math.floor(timer / 3600)}m {Math.floor((timer % 3600) / 60)}s
-                    </Text>
-                </View>
-                <View style={styles.location}>
-                    <Text style={styles.text}>Daldongnae, Waterloo</Text>
-                </View>
+        <View style={styles.headerContainer}>
+            <View style={styles.date}>
+                <Text style={styles.text}>
+                    {today.getMonth() + 1}/{today.getDate()}
+                </Text>
             </View>
-        </SafeAreaView>
+            <View style={styles.time}>
+                <Text style={styles.text}>
+                    {Math.floor(timer / 3600)}m {Math.floor((timer % 3600) / 60)}s
+                </Text>
+            </View>
+            <View style={styles.location}>
+                <Text style={styles.text}>Daldongnae, Waterloo</Text>
+            </View>
+        </View>
     )
 }
 
