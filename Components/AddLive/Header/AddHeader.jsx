@@ -1,22 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import styles from './styles';
 
-const AddHeader = () => {
+const AddHeader = ({ containerStyle }) => {
     let today = new Date();
     const [timer, setTimer] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setTimer(prevTimer => prevTimer + 60);
+            setTimer(prevTimer => prevTimer + 1);
         }, 1000);
         return () => clearInterval(interval);
     }, []);
 
+    const minutes = Math.floor(timer / 60);
+    const seconds = timer % 60;
+
     return (
-        <View style={styles.headerContainer}>
+        <View style={containerStyle}>
             <View style={styles.date}>
                 <Text style={styles.text}>
                     {today.getMonth() + 1}/{today.getDate()}
@@ -24,14 +26,14 @@ const AddHeader = () => {
             </View>
             <View style={styles.time}>
                 <Text style={styles.text}>
-                    {Math.floor(timer / 3600)}m {Math.floor((timer % 3600) / 60)}s
+                    {minutes}m {seconds}
                 </Text>
             </View>
             <View style={styles.location}>
                 <Text style={styles.text}>Daldongnae, Waterloo</Text>
             </View>
         </View>
-    )
-}
+    );
+};
 
-export default AddHeader
+export default AddHeader;

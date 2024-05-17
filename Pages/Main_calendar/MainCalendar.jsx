@@ -11,7 +11,7 @@ const MainCalendar = () => {
   const inset = useSafeAreaInsets();
 
   return (
-    <View style={{ flex:1, marginHorizontal: 20 }}>
+    <View style={{ flex:1, paddingHorizontal: 20}}>
         <CalendarView />
         <View style={styles.cards}>
             <FunfactCard />
