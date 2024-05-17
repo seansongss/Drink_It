@@ -7,7 +7,7 @@ import AddRecord from '../../Components/AddLive/Record/AddRecord'
 
 const AddLive = () => {
   return (
-    <View>
+    <View style={{ flex: 1 }}>
         <AddHeader />
         <AddRecord />
     </View>
