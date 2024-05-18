@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         flex: 8,
         backgroundColor: '#FFF3D6',
         borderRadius: 30,
+        paddingHorizontal: 15,
     },
     dayRow: {
         flexDirection: 'row',

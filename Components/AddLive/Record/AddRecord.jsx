@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 
 import { Icon, Tile } from "@rneui/base";
 
@@ -121,7 +121,7 @@ const AddRecord = ({ containerStyle }) => {
 	};
 
 	return (
-		<View style={containerStyle}>
+		<ScrollView contentContainerStyle={containerStyle}>
 			{alcoholList.map((item, i) => (<AddUnit key={i} name={item} count={countList[i]} index={i} />))}
 			<NewUnitButton />
 			<View style={styles.addFeelingContainer}>
@@ -132,7 +132,7 @@ const AddRecord = ({ containerStyle }) => {
 					<Feeling name="after" />
 				</View>
 			</View>
-		</View>
+		</ScrollView>
 	)
 }
 
