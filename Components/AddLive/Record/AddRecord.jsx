@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 
 import { Icon, Tile } from "@rneui/base";
 
@@ -41,92 +41,95 @@ const getfeelingicon = (feeling) => {
 	}
 };
 
-// change unit count by index
-const changeUnitCount = (index, change) => {
-	if (count_list[index] + change < 0) return;
-	setCountList((prev) => {
-		var result = prev;
-		result[index] += change;
-		return result;
-	});
-}
 
-// adds a new unit to the list
-const addNewUnit = () => {
-	setAlcoholList(prev => [...prev, "hi"]);
-	setCountList(prev => [...prev, 0]);
-}
-// unit	component
-const AddUnit = ({ index }) => {
-	return (
-		<View style={styles.addUnitContainer}>
-			<TouchableOpacity
-				onPress={() => changeUnitCount(index, -1)}>
-				<Icon name="remove" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-			<View>
-				<Image
-					source={getAlchoholIcon(alcoholList[index])}
-					style={{ width: 30, height: 30, resizeMode: "center" }}
-				/>
-				<Text>{alcoholList[index]}</Text>
-			</View>
-			<Text>{countList[index]}</Text>
-			<TouchableOpacity
-				onPress={() => changeUnitCount(index, 1)}>
-				<Icon name="add" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-		</View>
-	);
-};
-
-// button to add new unit
-const NewUnitButton = () => {
-	return (
-		<View style={styles.addUnitContainer}>
-			<TouchableOpacity
-				style={styles.newUnitButton}
-				onPress={() => addNewUnit()}>
-				<Icon name="add" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-		</View>
-	);
-};
-
-// feeling component
-const Feeling = ({ title }) => {
-	const [feeling, setFeeling] = useState(3);
-	<View>
-		<TouchableOpacity
-			onPress={() => setFeeling(prev => prev != 5 ? prev + 1 : 1)}
-		>
-			<Image
-				source={getfeelingicon(title)}
-				style={{
-					width: 50,
-					height: 50,
-					resizeMode: "center",
-				}}
-			/>
-		</TouchableOpacity>
-		<Text>{title}</Text>
-	</View>
-}
-
-const AddRecord = ({containerStyle}) => {
+const AddRecord = ({ containerStyle }) => {
 	const [alcoholList, setAlcoholList] = useState(["soju", "wine"]);
 	const [countList, setCountList] = useState([0, 0]);
 
+	// change unit count by index
+	const changeUnitCount = (index, change) => {
+		if (countList[index] + change < 0) return;
+		setCountList(prev => [...prev.slice(0, index), prev[index] + change, ...prev.slice(index + 1)]);
+	}
+
+	// adds a new unit to the list
+	const addNewUnit = () => {
+		setAlcoholList(prev => [...prev, "soju"]);
+		setCountList(prev => [...prev, 0]);
+	}
+
+
+	// unit	component
+	const AddUnit = ({ name, count, index }) => {
+		return (
+			<View style={styles.addUnitContainer}>
+				<TouchableOpacity
+					onPress={() => changeUnitCount(index, -1)}>
+					<Icon name="remove" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
+				<View style={styles.addUnit}>
+					<Image
+						source={getAlchoholIcon(name)}
+						style={{ width: 30, height: 30, resizeMode: "center" }}
+					/>
+					<Text style={styles.text}>{name}</Text>
+				</View>
+				<Text style={styles.text}>{count}</Text>
+				<TouchableOpacity
+					onPress={() => changeUnitCount(index, 1)}>
+					<Icon name="add" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
+			</View>
+		);
+	};
+
+	// button to add new unit
+	const NewUnitButton = () => {
+		return (
+			<View style={styles.addUnitContainer}>
+				<TouchableOpacity
+					style={styles.newUnitButton}
+					onPress={() => addNewUnit()}>
+					<Icon name="add" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
+			</View>
+		);
+	};
+
+	// feeling component
+	const Feeling = ({ name }) => {
+		const [feeling, setFeeling] = useState(3);
+
+		return (
+			<View style={styles.addFeeling}>
+				<TouchableOpacity
+					onPress={() => setFeeling(prev => prev != 5 ? prev + 1 : 1)}
+					style={styles.addFeelingImage}
+				>
+					<Image
+						source={getfeelingicon(feeling)}
+						style={{
+							width: 50,
+							height: 50,
+							resizeMode: "center",
+						}}
+					/>
+				</TouchableOpacity>
+				<Text style={styles.text}>{name}</Text>
+			</View>
+		);
+	};
+
 	return (
 		<View style={containerStyle}>
-			{alcoholList.map((_, index) => (<AddUnit index={index} />))}	
+			{alcoholList.map((item, i) => (<AddUnit key={i} name={item} count={countList[i]} index={i} />))}
 			<NewUnitButton />
 			<View style={styles.addFeelingContainer}>
-				<Text style={styles.addFeelingText}>how are you feeling? </Text>
+				<Text style={styles.text}>How are you feeling? </Text>
 				<View style={styles.addFeelingWrapper}>
-					<Feeling title="before" />
-					<Feeling title="during" />
-					<Feeling title="after" />
+					<Feeling name="before" />
+					<Feeling name="during" />
+					<Feeling name="after" />
 				</View>
 			</View>
 		</View>

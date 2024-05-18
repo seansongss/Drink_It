@@ -7,14 +7,17 @@ const styles = StyleSheet.create({
     },
     addHeaderContainer: {
         flex: 1,
+        flexDirection: "row",
         backgroundColor: "#b2d8b2",
-    },
-    addRecordContainer: {
-        flex: 5,
-        backgroundColor: "#e5eef4",
         justifyContent: "center",
         alignItems: "center",
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
+    },
+    addRecordContainer: {
+        flex: 6,
+        backgroundColor: "#e5eef4",
+        paddingHorizontal: 40,
+        paddingTop: 10,
     },
 });
 

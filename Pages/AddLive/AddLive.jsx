@@ -8,8 +8,8 @@ import styles from './styles'
 const AddLive = () => {
   return (
     <View style={styles.addLiveContainer}>
-        <AddHeader style={styles.addHeaderContainer} />
-        <AddRecord style={styles.addRecordContainer} />
+        <AddHeader containerStyle={styles.addHeaderContainer} />
+        <AddRecord containerStyle={styles.addRecordContainer} />
     </View>
   )
 }

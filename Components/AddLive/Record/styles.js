@@ -1,36 +1,39 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    addRecordContainer: {
-        flex: 1,
-        backgroundColor: "#b2d8b2",
-        justifyContent: "center",
-        alignItems: "center",
-        padding: 10,
-    },
-    addRecordButton: {
-        backgroundColor: "#f4d160",
-        borderRadius: 10,
-        padding: 10,
-    },
-    addRecordText: {
-        fontFamily: "Jaldi_700Bold",
-        fontSize: 20,
-    },
-    addRecordTextContainer: {
-        marginVertical: 10,
-    },
-    addRecordTextWrapper: {
-        display: "flex",
+    addUnitContainer: {
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-around",
+        alignItems: "center",
+        paddingVertical: 10,
+        marginVertical: 10,
+        borderRadius: 20,
+        borderWidth: 3,
+        backgroundColor: "white",
+    },
+    addUnit: {
         alignItems: "center",
     },
-    addRecordWrapper: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
+    addFeelingContainer: {
+        padding: 15,
+        marginVertical: 10,
+        borderRadius: 10,
+        backgroundColor: "white",
+    },
+    addFeelingWrapper: {
+        marginTop: 20,
+        flexDirection: "row",
+        justifyContent: "space-around",
+    },
+    addFeeling: {
         alignItems: "center",
+    },
+    addFeelingImage: {
+        marginBottom: 5,
+    },
+    text: {
+        fontSize: 18,
+        fontFamily: 'Jaldi_700Bold',
     },
 });
 

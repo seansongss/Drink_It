@@ -17,7 +17,7 @@ const BottomNav = () => {
     return (
         <Tab.Navigator
             backBehavior='history'
-            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top, borderWidth: 1 }}
+            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top}}
             screenOptions={({ route }) => ({
                 //Icon Setting
                 tabBarIcon: ({ focused, color, size }) => {
@@ -38,7 +38,7 @@ const BottomNav = () => {
                 tabBarStyle: { backgroundColor: "#597A82", height: 90 },
             })}>
             <Tab.Screen name="Home" component={MainCalendar} />
-            <Tab.Screen name="Add" component={Add_live_page} />
+            <Tab.Screen name="Add" component={AddLive} />
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     )

@@ -1,27 +1,21 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    headerContainer: {
-        // height change to flexbox (or set height)
-        height: 70,
-        // flex: 1,
-        flexDirection: "row",
-        justifyContent: "space-around",
-    },
-    date: {
+    headerItem: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-    },
-    time: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        borderWidth: 3,
+        borderRadius: 30,
+        marginHorizontal: 10,
     },
     location: {
-        flex: 1,
+        flex: 2.5,
         justifyContent: "center",
         alignItems: "center",
+        borderWidth: 3,
+        borderRadius: 30,
+        marginHorizontal: 10,
     },
     text: {
         fontSize: 18,
