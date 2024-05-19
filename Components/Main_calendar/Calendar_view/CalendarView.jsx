@@ -4,14 +4,17 @@ import { Divider, Button } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import styles from './styles';
 
 import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';
 import Login from '../../../Pages/Login/Login';
+import DailyView from '../../DailyView/DailyView';
 
-function CalendarView() {
+function CalendarView({ navigation }) {
     // reference at node_modules/@expo-google-fonts/jaldi
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
@@ -90,7 +93,8 @@ function CalendarView() {
         let days = row.map((item, i) => {
             return (
                 <TouchableOpacity style={styles.date}
-                    key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`} >
+                    key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`} 
+                    onPress={(navigation) => navigation.navigate('DailyView')}>
                     <ImageBackground
                         source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                             item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
@@ -164,4 +168,4 @@ function CalendarView() {
     )
 }
 
-export default CalendarView
+export default CalendarView;
