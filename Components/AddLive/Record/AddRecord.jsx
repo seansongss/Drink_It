@@ -47,7 +47,7 @@ const AddRecord = ({ containerStyle }) => {
 	const [countList, setCountList] = useState([0, 0]);
 
 	const unitDelete = (index) => {
-		Alert.alert(`Delete ${alcoholList[index]}`, 'Are you sure you want to delete this unit?', [
+		Alert.alert(`Delete ${alcoholList[index]}`, 'Are you sure you want to delete this?', [
 			{
 				text: 'Cancel',
 				// onPress: () => console.log('Cancel Pressed'),
