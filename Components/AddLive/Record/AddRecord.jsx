@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
 
 import { Icon, Tile } from "@rneui/base";
 
@@ -46,10 +46,31 @@ const AddRecord = ({ containerStyle }) => {
 	const [alcoholList, setAlcoholList] = useState(["soju", "wine"]);
 	const [countList, setCountList] = useState([0, 0]);
 
+	const unitDelete = (index) => {
+		Alert.alert(`Delete ${alcoholList[index]}`, 'Are you sure you want to delete this unit?', [
+			{
+				text: 'Cancel',
+				// onPress: () => console.log('Cancel Pressed'),
+				style: 'cancel'
+			},
+			{
+				text: 'Delete',
+				onPress: () => {
+					setAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+					setCountList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+				},
+				style: 'destructive'
+			},
+		]);
+	}
+
 	// change unit count by index
 	const changeUnitCount = (index, change) => {
-		if (countList[index] + change < 0) return;
-		setCountList(prev => [...prev.slice(0, index), prev[index] + change, ...prev.slice(index + 1)]);
+		if (countList[index] + change < 0) {
+			unitDelete(index);
+		} else {
+			setCountList(prev => [...prev.slice(0, index), prev[index] + change, ...prev.slice(index + 1)]);
+		}
 	}
 
 	// adds a new unit to the list
