@@ -93,7 +93,7 @@ function CalendarView({ navigation }) {
                 <TouchableOpacity style={styles.date}
                     key={`${activeDate.getFullYear()}_${activeDate.getMonth() + 1}_${item != -1 ? item : item - i}`}
                     onPress={() => navigation.navigate('DailyView',
-                        { year: activeDate.getFullYear(), month: activeDate.getMonth() + 1 , date: item })}>
+                        { year: activeDate.getFullYear(), month: activeDate.getMonth(), date: item})}>
                     <ImageBackground
                         source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                             item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
