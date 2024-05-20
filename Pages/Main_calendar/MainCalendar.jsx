@@ -6,11 +6,12 @@ import StatSimple from '../../Components/Main_calendar/Stat_simple/StatSimple'
 
 import styles from './styles'
 import DailyView from '../../Components/DailyView/DailyView'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-const MainCalendar = () => {
+const MainCalendar = ({ navigation }) => {
   return (
     <View style={{ flex:1, paddingHorizontal: 20}}>
-        <CalendarView />
+        <CalendarView navigation={navigation} />
         <View style={styles.cards}>
             <FunfactCard />
             <StatSimple />
@@ -30,4 +31,4 @@ function CalendarViewStack() {
     );
 }
 
-export default MainCalendar
+export default CalendarViewStack

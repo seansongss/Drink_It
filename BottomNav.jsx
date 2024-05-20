@@ -8,6 +8,8 @@ import Add_live_page from './Pages/Add_live_page/Add_live_page';
 import Login from './Pages/Login/Login';
 import My_page from './Components/My_page_view/My_page';
 import AddLive from './Pages/AddLive/AddLive';
+// import CalendarView from './Components/Main_calendar/Calendar_view/CalendarView';
+import CalendarViewStack from './Pages/Main_calendar/MainCalendar';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +39,7 @@ const BottomNav = () => {
                 //tabBar setting
                 tabBarStyle: { backgroundColor: "#597A82", height: 90 },
             })}>
-            <Tab.Screen name="Home" component={MainCalendar} />
+            <Tab.Screen name="Home" component={CalendarViewStack} />
             <Tab.Screen name="Add" component={AddLive} />
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>

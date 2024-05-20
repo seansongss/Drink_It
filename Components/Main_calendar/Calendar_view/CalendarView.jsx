@@ -11,8 +11,6 @@ import styles from './styles';
 
 import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';
-import Login from '../../../Pages/Login/Login';
-import DailyView from '../../DailyView/DailyView';
 
 function CalendarView({ navigation }) {
     // reference at node_modules/@expo-google-fonts/jaldi
@@ -93,8 +91,9 @@ function CalendarView({ navigation }) {
         let days = row.map((item, i) => {
             return (
                 <TouchableOpacity style={styles.date}
-                    key={`${activeDate.getFullYear()}_${activeDate.getMonth()}_${item != -1 ? item : item - i}`} 
-                    onPress={(navigation) => navigation.navigate('DailyView')}>
+                    key={`${activeDate.getFullYear()}_${activeDate.getMonth() + 1}_${item != -1 ? item : item - i}`}
+                    onPress={() => navigation.navigate('DailyView',
+                        { year: activeDate.getFullYear(), month: activeDate.getMonth() + 1 , date: item })}>
                     <ImageBackground
                         source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                             item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
@@ -113,7 +112,7 @@ function CalendarView({ navigation }) {
             )
         });
         return (
-            <View style={styles.dateRow} key={`row_${i}`}>
+            <View style={styles.dateRow} key={`row_${ i }`}>
                 {days}
             </View>
         )
