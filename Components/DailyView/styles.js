@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import DailyView from "./DailyView";
 import { Divider } from "@rneui/base";
 
 const styles = StyleSheet.create({
@@ -21,8 +20,12 @@ const styles = StyleSheet.create({
     },
     dateText:{
         fontFamily: 'Jaldi_700Bold',
-        fontSize: 20,
+        fontSize: 25,
         letterSpacing: 1, // Add this line to give letter spacing
+    },
+    dailyViewButton: {
+        // borderWidth: 1,
+        // overflow: 'hidden',
     },
     divider: {
         borderRadius: 50,
@@ -32,9 +35,36 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-end',
     },
+    dailyViewInfo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 10,
+        borderRadius: 30,
+        padding: 10,
+    },
+    dailyViewFeeling: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignContent: 'center',
+        marginVertical: 10,
+        paddingVertical: 15,
+        backgroundColor: '#A2B69F',
+        borderRadius: 30,
+    },
+    dailyViewNote: {
+        marginVertical: 10,
+        padding: 10,
+        borderRadius: 30,
+        backgroundColor: '#E69C4D',
+    },
+    noteText: {
+        fontFamily: 'Jaldi_700Bold',
+        fontSize: 18,
+        marginHorizontal: 10,
+    },
     text: {
         fontFamily: 'Jaldi_700Bold',
-        fontSize: 20,
+        fontSize: 18,
     },
 });
 
