@@ -23,10 +23,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
         letterSpacing: 1, // Add this line to give letter spacing
     },
-    dailyViewButton: {
-        // borderWidth: 1,
-        // overflow: 'hidden',
-    },
     divider: {
         borderRadius: 50,
         marginVertical: 15,
@@ -34,6 +30,23 @@ const styles = StyleSheet.create({
     editContainer: {
         flexDirection: 'row',
         justifyContent: 'flex-end',
+    },
+    unitListContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginVertical: 10,
+        padding: 10,
+        borderRadius: 30,
+        borderColor: '#E69C4D',
+        borderWidth: 3,
+    },
+    unitContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    unitWrapper: {
+        alignItems: 'center',
+        marginHorizontal: 13,
     },
     dailyViewInfo: {
         flexDirection: 'row',

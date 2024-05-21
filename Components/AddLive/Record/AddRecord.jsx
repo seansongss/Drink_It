@@ -18,6 +18,7 @@ const getAlchoholIcon = (name) => {
 			return require("../../../assets/alcohol/vodka_logo.png");
 
 		default:
+			log.error('Invalid alcohol name');
 			break;
 	}
 };
@@ -37,6 +38,7 @@ const getfeelingicon = (feeling) => {
 			return require("../../../assets/Daily_view/feeling1.png");
 
 		default:
+			log.error('Invalid feeling number');
 			break;
 	}
 };
