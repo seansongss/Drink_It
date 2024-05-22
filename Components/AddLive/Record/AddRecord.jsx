@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button } from 'react-native';
 
 import { Icon, Tile } from "@rneui/base";
 
@@ -157,6 +157,7 @@ const AddRecord = ({ containerStyle }) => {
 					<Feeling name="after" />
 				</View>
 			</View>
+			<Button title="Record" onPress={() => } />
 		</ScrollView>
 	);
 };

@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text } from 'react-native';
 
 import styles from './styles';
 
-const AddHeader = ({ containerStyle }) => {
+const AddHeader = ({ containerStyle, onDateChange, onDurationChange }) => {
     let today = new Date();
     const [timer, setTimer] = useState(0);
 
     useEffect(() => {
+        // Initialize date
+        onDateChange(`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`);
+
         const interval = setInterval(() => {
-            setTimer(prevTimer => prevTimer + 1);
+            setTimer(prevTimer => {
+                const newTimer = prevTimer + 1;
+                // Update duration
+                onDurationChange(newTimer);
+                return newTimer;
+            });
         }, 1000);
+
         return () => clearInterval(interval);
-    }, []);
+    }, [onDateChange, onDurationChange, today]);
 
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
