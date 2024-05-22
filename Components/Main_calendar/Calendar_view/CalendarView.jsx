@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { Divider, Button } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -12,6 +12,19 @@ import styles from './styles';
 import Funfact_card from '../Funfact_card/Funfact_card';
 import Stat_simple from '../Stat_simple/Stat_simple';
 
+// Preload images
+const preloadImages = [
+    require('../../../assets/alcohol/beer_logo.png'),
+    require('../../../assets/alcohol/wine_logo.png'),
+    require('../../../assets/alcohol/soju_logo.png'),
+    require('../../../assets/alcohol/vodka_logo.png'),
+    require('../../../assets/Calendar_view/last_night.png'),
+];
+
+preloadImages.forEach(image => {
+    Image.prefetch(Image.resolveAssetSource(image).uri);
+});
+
 function CalendarView({ navigation }) {
     // reference at node_modules/@expo-google-fonts/jaldi
     let [fontsLoaded] = useFonts({
@@ -22,19 +35,15 @@ function CalendarView({ navigation }) {
     const [activeDate, setActiveDate] = useState(new Date());
 
     // month array
-    const months = ["Jan", "Feb", "Mar", "Apr",
-        "May", "Jun", "Jul", "Aug", "Sept", "Oct",
-        "Nov", "Dec"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
     // weekdays array
-    const weekDays = [[
-        "S", "M", "T", "W", "T", "F", "S"
-    ]];
+    const weekDays = [["S", "M", "T", "W", "T", "F", "S"]];
     // number of days each month starting in January
     const nDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
     const changeMonth = (n) => {
         setActiveDate(new Date(activeDate.getFullYear(), activeDate.getMonth() + n, 1));
-    }
+    };
 
     // Generate the matrix for the calendar
     const generateMatrix = () => {
@@ -66,7 +75,7 @@ function CalendarView({ navigation }) {
         }
 
         return matrix;
-    }
+    };
 
     const matrix = generateMatrix();
 
@@ -78,13 +87,13 @@ function CalendarView({ navigation }) {
                         {item}
                     </Text>
                 </View>
-            )
+            );
         });
         return (
             <View style={styles.dateRow} key={`day_row`}>
                 {d}
             </View>
-        )
+        );
     });
 
     const date_row = matrix.map((row, i) => {
@@ -92,8 +101,7 @@ function CalendarView({ navigation }) {
             return (
                 <TouchableOpacity style={styles.date}
                     key={`${activeDate.getFullYear()}_${activeDate.getMonth() + 1}_${item != -1 ? item : item - i}`}
-                    onPress={() => navigation.navigate('DailyView',
-                        { year: activeDate.getFullYear(), month: activeDate.getMonth(), date: item})}>
+                    onPress={() => navigation.navigate('DailyView', { year: activeDate.getFullYear(), month: activeDate.getMonth(), date: item })}>
                     <ImageBackground
                         source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
                             item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
@@ -103,19 +111,18 @@ function CalendarView({ navigation }) {
                         resizeMode='center'
                         style={styles.dateBox}
                         onPress=''>
-                        <Text
-                            style={styles.dateText}>
+                        <Text style={styles.dateText}>
                             {item != -1 ? item : ''}
                         </Text>
                     </ImageBackground>
-                </TouchableOpacity >
-            )
+                </TouchableOpacity>
+            );
         });
         return (
-            <View style={styles.dateRow} key={`row_${ i }`}>
+            <View style={styles.dateRow} key={`row_${i}`}>
                 {days}
             </View>
-        )
+        );
     });
 
     // Safe area calculation
@@ -164,7 +171,7 @@ function CalendarView({ navigation }) {
                 {date_row}
             </View>
         </View>
-    )
+    );
 }
 
 export default CalendarView;

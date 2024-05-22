@@ -16,7 +16,6 @@ const getAlchoholIcon = (name) => {
 			return require("../../../assets/alcohol/wine_logo.png");
 		case "vodka":
 			return require("../../../assets/alcohol/vodka_logo.png");
-
 		default:
 			log.error('Invalid alcohol name');
 			break;
@@ -36,58 +35,60 @@ const getfeelingicon = (feeling) => {
 			return require("../../../assets/Daily_view/feeling2.png");
 		case 5:
 			return require("../../../assets/Daily_view/feeling1.png");
-
 		default:
 			log.error('Invalid feeling number');
 			break;
 	}
 };
 
-
 const AddRecord = ({ containerStyle }) => {
-	const [alcoholList, setAlcoholList] = useState(["soju", "wine"]);
-	const [countList, setCountList] = useState([0, 0]);
+	// Use a single state for alcohol and count
+	const [alcoholList, setAlcoholList] = useState([
+		{ name: "soju", count: 0 },
+		{ name: "wine", count: 0 },
+	]);
 
 	const unitDelete = (index) => {
-		Alert.alert(`Delete ${alcoholList[index]}`, 'Are you sure you want to delete this?', [
+		Alert.alert(`Delete ${alcoholList[index].name}`, 'Are you sure you want to delete this?', [
 			{
 				text: 'Cancel',
-				// onPress: () => console.log('Cancel Pressed'),
 				style: 'cancel'
 			},
 			{
 				text: 'Delete',
 				onPress: () => {
 					setAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
-					setCountList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
 				},
 				style: 'destructive'
 			},
 		]);
-	}
+	};
 
 	// change unit count by index
 	const changeUnitCount = (index, change) => {
-		if (countList[index] + change < 0) {
-			unitDelete(index);
-		} else {
-			setCountList(prev => [...prev.slice(0, index), prev[index] + change, ...prev.slice(index + 1)]);
-		}
-	}
+		setAlcoholList(prev => {
+			const newCount = prev[index].count + change;
+			if (newCount < 0) {
+				unitDelete(index);
+			} else {
+				const updatedList = [...prev];
+				updatedList[index] = { ...updatedList[index], count: newCount };
+				return updatedList;
+			}
+			return prev;
+		});
+	};
 
 	// adds a new unit to the list
 	const addNewUnit = () => {
-		setAlcoholList(prev => [...prev, "soju"]);
-		setCountList(prev => [...prev, 0]);
-	}
-
+		setAlcoholList(prev => [...prev, { name: "soju", count: 0 }]);
+	};
 
 	// unit	component
 	const AddUnit = ({ name, count, index }) => {
 		return (
 			<View style={styles.addUnitContainer}>
-				<TouchableOpacity
-					onPress={() => changeUnitCount(index, -1)}>
+				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
 					<Icon name="remove" color={"#c1dfb0"} size={50} />
 				</TouchableOpacity>
 				<View style={styles.addUnit}>
@@ -98,8 +99,7 @@ const AddRecord = ({ containerStyle }) => {
 					<Text style={styles.text}>{name}</Text>
 				</View>
 				<Text style={styles.text}>{count}</Text>
-				<TouchableOpacity
-					onPress={() => changeUnitCount(index, 1)}>
+				<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
 					<Icon name="add" color={"#c1dfb0"} size={50} />
 				</TouchableOpacity>
 			</View>
@@ -126,7 +126,7 @@ const AddRecord = ({ containerStyle }) => {
 		return (
 			<View style={styles.addFeeling}>
 				<TouchableOpacity
-					onPress={() => setFeeling(prev => prev != 5 ? prev + 1 : 1)}
+					onPress={() => setFeeling(prev => prev !== 5 ? prev + 1 : 1)}
 					style={styles.addFeelingImage}
 				>
 					<Image
@@ -145,7 +145,9 @@ const AddRecord = ({ containerStyle }) => {
 
 	return (
 		<ScrollView contentContainerStyle={containerStyle}>
-			{alcoholList.map((item, i) => (<AddUnit key={i} name={item} count={countList[i]} index={i} />))}
+			{alcoholList.map((item, i) => (
+				<AddUnit key={i} name={item.name} count={item.count} index={i} />
+			))}
 			<NewUnitButton />
 			<View style={styles.addFeelingContainer}>
 				<Text style={styles.text}>How are you feeling? </Text>
@@ -156,7 +158,7 @@ const AddRecord = ({ containerStyle }) => {
 				</View>
 			</View>
 		</ScrollView>
-	)
-}
+	);
+};
 
-export default AddRecord
+export default AddRecord;
