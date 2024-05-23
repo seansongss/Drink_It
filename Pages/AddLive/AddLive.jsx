@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { View } from 'react-native'
-import AddHeader from '../../Components/AddLive/Header/AddHeader'
-import AddRecord from '../../Components/AddLive/Record/AddRecord'
+import React, { useState } from 'react';
+import { View } from 'react-native';
+import AddHeader from '../../Components/AddLive/Header/AddHeader';
+import AddRecord from '../../Components/AddLive/Record/AddRecord';
 
-import styles from './styles'
+import styles from './styles';
 
 const AddLive = () => {
   const [date, setDate] = useState('');
@@ -22,7 +22,7 @@ const AddLive = () => {
         duration={duration}
       />
     </View>
-  )
-}
+  );
+};
 
-export default AddLive
+export default AddLive;

@@ -8,20 +8,20 @@ const AddHeader = ({ containerStyle, onDateChange, onDurationChange }) => {
     const [timer, setTimer] = useState(0);
 
     useEffect(() => {
-        // Initialize date
-        onDateChange(`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()}`);
+        // Set initial date
+        onDateChange(`${today.getMonth() + 1}/${today.getDate()}`);
 
+        // Set up timer
         const interval = setInterval(() => {
             setTimer(prevTimer => {
                 const newTimer = prevTimer + 1;
-                // Update duration
                 onDurationChange(newTimer);
                 return newTimer;
             });
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [onDateChange, onDurationChange, today]);
+    }, [onDateChange, onDurationChange]);
 
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
