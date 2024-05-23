@@ -41,12 +41,17 @@ const getfeelingicon = (feeling) => {
   }
 };
 
-const AddRecord = ({ containerStyle, date, duration }) => {
-  // Use a single state for alcohol and count
+const AddRecord = ({ containerStyle, date, navigation }) => {
   const [alcoholList, setAlcoholList] = useState([
     { name: "soju", count: 0 },
     { name: "wine", count: 0 },
   ]);
+
+  const [feelings, setFeelings] = useState({
+    before: 3,
+    during: 3,
+    after: 3,
+  });
 
   const unitDelete = (index) => {
     Alert.alert(`Delete ${alcoholList[index].name}`, 'Are you sure you want to delete this?', [
@@ -64,7 +69,6 @@ const AddRecord = ({ containerStyle, date, duration }) => {
     ]);
   };
 
-  // change unit count by index
   const changeUnitCount = (index, change) => {
     setAlcoholList(prev => {
       const newCount = prev[index].count + change;
@@ -79,74 +83,94 @@ const AddRecord = ({ containerStyle, date, duration }) => {
     });
   };
 
-  // adds a new unit to the list
   const addNewUnit = () => {
     setAlcoholList(prev => [...prev, { name: "soju", count: 0 }]);
   };
 
-  // Save the record to AsyncStorage
+  const formatDate = (date) => {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + d.getDate();
+    const year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
+  };
+
   const saveRecord = async () => {
+    const now = new Date();
+    const duration = Math.floor((now - date) / 1000); // duration in seconds
+    const dateKey = formatDate(date); // Use formatted date as key
     const record = {
-      date,
-      duration,
+      // date: date.toISOString(), // save the date in ISO string format
+      duration: duration,
       alcoholList,
+      feelings,
     };
     try {
-      await AsyncStorage.setItem('alcoholList', JSON.stringify(record));
+      await AsyncStorage.setItem(dateKey, JSON.stringify(record));
       Alert.alert("Success", "Record saved successfully!");
+      const savedRecord = await AsyncStorage.getItem(dateKey);
+      console.log("Date key:", dateKey);
+      console.log("Record saved:", savedRecord);
+      navigation.navigate('CalendarView'); // Navigate to MainCalendar
     } catch (error) {
       console.error("Error saving record:", error);
       Alert.alert("Error", "Failed to save the record.");
     }
   };
 
-  // unit component
-  const AddUnit = ({ name, count, index }) => {
-    return (
-      <View style={styles.addUnitContainer}>
-        <TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
-          <Icon name="remove" color={"#c1dfb0"} size={50} />
-        </TouchableOpacity>
-        <View style={styles.addUnit}>
-          <Image
-            source={getAlchoholIcon(name)}
-            style={{ width: 30, height: 30, resizeMode: "center" }}
-          />
-          <Text style={styles.text}>{name}</Text>
-        </View>
-        <Text style={styles.text}>{count}</Text>
-        <TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
-          <Icon name="add" color={"#c1dfb0"} size={50} />
-        </TouchableOpacity>
+  const AddUnit = ({ name, count, index }) => (
+    <View style={styles.addUnitContainer}>
+      <TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
+        <Icon name="remove" color={"#c1dfb0"} size={50} />
+      </TouchableOpacity>
+      <View style={styles.addUnit}>
+        <Image
+          source={getAlchoholIcon(name)}
+          style={{ width: 30, height: 30, resizeMode: "center" }}
+        />
+        <Text style={styles.text}>{name}</Text>
       </View>
-    );
-  };
+      <Text style={styles.text}>{count}</Text>
+      <TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
+        <Icon name="add" color={"#c1dfb0"} size={50} />
+      </TouchableOpacity>
+    </View>
+  );
 
-  // button to add new unit
-  const NewUnitButton = () => {
-    return (
-      <View style={styles.addUnitContainer}>
-        <TouchableOpacity
-          style={styles.newUnitButton}
-          onPress={() => addNewUnit()}>
-          <Icon name="add" color={"#c1dfb0"} size={50} />
-        </TouchableOpacity>
-      </View>
-    );
-  };
+  const NewUnitButton = () => (
+    <View style={styles.addUnitContainer}>
+      <TouchableOpacity
+        style={styles.newUnitButton}
+        onPress={() => addNewUnit()}>
+        <Icon name="add" color={"#c1dfb0"} size={50} />
+      </TouchableOpacity>
+    </View>
+  );
 
-  // feeling component
   const Feeling = ({ name }) => {
-    const [feeling, setFeeling] = useState(3);
+    const feelingValue = feelings[name];
+
+    const changeFeeling = () => {
+      setFeelings(prev => {
+        const newValue = prev[name] !== 5 ? prev[name] + 1 : 1;
+        return { ...prev, [name]: newValue };
+      });
+    };
 
     return (
       <View style={styles.addFeeling}>
         <TouchableOpacity
-          onPress={() => setFeeling(prev => prev !== 5 ? prev + 1 : 1)}
+          onPress={changeFeeling}
           style={styles.addFeelingImage}
         >
           <Image
-            source={getfeelingicon(feeling)}
+            source={getfeelingicon(feelingValue)}
             style={{
               width: 50,
               height: 50,
@@ -173,7 +197,9 @@ const AddRecord = ({ containerStyle, date, duration }) => {
           <Feeling name="after" />
         </View>
       </View>
-      <Button title="Record" onPress={saveRecord} />
+      <TouchableOpacity style={styles.recordButton} onPress={saveRecord}>
+        <Text style={styles.text}>Record</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };

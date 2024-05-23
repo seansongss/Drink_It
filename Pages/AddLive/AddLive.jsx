@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import AddHeader from '../../Components/AddLive/Header/AddHeader';
 import AddRecord from '../../Components/AddLive/Record/AddRecord';
 
 import styles from './styles';
 
-const AddLive = () => {
-  const [date, setDate] = useState('');
-  const [duration, setDuration] = useState(0);
+const AddLive = ({ navigation }) => {
+  const date = new Date();
 
   return (
     <View style={styles.addLiveContainer}>
-      <AddHeader
-        containerStyle={styles.addHeaderContainer}
-        onDateChange={setDate}
-        onDurationChange={setDuration}
-      />
-      <AddRecord
+      <AddHeader containerStyle={styles.addHeaderContainer} />
+      <AddRecord 
         containerStyle={styles.addRecordContainer}
         date={date}
-        duration={duration}
+        navigation={navigation}
       />
     </View>
   );

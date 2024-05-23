@@ -35,6 +35,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontFamily: 'Jaldi_700Bold',
     },
+    recordButton: {
+        marginVertical: 10,
+        alignItems: "center",
+        padding: 10,
+        borderRadius: 20,
+        borderWidth: 3,
+        backgroundColor: "#E69C4D",
+    },
 });
 
 export default styles;

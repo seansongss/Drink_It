@@ -3,25 +3,21 @@ import { View, Text } from 'react-native';
 
 import styles from './styles';
 
-const AddHeader = ({ containerStyle, onDateChange, onDurationChange }) => {
+const AddHeader = ({ containerStyle }) => {
     let today = new Date();
     const [timer, setTimer] = useState(0);
 
     useEffect(() => {
-        // Set initial date
-        onDateChange(`${today.getMonth() + 1}/${today.getDate()}`);
-
         // Set up timer
         const interval = setInterval(() => {
             setTimer(prevTimer => {
                 const newTimer = prevTimer + 1;
-                onDurationChange(newTimer);
                 return newTimer;
             });
         }, 1000);
 
         return () => clearInterval(interval);
-    }, [onDateChange, onDurationChange]);
+    }, [today]);
 
     const minutes = Math.floor(timer / 60);
     const seconds = timer % 60;
