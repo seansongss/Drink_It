@@ -93,29 +93,35 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
     let day = '' + d.getDate();
     const year = d.getFullYear();
 
-    if (month.length < 2)
+    if (month.length < 2) 
       month = '0' + month;
-    if (day.length < 2)
+    if (day.length < 2) 
       day = '0' + day;
 
     return [year, month, day].join('-');
   };
 
+  const getHighestCountAlcohol = (alcoholList) => {
+    if (alcoholList.length === 0) return null;
+    return alcoholList.reduce((max, alcohol) => alcohol.count > max.count ? alcohol : max, alcoholList[0]);
+  };
+
   const saveRecord = async () => {
     const now = new Date();
     const duration = Math.floor((now - date) / 1000); // duration in seconds
-    const dateKey = formatDate(date); // Use formatted date as key
+    const highestCountAlcohol = getHighestCountAlcohol(alcoholList);
+
     const record = {
-      // date: date.toISOString(), // save the date in ISO string format
       duration: duration,
       alcoholList,
       feelings,
+      highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.name : null,
     };
+    const dateKey = formatDate(date); // Use formatted date as key
     try {
       await AsyncStorage.setItem(dateKey, JSON.stringify(record));
       Alert.alert("Success", "Record saved successfully!");
       const savedRecord = await AsyncStorage.getItem(dateKey);
-      console.log("Date key:", dateKey);
       console.log("Record saved:", savedRecord);
       navigation.navigate('CalendarView'); // Navigate to MainCalendar
     } catch (error) {
@@ -154,12 +160,12 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
   );
 
   const Feeling = ({ name }) => {
-    const feelingValue = feelings[name];
+    const feelingValue = feelings[name.toLowerCase()];
 
     const changeFeeling = () => {
       setFeelings(prev => {
-        const newValue = prev[name] !== 5 ? prev[name] + 1 : 1;
-        return { ...prev, [name]: newValue };
+        const newValue = prev[name.toLowerCase()] !== 5 ? prev[name.toLowerCase()] + 1 : 1;
+        return { ...prev, [name.toLowerCase()]: newValue };
       });
     };
 
@@ -192,14 +198,12 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
       <View style={styles.addFeelingContainer}>
         <Text style={styles.text}>How are you feeling? </Text>
         <View style={styles.addFeelingWrapper}>
-          <Feeling name="before" />
-          <Feeling name="during" />
-          <Feeling name="after" />
+          <Feeling name="Before" />
+          <Feeling name="During" />
+          <Feeling name="After" />
         </View>
       </View>
-      <TouchableOpacity style={styles.recordButton} onPress={saveRecord}>
-        <Text style={styles.text}>Record</Text>
-      </TouchableOpacity>
+      <Button title="Record" onPress={saveRecord} />
     </ScrollView>
   );
 };
