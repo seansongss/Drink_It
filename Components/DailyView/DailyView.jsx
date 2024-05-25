@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi'
 
 import styles from './styles'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // getAlcoholIcon by name
 const getAlchoholIcon = (name) => {
@@ -48,6 +49,16 @@ const DailyView = ({ navigation, route }) => {
     const { year, month, date } = route.params;
     const dayList = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
     const [activeDate, setActiveDate] = useState(new Date(year, month, date));
+
+    const getDateObject = (date) => {
+        AsyncStorage.getItem(`${year}-${month}-${date}`, (err, result) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+            return JSON.parse(result);
+        });
+    }
 
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
