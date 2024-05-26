@@ -2053,6 +2053,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-picker/picker@npm:^2.7.6":
+  version: 2.7.6
+  resolution: "@react-native-picker/picker@npm:2.7.6"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10c0/bb5ee72c8436ace821681500d5885d096daede824c8c06b9d58a83a4893c19726f81ba33f39ea1ac32c0c3429701161b282249e4f5d9fe3503a9bc85cd0845e9
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.74.83, @react-native/assets-registry@npm:~0.74.83":
   version: 0.74.83
   resolution: "@react-native/assets-registry@npm:0.74.83"
@@ -3977,6 +3987,7 @@ __metadata:
     "@expo-google-fonts/jaldi": "npm:^0.2.3"
     "@expo/ngrok": "npm:^4.1.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
+    "@react-native-picker/picker": "npm:^2.7.6"
     "@react-navigation/bottom-tabs": "npm:^6.5.20"
     "@react-navigation/native": "npm:^6.1.9"
     "@react-navigation/native-stack": "npm:^6.9.26"
@@ -3987,6 +3998,7 @@ __metadata:
     expo-status-bar: "npm:~1.12.1"
     react: "npm:18.2.0"
     react-native: "npm:0.74.1"
+    react-native-modal-dropdown: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
     yarn: "npm:^1.22.22"
@@ -7557,7 +7569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7694,6 +7706,15 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 10c0/2bdb6b93fbb1820b024b496042cce405c57e2f85e777c9aabd55f9b26d145408f9f74f5934676ffdc46f3dcff656d78413a6e43968e7b3f92eea35b3052e9053
+  languageName: node
+  linkType: hard
+
+"react-native-modal-dropdown@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "react-native-modal-dropdown@npm:1.0.2"
+  dependencies:
+    prop-types: "npm:^15.6.0"
+  checksum: 10c0/9a1cfc3088527abfd6c1cbb1bb11f0ce21b38f6780c205a1a1898aaef6a12006688fd741cb41e465615e45816c874e28625ce402cdd01809bcf23b54380f0410
   languageName: node
   linkType: hard
 

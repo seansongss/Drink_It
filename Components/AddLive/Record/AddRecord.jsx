@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button, Modal, StyleSheet, Dimensions } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button, Modal, StyleSheet, TextInput } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 import styles from './styles';
 
@@ -18,7 +19,7 @@ const getAlchoholIcon = (name) => {
       return require("../../../assets/alcohol/vodka_logo.png");
     default:
       console.error('Invalid alcohol name');
-      break;
+      return null;
   }
 };
 
@@ -37,7 +38,7 @@ const getfeelingicon = (feeling) => {
       return require("../../../assets/Daily_view/feeling1.png");
     default:
       console.error('Invalid feeling number');
-      break;
+      return null;
   }
 };
 
@@ -46,13 +47,21 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
     { name: "soju", count: 0 },
     { name: "wine", count: 0 },
   ]);
-  
+
   const [modalVisible, setModalVisible] = useState(false);
+  const [actionTriggered, setActionTriggered] = useState(null);
   const [componentHeight, setComponentHeight] = useState(0);
   const [feelings, setFeelings] = useState({
     before: 3,
     during: 3,
     after: 3,
+  });
+
+  const [newRecipe, setNewRecipe] = useState({
+    name: '',
+    icon: 'soju',
+    alcohol: '',
+    description: ''
   });
 
   const unitDelete = (index) => {
@@ -95,9 +104,9 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
     let day = '' + d.getDate();
     const year = d.getFullYear();
 
-    if (month.length < 2) 
+    if (month.length < 2)
       month = '0' + month;
-    if (day.length < 2) 
+    if (day.length < 2)
       day = '0' + day;
 
     return [year, month, day].join('-');
@@ -155,7 +164,10 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
     <View style={styles.addUnitContainer}>
       <TouchableOpacity
         style={styles.newUnitButton}
-        onPress={() => setModalVisible(true)}>
+        onPress={() => {
+          setActionTriggered('SELECT_RECIPE');
+          setModalVisible(true);
+        }}>
         <Icon name="add" color={"#c1dfb0"} size={50} />
       </TouchableOpacity>
     </View>
@@ -191,6 +203,24 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
     );
   };
 
+  const handleAddNewRecipe = () => {
+    if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
+      Alert.alert("Error", "Please fill out all fields.");
+      return;
+    }
+    const alcoholRange = newRecipe.alcohol.split('-').map(num => parseInt(num.trim()));
+    const newRecipeObj = {
+      name: newRecipe.name,
+      icon: newRecipe.icon,
+      alcohol: alcoholRange,
+      description: newRecipe.description,
+    };
+    recipeList.push(newRecipeObj);
+    setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
+    setActionTriggered(null);
+    setModalVisible(false);
+  };
+
   return (
     <View
       style={containerStyle}
@@ -223,36 +253,109 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
       >
         <View style={modalStyles.centeredView}>
           <View style={[modalStyles.modalView, { maxHeight: componentHeight * 0.8 }]}>
-            <Text style={modalStyles.modalText}>Select a Recipe</Text>
-            <ScrollView>
-              {recipeList.map((recipe, index) => (
-                <View key={index} style={modalStyles.recipeContainer}>
-                  <Image
-                    source={getAlchoholIcon(recipe.icon)}
-                    style={{ width: 30, height: 30, resizeMode: "center" }}
+            {actionTriggered === 'SELECT_RECIPE' ?
+              <View>
+                <Text style={modalStyles.modalText}>Select a Recipe</Text>
+                <ScrollView>
+                  {recipeList.map((recipe, index) => (
+                    <View key={index} style={modalStyles.recipeContainer}>
+                      <Image
+                        source={getAlchoholIcon(recipe.icon)}
+                        style={{ width: 30, height: 30, resizeMode: "center" }}
+                      />
+                      <View style={modalStyles.recipeDetails}>
+                        <Text>{recipe.name}</Text>
+                        <Text>{recipe.alcohol[0]}% - {recipe.alcohol[1]}%</Text>
+                      </View>
+                      <TouchableOpacity
+                        style={modalStyles.addButton}
+                        onPress={() => {
+                          addNewUnit(recipe.name);
+                          setModalVisible(false);
+                        }}
+                      >
+                        <Text style={modalStyles.addButtonText}>Add</Text>
+                      </TouchableOpacity>
+                    </View>
+                  ))}
+                </ScrollView>
+                <TouchableOpacity
+                  style={modalStyles.addNewButton}
+                  onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
+                >
+                  <Text style={modalStyles.addButtonText}>Add New</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={modalStyles.buttonClose}
+                  onPress={() => setModalVisible(false)}
+                >
+                  <Text style={modalStyles.textStyle}>Close</Text>
+                </TouchableOpacity>
+              </View>
+              :
+              actionTriggered === 'ADD_NEW_RECIPE' ?
+                <View>
+                  <Text style={modalStyles.modalText}>Add New Recipe</Text>
+                  <TextInput
+                    style={modalStyles.input}
+                    placeholder="Name"
+                    value={newRecipe.name}
+                    onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
                   />
-                  <View style={modalStyles.recipeDetails}>
-                    <Text style={{fontWeight: 'bold'}}>{recipe.name}</Text>
-                    <Text>{recipe.alcohol[0]}~{recipe.alcohol[1]}%</Text>
-                  </View>
+                  <ModalDropdown
+                    options={['soju', 'beer', 'wine', 'vodka']}
+                    style={modalStyles.dropdown}
+                    dropdownStyle={modalStyles.dropdownStyle}
+                    renderRow={(option) => (
+                      <View style={modalStyles.dropdownRow}>
+                        <Image
+                          source={getAlchoholIcon(option)}
+                          style={modalStyles.dropdownIcon}
+                        />
+                        <Text>{option}</Text>
+                      </View>
+                    )}
+                    onSelect={(index, value) => setNewRecipe({ ...newRecipe, icon: value })}
+                  >
+                    <View style={modalStyles.dropdownSelected}>
+                      <Image
+                        source={getAlchoholIcon(newRecipe.icon)}
+                        style={modalStyles.dropdownIcon}
+                      />
+                      <Text>{newRecipe.icon}</Text>
+                    </View>
+                  </ModalDropdown>
+                  <TextInput
+                    style={modalStyles.input}
+                    placeholder="Alcohol Percentage (e.g., 4-5)"
+                    value={newRecipe.alcohol}
+                    onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
+                  />
+                  <TextInput
+                    style={modalStyles.input}
+                    placeholder="Description"
+                    value={newRecipe.description}
+                    onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
+                  />
                   <TouchableOpacity
                     style={modalStyles.addButton}
+                    onPress={handleAddNewRecipe}
+                  >
+                    <Text style={modalStyles.addButtonText}>Add Recipe</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={modalStyles.buttonClose}
                     onPress={() => {
-                      addNewUnit(recipe.name);
+                      setActionTriggered(null);
                       setModalVisible(false);
                     }}
                   >
-                    <Text style={modalStyles.addButtonText}>Add</Text>
+                    <Text style={modalStyles.textStyle}>Close</Text>
                   </TouchableOpacity>
                 </View>
-              ))}
-            </ScrollView>
-            <TouchableOpacity
-              style={modalStyles.buttonClose}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={modalStyles.textStyle}>Close</Text>
-            </TouchableOpacity>
+                :
+                null
+            }
           </View>
         </View>
       </Modal>
@@ -289,6 +392,13 @@ const modalStyles = StyleSheet.create({
     elevation: 2,
     marginTop: 10,
   },
+  addNewButton: {
+    backgroundColor: '#c1dfb0',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 10,
+  },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
@@ -297,7 +407,6 @@ const modalStyles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
-    fontWeight: 'bold',
   },
   recipeContainer: {
     flexDirection: 'row',
@@ -305,9 +414,6 @@ const modalStyles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     padding: 10,
-    marginVertical: 5,
-    borderRadius: 10,
-    borderWidth: 1,
   },
   recipeDetails: {
     flex: 1,
@@ -320,6 +426,42 @@ const modalStyles = StyleSheet.create({
   },
   addButtonText: {
     color: 'white',
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+    width: '100%',
+  },
+  dropdown: {
+    width: '100%',
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  dropdownStyle: {
+    width: '100%',
+  },
+  dropdownRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+  },
+  dropdownIcon: {
+    width: 30,
+    height: 30,
+    marginRight: 10,
+  },
+  dropdownSelected: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
