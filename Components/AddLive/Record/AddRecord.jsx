@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button, Modal, StyleSheet, Dimensions } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -41,12 +41,14 @@ const getfeelingicon = (feeling) => {
   }
 };
 
-const AddRecord = ({ containerStyle, date, navigation }) => {
-  const [alcoholList, setAlcoholList] = useState([
+const AddRecord = ({ containerStyle, date, navigation, recipeList }) => {
+  const [addAlcoholList, setAddAlcoholList] = useState([
     { name: "soju", count: 0 },
     { name: "wine", count: 0 },
   ]);
-
+  
+  const [modalVisible, setModalVisible] = useState(false);
+  const [componentHeight, setComponentHeight] = useState(0);
   const [feelings, setFeelings] = useState({
     before: 3,
     during: 3,
@@ -54,7 +56,7 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
   });
 
   const unitDelete = (index) => {
-    Alert.alert(`Delete ${alcoholList[index].name}`, 'Are you sure you want to delete this?', [
+    Alert.alert(`Delete ${addAlcoholList[index].name}`, 'Are you sure you want to delete this?', [
       {
         text: 'Cancel',
         style: 'cancel'
@@ -62,7 +64,7 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
       {
         text: 'Delete',
         onPress: () => {
-          setAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+          setAddAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
         },
         style: 'destructive'
       },
@@ -70,7 +72,7 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
   };
 
   const changeUnitCount = (index, change) => {
-    setAlcoholList(prev => {
+    setAddAlcoholList(prev => {
       const newCount = prev[index].count + change;
       if (newCount < 0) {
         unitDelete(index);
@@ -83,8 +85,8 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
     });
   };
 
-  const addNewUnit = () => {
-    setAlcoholList(prev => [...prev, { name: "soju", count: 0 }]);
+  const addNewUnit = (name) => {
+    setAddAlcoholList(prev => [...prev, { name, count: 0 }]);
   };
 
   const formatDate = (date) => {
@@ -101,19 +103,19 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
     return [year, month, day].join('-');
   };
 
-  const getHighestCountAlcohol = (alcoholList) => {
-    if (alcoholList.length === 0) return null;
-    return alcoholList.reduce((max, alcohol) => alcohol.count > max.count ? alcohol : max, alcoholList[0]);
+  const getHighestCountAlcohol = (addAlcoholList) => {
+    if (addAlcoholList.length === 0) return null;
+    return addAlcoholList.reduce((max, alcohol) => alcohol.count > max.count ? alcohol : max, addAlcoholList[0]);
   };
 
   const saveRecord = async () => {
     const now = new Date();
     const duration = Math.floor((now - date) / 1000); // duration in seconds
-    const highestCountAlcohol = getHighestCountAlcohol(alcoholList);
+    const highestCountAlcohol = getHighestCountAlcohol(addAlcoholList);
 
     const record = {
       duration: duration,
-      alcoholList,
+      addAlcoholList,
       feelings,
       highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.name : null,
     };
@@ -153,7 +155,7 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
     <View style={styles.addUnitContainer}>
       <TouchableOpacity
         style={styles.newUnitButton}
-        onPress={() => addNewUnit()}>
+        onPress={() => setModalVisible(true)}>
         <Icon name="add" color={"#c1dfb0"} size={50} />
       </TouchableOpacity>
     </View>
@@ -190,22 +192,135 @@ const AddRecord = ({ containerStyle, date, navigation }) => {
   };
 
   return (
-    <ScrollView contentContainerStyle={containerStyle}>
-      {alcoholList.map((item, i) => (
-        <AddUnit key={i} name={item.name} count={item.count} index={i} />
-      ))}
-      <NewUnitButton />
-      <View style={styles.addFeelingContainer}>
-        <Text style={styles.text}>How are you feeling? </Text>
-        <View style={styles.addFeelingWrapper}>
-          <Feeling name="Before" />
-          <Feeling name="During" />
-          <Feeling name="After" />
+    <View
+      style={containerStyle}
+      onLayout={(event) => {
+        const { height } = event.nativeEvent.layout;
+        setComponentHeight(height);
+      }}
+    >
+      <ScrollView>
+        {addAlcoholList.map((item, i) => (
+          <AddUnit key={i} name={item.name} count={item.count} index={i} />
+        ))}
+        <NewUnitButton />
+        <View style={styles.addFeelingContainer}>
+          <Text style={styles.text}>How are you feeling? </Text>
+          <View style={styles.addFeelingWrapper}>
+            <Feeling name="Before" />
+            <Feeling name="During" />
+            <Feeling name="After" />
+          </View>
         </View>
-      </View>
-      <Button title="Record" onPress={saveRecord} />
-    </ScrollView>
+        <Button title="Record" onPress={saveRecord} />
+      </ScrollView>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={modalStyles.centeredView}>
+          <View style={[modalStyles.modalView, { maxHeight: componentHeight * 0.8 }]}>
+            <Text style={modalStyles.modalText}>Select a Recipe</Text>
+            <ScrollView>
+              {recipeList.map((recipe, index) => (
+                <View key={index} style={modalStyles.recipeContainer}>
+                  <Image
+                    source={getAlchoholIcon(recipe.icon)}
+                    style={{ width: 30, height: 30, resizeMode: "center" }}
+                  />
+                  <View style={modalStyles.recipeDetails}>
+                    <Text style={{fontWeight: 'bold'}}>{recipe.name}</Text>
+                    <Text>{recipe.alcohol[0]}~{recipe.alcohol[1]}%</Text>
+                  </View>
+                  <TouchableOpacity
+                    style={modalStyles.addButton}
+                    onPress={() => {
+                      addNewUnit(recipe.name);
+                      setModalVisible(false);
+                    }}
+                  >
+                    <Text style={modalStyles.addButtonText}>Add</Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+            </ScrollView>
+            <TouchableOpacity
+              style={modalStyles.buttonClose}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={modalStyles.textStyle}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
   );
 };
+
+const modalStyles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    marginTop: 10,
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  recipeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    padding: 10,
+    marginVertical: 5,
+    borderRadius: 10,
+    borderWidth: 1,
+  },
+  recipeDetails: {
+    flex: 1,
+    marginLeft: 10,
+  },
+  addButton: {
+    backgroundColor: '#c1dfb0',
+    padding: 10,
+    borderRadius: 5,
+  },
+  addButtonText: {
+    color: 'white',
+  },
+});
 
 export default AddRecord;
