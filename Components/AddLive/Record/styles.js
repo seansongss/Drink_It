@@ -96,3 +96,101 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+
+const modalStyles = StyleSheet.create({
+	centeredView: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 22,
+	},
+	modalView: {
+		margin: 20,
+		backgroundColor: 'white',
+		borderRadius: 20,
+		padding: 35,
+		alignItems: 'center',
+		shadowColor: '#000',
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.25,
+		shadowRadius: 4,
+		elevation: 5,
+	},
+	buttonClose: {
+		backgroundColor: '#2196F3',
+		borderRadius: 20,
+		padding: 10,
+		elevation: 2,
+		marginTop: 10,
+	},
+	addNewButton: {
+		backgroundColor: '#c1dfb0',
+		borderRadius: 20,
+		padding: 10,
+		elevation: 2,
+		marginTop: 10,
+	},
+	textStyle: {
+		color: 'white',
+		fontWeight: 'bold',
+		textAlign: 'center',
+	},
+	modalText: {
+		marginBottom: 15,
+		textAlign: 'center',
+	},
+	recipeContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		width: '100%',
+		padding: 10,
+	},
+	recipeDetails: {
+		flex: 1,
+		marginLeft: 10,
+	},
+	addButton: {
+		backgroundColor: '#c1dfb0',
+		padding: 10,
+		borderRadius: 5,
+	},
+	addButtonText: {
+		color: 'white',
+	},
+	input: {
+		height: 40,
+		borderColor: '#ccc',
+		borderWidth: 1,
+		borderRadius: 5,
+		marginBottom: 10,
+		paddingHorizontal: 10,
+		width: '100%',
+	},
+	dropdown: {
+		width: '100%',
+		height: 40,
+		borderColor: '#ccc',
+		borderWidth: 1,
+		borderRadius: 5,
+		justifyContent: 'center',
+		alignItems: 'center',
+		marginBottom: 10,
+	},
+	dropdownItem: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		padding: 10,
+	},
+	dropdownIcon: {
+		width: 30,
+		height: 30,
+		marginRight: 10,
+	},
+	dropdownText: {
+		fontSize: 16,
+	},
+});

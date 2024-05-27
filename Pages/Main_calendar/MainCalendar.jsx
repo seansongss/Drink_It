@@ -10,7 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const MainCalendar = ({ navigation }) => {
   return (
-    <View style={{ flex:1, paddingHorizontal: 20}}>
+    <View style={{ flex:1, paddingHorizontal: 20 }}>
         <CalendarView navigation={navigation} />
         <View style={styles.cards}>
             <FunfactCard />

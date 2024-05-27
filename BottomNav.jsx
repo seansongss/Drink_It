@@ -19,7 +19,7 @@ const BottomNav = () => {
     return (
         <Tab.Navigator
             backBehavior='history'
-            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top}}
+            sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top }}
             screenOptions={({ route }) => ({
                 //Icon Setting
                 tabBarIcon: ({ focused, color, size }) => {

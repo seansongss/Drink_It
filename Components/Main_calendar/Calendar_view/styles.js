@@ -60,11 +60,6 @@ const styles = StyleSheet.create({
         flex: 1,
         textAlign: 'center',
     },
-    dayText: {
-        fontFamily: 'Jaldi_700Bold',
-        fontSize: 22,
-        textAlign: 'center',
-    },
     dateRow: {
         flex: 1,
         flexDirection: 'row',
