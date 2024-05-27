@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import { Divider, Button } from '@rneui/themed';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi'
-
-import styles from './styles'
+import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from './styles';
 
 // getAlcoholIcon by name
 const getAlchoholIcon = (name) => {
@@ -18,15 +17,14 @@ const getAlchoholIcon = (name) => {
             return require("../../assets/alcohol/wine_logo.png");
         case "vodka":
             return require("../../assets/alcohol/vodka_logo.png");
-
         default:
-            log.error('Invalid alcohol name');
-            break;
+            console.error('Invalid alcohol name');
+            return null;
     }
 };
 
-// getfeelingicon by feeling 1-5
-const getfeelingicon = (feeling) => {
+// getFeelingIcon by feeling 1-5
+const getFeelingIcon = (feeling) => {
     switch (feeling) {
         case 1:
             return require("../../assets/Daily_view/feeling5.png");
@@ -38,10 +36,9 @@ const getfeelingicon = (feeling) => {
             return require("../../assets/Daily_view/feeling2.png");
         case 5:
             return require("../../assets/Daily_view/feeling1.png");
-
         default:
-            log.error('Invalid feeling number');
-            break;
+            console.error('Invalid feeling number');
+            return null;
     }
 };
 
@@ -49,16 +46,26 @@ const DailyView = ({ navigation, route }) => {
     const { year, month, date } = route.params;
     const dayList = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
     const [activeDate, setActiveDate] = useState(new Date(year, month, date));
+    const [record, setRecord] = useState(null);
 
-    const getDateObject = (date) => {
-        AsyncStorage.getItem(`${year}-${month}-${date}`, (err, result) => {
-            if (err) {
-                console.error(err);
-                return;
+    useEffect(() => {
+        const loadRecord = async () => {
+            try {
+                const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
+                const savedRecord = await AsyncStorage.getItem(dateKey);
+                if (savedRecord) {
+                    setRecord(JSON.parse(savedRecord));
+                } else {
+                    Alert.alert('No Entry', 'There is no entry for the selected date.', [
+                        { text: 'OK', onPress: () => navigation.navigate('CalendarView') }
+                    ]);
+                }
+            } catch (error) {
+                console.error('Failed to load record:', error);
             }
-            return JSON.parse(result);
-        });
-    }
+        };
+        loadRecord();
+    }, [year, month, date]);
 
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
@@ -66,31 +73,32 @@ const DailyView = ({ navigation, route }) => {
     });
 
     const changeDate = (n) => {
-        setActiveDate(new Date(activeDate.getFullYear(), activeDate.getMonth(), activeDate.getDate() + n));
+        const newDate = new Date(activeDate.getFullYear(), activeDate.getMonth(), activeDate.getDate() + n);
+        setActiveDate(newDate);
+        navigation.setParams({ year: newDate.getFullYear(), month: newDate.getMonth(), date: newDate.getDate() });
     }
 
-    const Unit = ({ name, count }) => {
+    const Unit = ({ name, icon, count }) => {
         return (
             <View style={styles.unitContainer}>
                 <View style={styles.unitWrapper}>
                     <Image
-                        source={getAlchoholIcon(name)}
+                        source={getAlchoholIcon(icon)}
                         style={{ width: 30, height: 30, resizeMode: "center" }}
                     />
                     <Text style={styles.text}>{name}</Text>
                 </View>
                 <Text style={styles.text}>x {count}</Text>
             </View>
-        )
+        );
     };
 
-    // feeling component
-    const Feeling = ({ name }) => {
+    const Feeling = ({ name, feelingValue }) => {
         return (
             <View style={styles.Feeling}>
                 <View style={styles.FeelingImage}>
                     <Image
-                        source={getfeelingicon(3)}
+                        source={getFeelingIcon(feelingValue)}
                         style={{
                             width: 50,
                             height: 50,
@@ -103,10 +111,17 @@ const DailyView = ({ navigation, route }) => {
         );
     };
 
-    // note component
     const NoteText = ({ text }) => {
         return (
             <Text style={styles.noteText}>{'\u2022'} {text}</Text>
+        );
+    };
+
+    if (!record) {
+        return (
+            <View style={styles.dailyViewContainer}>
+                <Text style={styles.text}>Loading...</Text>
+            </View>
         );
     }
 
@@ -136,29 +151,28 @@ const DailyView = ({ navigation, route }) => {
                             resizeMode='contain' />
                     </TouchableOpacity>
                 </View>
-                {/* ScrollView for main content */}
                 <ScrollView>
                     <View style={styles.unitListContainer}>
-                        <Unit name='soju' count={2} />
-                        <Unit name='beer' count={3} />
-                        <Unit name='wine' count={1} />
+                        {record.addAlcoholList.map((item, index) => (
+                            <Unit key={index} name={item.name} icon={item.icon} count={item.count} />
+                        ))}
                     </View>
                     <View style={[styles.dailyViewInfo, { backgroundColor: '#E69C4D' }]}>
                         <Image source={require('../../assets/Daily_view/clock.png')}
                             style={{ width: 30, height: 30, marginHorizontal: 5, marginRight: 15 }}
                             resizeMode='contain' />
-                        <Text style={styles.text}>11 PM - 1 AM</Text>
+                        <Text style={styles.text}>{record.duration} seconds</Text>
                     </View>
                     <View style={[styles.dailyViewInfo, { backgroundColor: '#afeeee' }]}>
                         <Image source={require('../../assets/Add_live/bright_location.png')}
                             style={{ width: 30, height: 30, marginHorizontal: 5, marginRight: 15 }}
                             resizeMode='contain' />
-                        <Text style={styles.text}>DALDONGNAE, WATERLOO</Text>
+                        <Text style={styles.text}>Location Placeholder</Text>
                     </View>
                     <View style={styles.dailyViewFeeling}>
-                        <Feeling name='Before' />
-                        <Feeling name='During' />
-                        <Feeling name='After' />
+                        <Feeling name='Before' feelingValue={record.feelings.before} />
+                        <Feeling name='During' feelingValue={record.feelings.during} />
+                        <Feeling name='After' feelingValue={record.feelings.after} />
                     </View>
                     <View style={styles.dailyViewNote}>
                         <Image source={require('../../assets/Add_live/bright_note.png')}
@@ -174,7 +188,7 @@ const DailyView = ({ navigation, route }) => {
                 </ScrollView>
             </View>
         </View>
-    )
+    );
 }
 
-export default DailyView
+export default DailyView;

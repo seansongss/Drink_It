@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    dateText:{
+    dateText: {
         fontFamily: 'Jaldi_700Bold',
         fontSize: 25,
         letterSpacing: 1, // Add this line to give letter spacing
@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     },
     unitListContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
         marginVertical: 10,
         padding: 10,
         borderRadius: 30,
@@ -43,10 +44,13 @@ const styles = StyleSheet.create({
     unitContainer: {
         flexDirection: 'row',
         alignItems: 'center',
+        marginVertical: 10,
+        width: '30%', // Adjust width to fit three items per row
+        justifyContent: 'center',
     },
     unitWrapper: {
         alignItems: 'center',
-        marginHorizontal: 13,
+        marginHorizontal: 5,
     },
     dailyViewInfo: {
         flexDirection: 'row',
