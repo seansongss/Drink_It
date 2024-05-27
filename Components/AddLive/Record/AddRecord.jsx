@@ -135,7 +135,7 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 			duration: duration,
 			addAlcoholList,
 			feelings,
-			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.name : null,
+			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
 		};
 		const dateKey = formatDate(date); // Use formatted date as key
 		try {

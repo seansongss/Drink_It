@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
-import { Divider, Button } from '@rneui/themed';
+import { Divider } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './styles';
-
-import Funfact_card from '../Funfact_card/Funfact_card';
-import Stat_simple from '../Stat_simple/Stat_simple';
 
 // Preload images
 const preloadImages = [
@@ -26,13 +22,30 @@ preloadImages.forEach(image => {
 });
 
 function CalendarView({ navigation }) {
-    // reference at node_modules/@expo-google-fonts/jaldi
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
         Jaldi_700Bold,
     });
 
     const [activeDate, setActiveDate] = useState(new Date());
+    const [records, setRecords] = useState({});
+
+    useEffect(() => {
+        const loadRecords = async () => {
+            try {
+                const keys = await AsyncStorage.getAllKeys();
+                const items = await AsyncStorage.multiGet(keys);
+                const loadedRecords = items.reduce((acc, [key, value]) => {
+                    acc[key] = JSON.parse(value);
+                    return acc;
+                }, {});
+                setRecords(loadedRecords);
+            } catch (error) {
+                console.error('Failed to load records:', error);
+            }
+        };
+        loadRecords();
+    }, []);
 
     // month array
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -98,16 +111,16 @@ function CalendarView({ navigation }) {
 
     const date_row = matrix.map((row, i) => {
         let days = row.map((item, i) => {
+            const dateKey = `${activeDate.getFullYear()}-${(activeDate.getMonth() + 1).toString().padStart(2, '0')}-${item.toString().padStart(2, '0')}`;
+            const record = records[dateKey];
+            const icon = record ? getAlchoholIcon(record.highestCountAlcohol) : null;
+
             return (
                 <TouchableOpacity style={styles.date}
                     key={`${activeDate.getFullYear()}_${activeDate.getMonth() + 1}_${item != -1 ? item : item - i}`}
                     onPress={() => navigation.navigate('DailyView', { year: activeDate.getFullYear(), month: activeDate.getMonth(), date: item })}>
                     <ImageBackground
-                        source={item == 6 || item == 21 ? require('../../../assets/alcohol/beer_logo.png') :
-                            item == 9 ? require('../../../assets/alcohol/wine_logo.png') :
-                                item == 14 || item == 17 ? require('../../../assets/alcohol/soju_logo.png') :
-                                    item == 24 ? require('../../../assets/alcohol/vodka_logo.png') : null}
-                        // imageStyle={item == 5 || item == 9 || item == 14 || item == 21 || item == 24 ? { opacity: 1 } : { opacity: 0 }}
+                        source={icon}
                         resizeMode='center'
                         style={styles.dateBox}
                         onPress=''>
@@ -173,5 +186,20 @@ function CalendarView({ navigation }) {
         </View>
     );
 }
+
+const getAlchoholIcon = (name) => {
+    switch (name) {
+        case "soju":
+            return require("../../../assets/alcohol/soju_logo.png");
+        case "beer":
+            return require("../../../assets/alcohol/beer_logo.png");
+        case "wine":
+            return require("../../../assets/alcohol/wine_logo.png");
+        case "vodka":
+            return require("../../../assets/alcohol/vodka_logo.png");
+        default:
+            return null;
+    }
+};
 
 export default CalendarView;
