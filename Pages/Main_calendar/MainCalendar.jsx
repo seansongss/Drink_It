@@ -27,6 +27,7 @@ function CalendarViewStack() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="CalendarView" component={MainCalendar} />
             <Stack.Screen name="DailyView" component={DailyView} />
+            {/* <Stack.Screen name="NewRecord" component={NewRecord} /> */}
         </Stack.Navigator>
     );
 }
