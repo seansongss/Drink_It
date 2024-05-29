@@ -55,6 +55,8 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 		during: 3,
 		after: 3,
 	});
+	const [memo, setMemo] = useState('');
+	const [endDate, setEndDate] = useState(new Date());
 
 	const [newRecipe, setNewRecipe] = useState({
 		name: '',
@@ -127,15 +129,16 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 	};
 
 	const saveRecord = async () => {
-		const now = new Date();
-		const duration = Math.floor((now - date) / 1000); // duration in seconds
+		const startDate = date;
 		const highestCountAlcohol = getHighestCountAlcohol(addAlcoholList);
 
 		const record = {
-			duration: duration,
+			startDate: startDate,
+			endDate: endDate,
 			addAlcoholList,
 			feelings,
 			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
+			memo,
 		};
 		const dateKey = formatDate(date); // Use formatted date as key
 		try {
@@ -258,6 +261,12 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 						<Feeling name="After" />
 					</View>
 				</View>
+				<TextInput
+					style={styles.input}
+					placeholder="Memo"
+					value={memo}
+					onChangeText={(text) => setMemo(text)}
+				/>
 				<TouchableOpacity
 					style={styles.addUnitContainer}
 					onPress={saveRecord}

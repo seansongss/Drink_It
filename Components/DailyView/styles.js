@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     unitListContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         marginVertical: 10,
         padding: 10,
         borderRadius: 30,
@@ -45,12 +45,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 10,
-        width: '30%', // Adjust width to fit three items per row
+        width: '33%', // Adjust width to fit three items per row
         justifyContent: 'center',
     },
     unitWrapper: {
         alignItems: 'center',
-        marginHorizontal: 5,
+        marginRight: 10,
     },
     dailyViewInfo: {
         flexDirection: 'row',
