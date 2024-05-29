@@ -6,6 +6,7 @@ import StatSimple from '../../Components/Main_calendar/Stat_simple/StatSimple'
 
 import styles from './styles'
 import DailyView from '../../Components/DailyView/DailyView'
+import NewRecord from '../NewRecord/NewRecord'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const MainCalendar = ({ navigation }) => {
@@ -27,7 +28,7 @@ function CalendarViewStack() {
         <Stack.Navigator screenOptions={{headerShown: false}}>
             <Stack.Screen name="CalendarView" component={MainCalendar} />
             <Stack.Screen name="DailyView" component={DailyView} />
-            {/* <Stack.Screen name="NewRecord" component={NewRecord} /> */}
+            <Stack.Screen name="NewRecord" component={NewRecord} />
         </Stack.Navigator>
     );
 }

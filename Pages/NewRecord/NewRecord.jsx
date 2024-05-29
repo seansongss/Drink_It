@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import AddRecord from '../../Components/AddLive/Record/AddRecord'
 import AddHeader from '../../Components/AddLive/Header/AddHeader'
 
-const NewRecord = () => {
+import styles from './styles'
+
+const NewRecord = ({ navigation }) => {
     const date = new Date();
     const [recipeList, setRecipeList] = useState({
         soju: { icon: "soju", alcohol: [17, 19] },
@@ -10,6 +15,8 @@ const NewRecord = () => {
         beer: { icon: "beer", alcohol: [4, 5] },
         vodka: { icon: "vodka", alcohol: [30, 40] },
     });
+    const [startTime, setStartTime] = useState(new Date()); // [hour, minute]
+    const [endTime, setEndTime] = useState(new Date()); // [hour, minute]
 
     useEffect(() => {
         const loadRecipeList = async () => {
@@ -43,7 +50,18 @@ const NewRecord = () => {
     };
 
     return (
-        <View>
+        <View style={{ paddingHorizontal: 30 }}>
+            <View>
+                <TouchableOpacity>
+                    <Text>Date</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Time</Text>
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Text>Location</Text>
+                </TouchableOpacity>
+            </View>
             <AddRecord
                 containerStyle={styles.addRecordContainer}
                 date={date}

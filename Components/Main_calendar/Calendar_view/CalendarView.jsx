@@ -169,7 +169,7 @@ function CalendarView({ navigation }) {
                             style={{ width: 40, height: 40 }}
                             resizeMode='contain' />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => console.log('Button pressed')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('NewRecord')}>
                         <Image source={require('../../../assets/Calendar_view/last_night.png')}
                             style={{ width: 40, height: 40 }}
                             resizeMode='contain' />
