@@ -26,13 +26,9 @@ const Stack = createNativeStackNavigator();
 function CalendarViewStack({ records, updateRecords }) {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="CalendarView">
-                {props => <MainCalendar {...props} records={records} updateRecords={updateRecords} />}
-            </Stack.Screen>
+            <Stack.Screen name="CalendarView" component={MainCalendar} />
             <Stack.Screen name="DailyView" component={DailyView} />
-            <Stack.Screen name="NewRecord">
-                {props => <NewRecord {...props} updateRecords={updateRecords} />}
-            </Stack.Screen>
+            <Stack.Screen name="NewRecord" component={NewRecord} />
         </Stack.Navigator>
     );
 }

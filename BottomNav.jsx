@@ -54,12 +54,10 @@ const BottomNav = () => {
                 headerShown: false,
                 tabBarStyle: { backgroundColor: "#597A82", height: 90 },
             })}>
-            <Tab.Screen name="Home">
-                {() => <CalendarViewStack records={records} updateRecords={updateRecords} />}
-            </Tab.Screen>
-            <Tab.Screen name="Add">
-                {() => <AddLive updateRecords={updateRecords} />}
-            </Tab.Screen>
+            <Tab.Screen name="Home" component={CalendarViewStack}
+                initialParams={{ records: records, updateRecords: updateRecords }} />
+            <Tab.Screen name="Add" component={AddLive}
+                initialParams={{ updateRecords: updateRecords }} />
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     );

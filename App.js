@@ -14,7 +14,7 @@ export default function App() {
     //             await AsyncStorage.clear();
     //             console.log("Storage cleared successfully!");
     //         } catch (error) {
-    //             console.error("Error clearing storage:", error);
+    //             console.error("Error clearing storage: ", error);
     //         }
     //     };
 
