@@ -70,9 +70,15 @@ const styles = StyleSheet.create({
     },
     dailyViewNote: {
         marginVertical: 10,
-        padding: 10,
+        padding: 20,
         borderRadius: 30,
         backgroundColor: '#E69C4D',
+    },
+    dailyViewNoteHeader: {
+        flexDirection: 'row',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        marginBottom: 10,
     },
     noteText: {
         fontFamily: 'Jaldi_700Bold',

@@ -1,11 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet, ActivityIndicator } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNav from './BottomNav';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
+    // // Clear storage for development purposes
+    // useEffect(() => {
+    //     const clearStorage = async () => {
+    //         try {
+    //             await AsyncStorage.clear();
+    //             console.log("Storage cleared successfully!");
+    //         } catch (error) {
+    //             console.error("Error clearing storage:", error);
+    //         }
+    //     };
+
+    //     clearStorage();
+    // }, []);
+
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
         Jaldi_700Bold,

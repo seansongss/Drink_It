@@ -4,7 +4,6 @@ import { Divider } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styles from './styles';
 
@@ -21,30 +20,16 @@ preloadImages.forEach(image => {
     Image.prefetch(Image.resolveAssetSource(image).uri);
 });
 
-function CalendarView({ navigation }) {
+function CalendarView({ navigation, records, updateRecords }) {
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
         Jaldi_700Bold,
     });
 
     const [activeDate, setActiveDate] = useState(new Date());
-    const [records, setRecords] = useState({});
 
     useEffect(() => {
-        const loadRecords = async () => {
-            try {
-                const keys = await AsyncStorage.getAllKeys();
-                const items = await AsyncStorage.multiGet(keys);
-                const loadedRecords = items.reduce((acc, [key, value]) => {
-                    acc[key] = JSON.parse(value);
-                    return acc;
-                }, {});
-                setRecords(loadedRecords);
-            } catch (error) {
-                console.error('Failed to load records:', error);
-            }
-        };
-        loadRecords();
+        updateRecords();
     }, []);
 
     // month array

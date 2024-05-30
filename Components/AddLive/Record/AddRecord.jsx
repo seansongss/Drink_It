@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button, Modal, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Button, Modal, StyleSheet, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dropdown } from 'react-native-element-dropdown';
-
 import styles from './styles';
 
 // getAlcoholIcon by name
@@ -42,7 +41,7 @@ const getfeelingicon = (feeling) => {
 	}
 };
 
-const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeList }) => {
+const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeList, updateRecords }) => {
 	const [addAlcoholList, setAddAlcoholList] = useState([
 		{ name: 'soju', icon: 'soju', count: 0 },
 		{ name: 'beer', icon: 'beer', count: 0 }
@@ -56,6 +55,7 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 		after: 3,
 	});
 	const [memo, setMemo] = useState('');
+	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 
 	const [newRecipe, setNewRecipe] = useState({
@@ -129,12 +129,12 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 	};
 
 	const saveRecord = async () => {
-		const startDate = date;
+		const now = new Date();
 		const highestCountAlcohol = getHighestCountAlcohol(addAlcoholList);
 
 		const record = {
-			startDate: startDate,
-			endDate: endDate,
+			startDate: date,
+			endDate: now,
 			addAlcoholList,
 			feelings,
 			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
@@ -146,6 +146,7 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 			Alert.alert("Success", "Record saved successfully!");
 			const savedRecord = await AsyncStorage.getItem(dateKey);
 			console.log("Record saved:", savedRecord);
+			updateRecords(); // Update records after saving
 			navigation.navigate('CalendarView'); // Navigate to MainCalendar
 		} catch (error) {
 			console.error("Error saving record:", error);
@@ -241,12 +242,9 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 	];
 
 	return (
-		<View
+		<KeyboardAvoidingView
+			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
 			style={containerStyle}
-			onLayout={(event) => {
-				const { height } = event.nativeEvent.layout;
-				setComponentHeight(height);
-			}}
 		>
 			<ScrollView>
 				{addAlcoholList.map((item, i) => (
@@ -261,12 +259,16 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 						<Feeling name="After" />
 					</View>
 				</View>
-				<TextInput
-					style={styles.input}
-					placeholder="Memo"
-					value={memo}
-					onChangeText={(text) => setMemo(text)}
-				/>
+				<View style={styles.memoContainer}>
+					<Text style={styles.text}>Memo:</Text>
+					<TextInput
+						style={styles.memoInput}
+						value={memo}
+						onChangeText={setMemo}
+						placeholder="Enter your notes here"
+						multiline
+					/>
+				</View>
 				<TouchableOpacity
 					style={styles.addUnitContainer}
 					onPress={saveRecord}
@@ -382,7 +384,7 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 					</View>
 				</View>
 			</Modal>
-		</View>
+		</KeyboardAvoidingView>
 	);
 };
 

@@ -5,7 +5,7 @@ import AddHeader from '../../Components/AddLive/Header/AddHeader';
 import AddRecord from '../../Components/AddLive/Record/AddRecord';
 import styles from './styles';
 
-const AddLive = ({ navigation }) => {
+const AddLive = ({ navigation, updateRecords }) => {
   const date = new Date();
   const [recipeList, setRecipeList] = useState({
     soju: { icon: "soju", alcohol: [17, 19] },
@@ -54,6 +54,7 @@ const AddLive = ({ navigation }) => {
         navigation={navigation}
         recipeList={recipeList}
         updateRecipeList={updateRecipeList}
+        updateRecords={updateRecords} // Pass the callback function
       />
     </View>
   );

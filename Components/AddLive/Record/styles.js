@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
@@ -31,6 +32,16 @@ const styles = StyleSheet.create({
     addFeelingImage: {
         marginBottom: 5,
     },
+	memoContainer: {
+		flex: 1,
+		padding: 20,
+		backgroundColor: 'white',
+		borderRadius: 10,
+	},
+	memoInput: {
+		flex: 1,
+		width: '100%',
+	},
     text: {
         fontSize: 18,
         fontFamily: 'Jaldi_700Bold',

@@ -3999,6 +3999,7 @@ __metadata:
     react: "npm:18.2.0"
     react-native: "npm:0.74.1"
     react-native-element-dropdown: "npm:^2.12.0"
+    react-native-keyboard-aware-scroll-view: "npm:^0.9.5"
     react-native-modal-dropdown: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
@@ -7570,7 +7571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7719,6 +7720,27 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/ff3078f613a2f2c0a0ea48a52f6cad625163b98a758d4b15e2662b019f6aae4a60a3693abb42ea95901972d0d927ff389e03b2fd31b9bb5173472a2f31f0e5e7
+  languageName: node
+  linkType: hard
+
+"react-native-iphone-x-helper@npm:^1.0.3":
+  version: 1.3.1
+  resolution: "react-native-iphone-x-helper@npm:1.3.1"
+  peerDependencies:
+    react-native: ">=0.42.0"
+  checksum: 10c0/f2e01cb30ebdba54cbadc7bcb584ef7491c24aa2d221312f084c6e7b1031b77c2d538f7bf778ee16959245dbbe4f7784bbead02448368b7d0cbe8dd8c808693f
+  languageName: node
+  linkType: hard
+
+"react-native-keyboard-aware-scroll-view@npm:^0.9.5":
+  version: 0.9.5
+  resolution: "react-native-keyboard-aware-scroll-view@npm:0.9.5"
+  dependencies:
+    prop-types: "npm:^15.6.2"
+    react-native-iphone-x-helper: "npm:^1.0.3"
+  peerDependencies:
+    react-native: ">=0.48.4"
+  checksum: 10c0/932c724f86ba355f1a1db938123eef67844550dd6e2d117222eff0012a47c6a293ad79c965e16930e5eb14adb58a5c340c00e03eeabbe3d78229236125b8a6aa
   languageName: node
   linkType: hard
 
