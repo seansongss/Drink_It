@@ -5,8 +5,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MainCalendar from './Pages/Main_calendar/MainCalendar';
-import Add_live_page from './Pages/Add_live_page/Add_live_page';
-import Login from './Pages/Login/Login';
 import My_page from './Components/My_page_view/My_page';
 import AddLive from './Pages/AddLive/AddLive';
 import CalendarViewStack from './Pages/Main_calendar/MainCalendar';
@@ -40,7 +38,6 @@ const BottomNav = () => {
             backBehavior='history'
             sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top }}
             screenOptions={({ route }) => ({
-                // Icon Setting
                 tabBarIcon: ({ focused }) => {
                     let image;
                     if (route.name === "Home") {
@@ -53,10 +50,8 @@ const BottomNav = () => {
                     return <Image source={image} resizeMode='center' style={{ width: 45, height: 45 }} />;
                 },
                 tabBarItemStyle: { marginHorizontal: 20, marginTop: 10 },
-                // Show Label
                 tabBarShowLabel: false,
                 headerShown: false,
-                // TabBar setting
                 tabBarStyle: { backgroundColor: "#597A82", height: 90 },
             })}>
             <Tab.Screen name="Home">
@@ -68,6 +63,6 @@ const BottomNav = () => {
             <Tab.Screen name="My_page" component={My_page} />
         </Tab.Navigator>
     );
-};
+}
 
 export default BottomNav;
