@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -14,6 +14,7 @@ const Tab = createBottomTabNavigator();
 const BottomNav = () => {
     const inset = useSafeAreaInsets();
     const [records, setRecords] = useState({});
+    const ket = createContext();
 
     const updateRecords = async () => {
         try {
