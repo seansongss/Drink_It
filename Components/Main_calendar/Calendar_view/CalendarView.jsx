@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
 import { Divider } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
+import { RecordsContext } from '../../Context/RecordsContext';
 
 import styles from './styles';
 
@@ -20,17 +21,14 @@ preloadImages.forEach(image => {
     Image.prefetch(Image.resolveAssetSource(image).uri);
 });
 
-function CalendarView({ navigation, records, updateRecords }) {
+function CalendarView({ navigation }) {
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,
         Jaldi_700Bold,
     });
 
     const [activeDate, setActiveDate] = useState(new Date());
-
-    useEffect(() => {
-        updateRecords();
-    }, []);
+    const { records, loadRecords } = useContext(RecordsContext); // Use context to get records and loadRecords
 
     // month array
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -107,8 +105,7 @@ function CalendarView({ navigation, records, updateRecords }) {
                     <ImageBackground
                         source={icon}
                         resizeMode='center'
-                        style={styles.dateBox}
-                        onPress=''>
+                        style={styles.dateBox}>
                         <Text style={styles.dateText}>
                             {item != -1 ? item : ''}
                         </Text>
