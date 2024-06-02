@@ -129,16 +129,15 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 	};
 
 	const saveRecord = async () => {
-		const now = new Date();
+		const startDate = date;
 		const highestCountAlcohol = getHighestCountAlcohol(addAlcoholList);
 
 		const record = {
-			startDate: date,
-			endDate: now,
+			startDate: startDate,
+			endDate: endDate,
 			addAlcoholList,
 			feelings,
 			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
-			memo,
 		};
 		const dateKey = formatDate(date); // Use formatted date as key
 		try {
