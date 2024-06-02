@@ -30,6 +30,7 @@ const RecordHeader = ({ startTime, setStartTime, endTime, setEndTime, location, 
         modal
         open={setEndTimeOpen}
         date={endTime}
+        minimumDate={startTime}
         onConfirm={(date) => {
           setEndTimeOpen(false)
           setEndTime(date)
