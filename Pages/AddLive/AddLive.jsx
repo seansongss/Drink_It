@@ -5,7 +5,7 @@ import AddHeader from '../../Components/AddLive/Header/AddHeader';
 import AddRecord from '../../Components/AddLive/Record/AddRecord';
 import styles from './styles';
 
-const AddLive = ({ navigation, updateRecords }) => {
+const AddLive = ({ navigation }) => {
     const date = new Date();
     const [recipeList, setRecipeList] = useState({
         soju: { icon: "soju", alcohol: [17, 19] },
@@ -50,11 +50,10 @@ const AddLive = ({ navigation, updateRecords }) => {
             <AddHeader containerStyle={styles.addHeaderContainer} />
             <AddRecord 
                 containerStyle={styles.addRecordContainer}
-                date={date}
+                startTime={date}
                 navigation={navigation}
                 recipeList={recipeList}
                 updateRecipeList={updateRecipeList}
-                updateRecords={updateRecords}
             />
         </View>
     );

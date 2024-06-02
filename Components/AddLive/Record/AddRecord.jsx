@@ -43,7 +43,7 @@ const getfeelingicon = (feeling) => {
 	}
 };
 
-const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeList }) => {
+const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	const { loadRecords } = useContext(RecordsContext); // Use context to get loadRecords
 	const [addAlcoholList, setAddAlcoholList] = useState([
 		{ name: 'soju', icon: 'soju', count: 0 },
@@ -110,11 +110,10 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 		}
 	};
 
-	const formatDate = (date) => {
-		const d = new Date(date);
-		let month = '' + (d.getMonth() + 1);
-		let day = '' + d.getDate();
-		const year = d.getFullYear();
+	const formatDate = (startTime) => {
+		let month = '' + (startTime.getMonth() + 1);
+		let day = '' + startTime.getDate();
+		const year = startTime.getFullYear();
 
 		if (month.length < 2)
 			month = '0' + month;
@@ -130,18 +129,18 @@ const AddRecord = ({ containerStyle, date, navigation, recipeList, updateRecipeL
 	};
 
 	const saveRecord = async () => {
-		const startDate = date;
 		const highestCountAlcohol = getHighestCountAlcohol(addAlcoholList);
 
 		const record = {
-			startDate: startDate,
-			endDate: new Date(),
+			startDate: startTime,
+			endDate: endTime? endTime : new Date(),
+			location: location? location : 'DC Davis, Waterloo',
 			addAlcoholList,
 			feelings,
 			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
 			memo,
 		};
-		const dateKey = formatDate(date); // Use formatted date as key
+		const dateKey = formatDate(startTime); // Use formatted date as key
 		try {
 			await AsyncStorage.setItem(dateKey, JSON.stringify(record));
 			Alert.alert("Success", "Record saved successfully!");
