@@ -1,52 +1,62 @@
-import React, { useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { getFeeling, getAlcohol } from '../utils/GetImage'
-import DatePicker from 'react-native-date-picker'
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 
 const RecordHeader = ({ startTime, setStartTime, endTime, setEndTime, location, setLocation }) => {
-  const [startTimeOpen, setStartTimeOpen] = useState(false)
-  const [endTimeOpen, setEndTimeOpen] = useState(false)
-  return (
-    <View>
-      <TouchableOpacity onPress={() => setStartTimeOpen(true)}>
-        <Text>{startTime}</Text>
-      </TouchableOpacity>
-      <DatePicker
-        modal
-        open={startTimeOpen}
-        date={startTime}
-        onConfirm={(date) => {
-          setStartTimeOpen(false)
-          setStartTime(date)
-        }}
-        onCancel={() => {
-          setStartTimeOpen(false)
-        }}
-      />
-      <TouchableOpacity onPress={() => setEndTimeOpen(true)}>
-        <Text>{endTime}</Text>
-      </TouchableOpacity>
-      <DatePicker
-        modal
-        open={setEndTimeOpen}
-        date={endTime}
-        minimumDate={startTime}
-        onConfirm={(date) => {
-          setEndTimeOpen(false)
-          setEndTime(date)
-        }}
-        onCancel={() => {
-          setEndTimeOpen(false)
-        }}
-      />
-      <View>
-        <Text>Location</Text>
-        <TouchableOpacity>
-          <Text>Current Location</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
-  )
-}
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [currentPicker, setCurrentPicker] = useState(null); // 'start' or 'end'
 
-export default RecordHeader
+  const showDatePicker = (picker) => {
+    setCurrentPicker(picker);
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+    setCurrentPicker(null);
+  };
+
+  const handleConfirm = (selectedDate) => {
+    hideDatePicker();
+    if (currentPicker === 'start') {
+      setStartTime(selectedDate);
+    } else if (currentPicker === 'end') {
+      setEndTime(selectedDate);
+    }
+  };
+
+  const formatDateTime = (date) => {
+    const formattedDate = date.toLocaleDateString();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${formattedDate} ${hours}:${minutes}`;
+  };
+
+  return (
+    <KeyboardAvoidingView>
+      <View>
+        <TouchableOpacity onPress={() => showDatePicker('start')}>
+          <Text>Start Time: {formatDateTime(startTime)}</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => showDatePicker('end')}>
+          <Text>End Time: {formatDateTime(endTime)}</Text>
+        </TouchableOpacity>
+        <View>
+          <TextInput
+            value={location}
+            onChangeText={setLocation}
+            placeholder="Enter location"
+          />
+        </View>
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="datetime"
+          onConfirm={handleConfirm}
+          onCancel={hideDatePicker}
+        />
+      </View>
+    </KeyboardAvoidingView>
+  );
+};
+
+export default RecordHeader;
