@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, ScrollView, Alert, Modal, StyleSheet, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert, Modal, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dropdown } from 'react-native-element-dropdown';
@@ -7,7 +7,6 @@ import { RecordsContext } from '../../Context/RecordsContext';
 
 import styles from './styles';
 
-// getAlcoholIcon by name
 const getAlchoholIcon = (name) => {
 	switch (name) {
 		case "soju":
@@ -24,7 +23,6 @@ const getAlchoholIcon = (name) => {
 	}
 };
 
-// getfeelingicon by feeling 1-5
 const getfeelingicon = (feeling) => {
 	switch (feeling) {
 		case 1:
@@ -44,7 +42,7 @@ const getfeelingicon = (feeling) => {
 };
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
-	const { loadRecords } = useContext(RecordsContext); // Use context to get loadRecords
+	const { loadRecords } = useContext(RecordsContext);
 	const [addAlcoholList, setAddAlcoholList] = useState([
 		{ name: 'soju', icon: 'soju', count: 0 },
 		{ name: 'beer', icon: 'beer', count: 0 }
@@ -133,21 +131,21 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 
 		const record = {
 			startDate: startTime,
-			endDate: endTime? endTime : new Date(),
-			location: location? location : 'DC Davis, Waterloo',
+			endDate: endTime ? endTime : new Date(),
+			location: location ? location : 'DC Davis, Waterloo',
 			addAlcoholList,
 			feelings,
 			highestCountAlcohol: highestCountAlcohol ? highestCountAlcohol.icon : null,
 			memo,
 		};
-		const dateKey = formatDate(startTime); // Use formatted date as key
+		const dateKey = formatDate(startTime);
 		try {
 			await AsyncStorage.setItem(dateKey, JSON.stringify(record));
 			Alert.alert("Success", "Record saved successfully!");
 			const savedRecord = await AsyncStorage.getItem(dateKey);
 			console.log("Record saved:", savedRecord);
-			loadRecords();  // Update records in CalendarView
-			navigation.navigate('CalendarView'); // Navigate to CalendarView
+			loadRecords();
+			navigation.navigate('CalendarView');
 		} catch (error) {
 			console.error("Error saving record:", error);
 			Alert.alert("Error", "Failed to save the record.");
@@ -242,148 +240,154 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	];
 
 	return (
-		<View
-			style={containerStyle}
-			onLayout={(event) => {
-				const { height } = event.nativeEvent.layout;
-				setComponentHeight(height);
-			}}
-		>
-			<ScrollView>
-				{addAlcoholList.map((item, i) => (
-					<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
-				))}
-				<NewUnitButton />
-				<View style={styles.addFeelingContainer}>
-					<Text style={styles.text}>How are you feeling? </Text>
-					<View style={styles.addFeelingWrapper}>
-						<Feeling name="Before" />
-						<Feeling name="During" />
-						<Feeling name="After" />
-					</View>
-				</View>
-				<TextInput
-					style={styles.input}
-					placeholder="Memo"
-					value={memo}
-					onChangeText={(text) => setMemo(text)}
-				/>
-				<TouchableOpacity
-					style={styles.addUnitContainer}
-					onPress={saveRecord}
-				>
-					<Text style={styles.text}>Record</Text>
-				</TouchableOpacity>
-			</ScrollView>
-
-			<Modal
-				animationType="slide"
-				transparent={true}
-				visible={modalVisible}
-				onRequestClose={() => setModalVisible(false)}
+			<View
+				style={{ flex: 1 }}
+				onLayout={(event) => {
+					const { height } = event.nativeEvent.layout;
+					setComponentHeight(height);
+				}}
 			>
-				<View style={modalStyles.centeredView}>
-					<View style={[modalStyles.modalView, { width: '90%', height: componentHeight * 0.8 }]}>
-						{actionTriggered === 'SELECT_RECIPE' ?
-							<View style={{ flex: 1 }}>
-								<Text style={modalStyles.modalText}>Select a Recipe</Text>
-								<ScrollView>
-									{Object.keys(recipeList).map((recipeName, index) => (
-										<View key={index} style={modalStyles.recipeContainer}>
-											<Image
-												source={getAlchoholIcon(recipeList[recipeName].icon)}
-												style={{ width: 30, height: 30, resizeMode: "center" }}
-											/>
-											<View style={modalStyles.recipeDetails}>
-												<Text>{recipeName}</Text>
-												<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
-											</View>
-											<TouchableOpacity
-												style={modalStyles.addButton}
-												onPress={() => {
-													addNewUnit(recipeName);
-													setModalVisible(false);
-												}}
-											>
-												<Text style={modalStyles.addButtonText}>Add</Text>
-											</TouchableOpacity>
-										</View>
-									))}
-								</ScrollView>
-								<TouchableOpacity
-									style={modalStyles.addNewButton}
-									onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
-								>
-									<Text style={modalStyles.textStyle}>Add new recipe</Text>
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={modalStyles.buttonClose}
-									onPress={() => setModalVisible(false)}
-								>
-									<Text style={modalStyles.textStyle}>Close</Text>
-								</TouchableOpacity>
-							</View>
-							:
-							<View style={{ flex: 1 }}>
-								<Text style={modalStyles.modalText}>Add New Recipe</Text>
-								<ScrollView>
-									<TextInput
-										style={modalStyles.input}
-										placeholder="Name"
-										value={newRecipe.name}
-										onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
-									/>
-									<Dropdown
-										data={alcoholOptions}
-										labelField="label"
-										valueField="value"
-										placeholder="Select Icon"
-										value={newRecipe.icon}
-										onChange={item => {
-											setNewRecipe({ ...newRecipe, icon: item.value });
-										}}
-										renderLeftIcon={() => (
-											<Image source={getAlchoholIcon(newRecipe.icon)} style={modalStyles.dropdownIcon} />
-										)}
-										renderItem={item => (
-											<View style={modalStyles.dropdownItem}>
-												<Image source={getAlchoholIcon(item.value)} style={modalStyles.dropdownIcon} />
-												<Text style={modalStyles.dropdownText}>{item.label}</Text>
-											</View>
-										)}
-										style={modalStyles.dropdown}
-									/>
-									<TextInput
-										style={modalStyles.input}
-										placeholder="Alcohol Percentage (e.g., 4-5)"
-										value={newRecipe.alcohol}
-										onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
-									/>
-									<TextInput
-										style={modalStyles.input}
-										placeholder="Description"
-										value={newRecipe.description}
-										onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
-									/>
-								</ScrollView>
-								<TouchableOpacity
-									style={modalStyles.addNewButton}
-									onPress={handleAddNewRecipe}
-								>
-									<Text style={modalStyles.textStyle}>Add Recipe</Text>
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={modalStyles.buttonClose}
-									onPress={() => setActionTriggered('SELECT_RECIPE')}
-								>
-									<Text style={modalStyles.textStyle}>Back</Text>
-								</TouchableOpacity>
-							</View>
-						}
+				<ScrollView contentContainerStyle={containerStyle}>
+					{addAlcoholList.map((item, i) => (
+						<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
+					))}
+					<NewUnitButton />
+					<View style={styles.addFeelingContainer}>
+						<Text style={styles.text}>How are you feeling? </Text>
+						<View style={styles.addFeelingWrapper}>
+							<Feeling name="Before" />
+							<Feeling name="During" />
+							<Feeling name="After" />
+						</View>
 					</View>
-				</View>
-			</Modal>
-		</View>
+					<TextInput
+						style={styles.input}
+						placeholder="Memo"
+						value={memo}
+						onChangeText={(text) => setMemo(text)}
+					/>
+					<TouchableOpacity
+						style={styles.addUnitContainer}
+						onPress={saveRecord}
+					>
+						<Text style={styles.text}>Record</Text>
+					</TouchableOpacity>
+				</ScrollView>
+
+				<Modal
+					animationType="slide"
+					transparent={true}
+					visible={modalVisible}
+					onRequestClose={() => setModalVisible(false)}
+				>
+					<View style={modalStyles.centeredView}>
+						<View style={[modalStyles.modalView, { width: '90%', height: componentHeight * 0.8 }]}>
+							{actionTriggered === 'SELECT_RECIPE' ? (
+								<View style={{ flex: 1 }}>
+									<Text style={modalStyles.modalText}>Select a Recipe</Text>
+									<ScrollView>
+										{Object.keys(recipeList).map((recipeName, index) => (
+											<View key={index} style={modalStyles.recipeContainer}>
+												<Image
+													source={getAlchoholIcon(recipeList[recipeName].icon)}
+													style={{ width: 30, height: 30, resizeMode: "center" }}
+												/>
+												<View style={modalStyles.recipeDetails}>
+													<Text>{recipeName}</Text>
+													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
+												</View>
+												<TouchableOpacity
+													style={modalStyles.addButton}
+													onPress={() => {
+														addNewUnit(recipeName);
+														setModalVisible(false);
+													}}
+												>
+													<Text style={modalStyles.addButtonText}>Add</Text>
+												</TouchableOpacity>
+											</View>
+										))}
+									</ScrollView>
+									<TouchableOpacity
+										style={modalStyles.addNewButton}
+										onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
+									>
+										<Text style={modalStyles.textStyle}>Add new recipe</Text>
+									</TouchableOpacity>
+									<TouchableOpacity
+										style={modalStyles.buttonClose}
+										onPress={() => setModalVisible(false)}
+									>
+										<Text style={modalStyles.textStyle}>Close</Text>
+									</TouchableOpacity>
+								</View>
+							) : (
+								<KeyboardAvoidingView
+									style={{ flex: 1 }}
+									behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+									keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
+								>
+									<View style={{ flex: 1 }}>
+										<Text style={modalStyles.modalText}>Add New Recipe</Text>
+										<ScrollView>
+											<TextInput
+												style={modalStyles.input}
+												placeholder="Name"
+												value={newRecipe.name}
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
+											/>
+											<Dropdown
+												data={alcoholOptions}
+												labelField="label"
+												valueField="value"
+												placeholder="Select Icon"
+												value={newRecipe.icon}
+												onChange={item => {
+													setNewRecipe({ ...newRecipe, icon: item.value });
+												}}
+												renderLeftIcon={() => (
+													<Image source={getAlchoholIcon(newRecipe.icon)} style={modalStyles.dropdownIcon} />
+												)}
+												renderItem={item => (
+													<View style={modalStyles.dropdownItem}>
+														<Image source={getAlchoholIcon(item.value)} style={modalStyles.dropdownIcon} />
+														<Text style={modalStyles.dropdownText}>{item.label}</Text>
+													</View>
+												)}
+												style={modalStyles.dropdown}
+											/>
+											<TextInput
+												style={modalStyles.input}
+												placeholder="Alcohol Percentage (e.g., 4-5)"
+												value={newRecipe.alcohol}
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
+											/>
+											<TextInput
+												style={modalStyles.input}
+												placeholder="Description"
+												value={newRecipe.description}
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
+											/>
+										</ScrollView>
+										<TouchableOpacity
+											style={modalStyles.addNewButton}
+											onPress={handleAddNewRecipe}
+										>
+											<Text style={modalStyles.textStyle}>Add Recipe</Text>
+										</TouchableOpacity>
+										<TouchableOpacity
+											style={modalStyles.buttonClose}
+											onPress={() => setActionTriggered('SELECT_RECIPE')}
+										>
+											<Text style={modalStyles.textStyle}>Back</Text>
+										</TouchableOpacity>
+									</View>
+								</KeyboardAvoidingView>
+							)}
+						</View>
+					</View>
+				</Modal>
+			</View>
 	);
 };
 
