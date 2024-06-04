@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, Button, TouchableOpacity, Alert } from 'react-native'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { RecordsContext } from '../../Components/Context/RecordsContext'
+import React, { useState, useEffect, useContext } from 'react';
+import { View, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { RecordsContext } from '../../Components/Context/RecordsContext';
 
+import AddRecord from '../../Components/AddLive/Record/AddRecord';
+import AddHeader from '../../Components/AddLive/Header/AddHeader';
 
-import AddRecord from '../../Components/AddLive/Record/AddRecord'
-import AddHeader from '../../Components/AddLive/Header/AddHeader'
-
-import styles from './styles'
+import styles from './styles';
+import RecordHeader from '../../Components/NewRecord/RecordHeader';
 
 const NewRecord = ({ navigation }) => {
     const { loadRecords } = useContext(RecordsContext); // Use context to get loadRecords
@@ -17,8 +17,8 @@ const NewRecord = ({ navigation }) => {
         beer: { icon: "beer", alcohol: [4, 5] },
         vodka: { icon: "vodka", alcohol: [30, 40] },
     });
-    const [startTime, setStartTime] = useState(new Date()); // [hour, minute]
-    const [endTime, setEndTime] = useState(new Date()); // [hour, minute]
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date());
     const [location, setLocation] = useState('');
 
     useEffect(() => {
@@ -53,18 +53,15 @@ const NewRecord = ({ navigation }) => {
     };
 
     return (
-        <View style={{ paddingHorizontal: 30 }}>
-            <View>
-                <TouchableOpacity>
-                    <Text>Date</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Time</Text>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Text>Location</Text>
-                </TouchableOpacity>
-            </View>
+        <View style={{ paddingHorizontal: 30, flex: 1 }}>
+            <RecordHeader
+                startTime={startTime}
+                setStartTime={setStartTime}
+                endTime={endTime}
+                setEndTime={setEndTime}
+                location={location}
+                setLocation={setLocation}
+            />
             <AddRecord
                 containerStyle={styles.addRecordContainer}
                 startTime={startTime}
@@ -75,7 +72,7 @@ const NewRecord = ({ navigation }) => {
                 updateRecipeList={updateRecipeList}
             />
         </View>
-    )
-}
+    );
+};
 
-export default NewRecord
+export default NewRecord;
