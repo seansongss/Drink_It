@@ -53,9 +53,8 @@ const NewRecord = ({ navigation }) => {
     };
 
     return (
-        <View style={{ paddingHorizontal: 30, flex: 1 }}>
+        <View style={{ flex: 1, paddingHorizontal: 30 }}>
             <RecordHeader
-                containerStyle={{ flex: 1 }}
                 startTime={startTime}
                 setStartTime={setStartTime}
                 endTime={endTime}
