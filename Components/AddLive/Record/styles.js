@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
 	},
 	memoContainer: {
 		flex: 1,
+		marginVertical: 10,
 		padding: 20,
 		backgroundColor: 'white',
 		borderRadius: 10,
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
 	memoInput: {
 		flex: 1,
 		width: '100%',
+		padding: 10,
 	},
     text: {
         fontSize: 18,
