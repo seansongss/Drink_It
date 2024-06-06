@@ -32,6 +32,11 @@ const styles = StyleSheet.create({
     addFeelingImage: {
         marginBottom: 5,
     },
+	image: {
+		width: 50,
+		height: 50,
+		resizeMode: 'center',
+	},
 	memoContainer: {
 		flex: 1,
 		padding: 20,

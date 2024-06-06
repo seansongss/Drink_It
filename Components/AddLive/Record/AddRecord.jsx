@@ -241,13 +241,13 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 
 	return (
 			<View
-				style={{ flex: 1 }}
+				style={containerStyle}
 				onLayout={(event) => {
 					const { height } = event.nativeEvent.layout;
 					setComponentHeight(height);
 				}}
 			>
-				<ScrollView contentContainerStyle={containerStyle}>
+				<ScrollView>
 					{addAlcoholList.map((item, i) => (
 						<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
 					))}
@@ -281,7 +281,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					onRequestClose={() => setModalVisible(false)}
 				>
 					<View style={modalStyles.centeredView}>
-						<View style={[modalStyles.modalView, { width: '90%', height: componentHeight * 0.8 }]}>
+						<View style={[modalStyles.modalView, { width: '90%', height: '60%' }]}>
 							{actionTriggered === 'SELECT_RECIPE' ? (
 								<View style={{ flex: 1 }}>
 									<Text style={modalStyles.modalText}>Select a Recipe</Text>
