@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Alert } from 'react-native';
+import { View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AddHeader from '../../Components/AddLive/Header/AddHeader';
 import AddRecord from '../../Components/AddLive/Record/AddRecord';
@@ -46,16 +46,18 @@ const AddLive = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.addLiveContainer}>
-            <AddHeader containerStyle={styles.addHeaderContainer} />
-            <AddRecord 
-                containerStyle={styles.addRecordContainer}
-                startTime={date}
-                navigation={navigation}
-                recipeList={recipeList}
-                updateRecipeList={updateRecipeList}
-            />
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.addLiveContainer}>
+                <AddHeader containerStyle={styles.addHeaderContainer} />
+                <AddRecord
+                    containerStyle={styles.addRecordContainer}
+                    startTime={date}
+                    navigation={navigation}
+                    recipeList={recipeList}
+                    updateRecipeList={updateRecipeList}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     );
 };
 
