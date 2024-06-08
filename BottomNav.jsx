@@ -22,7 +22,7 @@ const BottomNav = () => {
                 sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top }}
                 screenOptions={{
                     tabBarActiveTintColor: "#e69138",
-                    tabBarItemStyle: { marginTop: 10 },
+                    tabBarItemStyle: { marginHorizontal: 20, marginTop: 10 },
                     tabBarShowLabel: false,
                     headerShown: false,
                     tabBarStyle: { backgroundColor: "#597A82", height: 90 },
@@ -31,7 +31,7 @@ const BottomNav = () => {
                     name="Home"
                     component={CalendarViewStack}
                     options={{
-                        tabBarIcon: ({ color, size }) => (
+                        tabBarIcon: ({ color }) => (
                             <Ionicons name="home" size={45} color={color} />
                         ),
                     }}
@@ -40,7 +40,7 @@ const BottomNav = () => {
                     name="Add"
                     component={AddLive}
                     options={{
-                        tabBarIcon: ({ color, size }) => (
+                        tabBarIcon: ({ color }) => (
                             <Ionicons name="add-circle" size={50} color={color} />
                         ),
                     }}
@@ -49,7 +49,7 @@ const BottomNav = () => {
                     name="My_page"
                     component={My_page}
                     options={{
-                        tabBarIcon: ({ color, size }) => (
+                        tabBarIcon: ({ color }) => (
                             <Ionicons name="person" size={45} color={color} />
                         ),
                     }}
