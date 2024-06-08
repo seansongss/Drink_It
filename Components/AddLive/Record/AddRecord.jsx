@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert, Modal, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
+import React, { useState, useContext, useRef } from 'react';
+import { View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert, Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Dropdown } from 'react-native-element-dropdown';
 import { RecordsContext } from '../../Context/RecordsContext';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import styles from './styles';
 
@@ -43,6 +44,7 @@ const getfeelingicon = (feeling) => {
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	const { loadRecords } = useContext(RecordsContext);
+	const scrollRef = useRef(null);
 	const [addAlcoholList, setAddAlcoholList] = useState([
 		{ name: 'soju', icon: 'soju', count: 0 },
 		{ name: 'beer', icon: 'beer', count: 0 }
@@ -247,43 +249,44 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				setComponentHeight(height);
 			}}
 		>
-			<KeyboardAvoidingView
-				behavior={Platform.OS === "ios" ? "padding" : "height"}
-				style={Platform.OS === "ios" && { flex: 1 }}
-				keyboardVerticalOffset={30}
+			<KeyboardAwareScrollView
+				// ref={scrollRef}
+				keyboardShouldPersistTaps="handled"
+				extraHeight={500}
+				extraScrollHeight={-70}
 			>
-				<ScrollView
-					keyboardShouldPersistTaps='never'>
-					{addAlcoholList.map((item, i) => (
-						<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
-					))}
-					<NewUnitButton />
-					<View style={styles.addFeelingContainer}>
-						<Text style={styles.text}>How are you feeling? </Text>
-						<View style={styles.addFeelingWrapper}>
-							<Feeling name="Before" />
-							<Feeling name="During" />
-							<Feeling name="After" />
-						</View>
+				{/* <ScrollView
+					keyboardShouldPersistTaps='never'> */}
+				{addAlcoholList.map((item, i) => (
+					<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
+				))}
+				<NewUnitButton />
+				<View style={styles.addFeelingContainer}>
+					<Text style={styles.text}>How are you feeling? </Text>
+					<View style={styles.addFeelingWrapper}>
+						<Feeling name="Before" />
+						<Feeling name="During" />
+						<Feeling name="After" />
 					</View>
-					<View style={styles.memoContainer}>
-						<Text style={styles.text}>Memo</Text>
-						<TextInput
-							style={styles.memoInput}
-							placeholder="Memo"
-							value={memo}
-							multiline
-							onChangeText={(text) => setMemo(text)}
-						/>
-					</View>
-					<TouchableOpacity
-						style={styles.addUnitContainer}
-						onPress={saveRecord}
-					>
-						<Text style={styles.text}>Record</Text>
-					</TouchableOpacity>
-				</ScrollView>
-			</KeyboardAvoidingView>
+				</View>
+				<View style={styles.memoContainer}>
+					<Text style={styles.text}>Memo</Text>
+					<TextInput
+						style={styles.memoInput}
+						placeholder="Memo"
+						value={memo}
+						multiline
+						onChangeText={(text) => setMemo(text)}
+					/>
+				</View>
+				<TouchableOpacity
+					style={styles.addUnitContainer}
+					onPress={saveRecord}
+				>
+					<Text style={styles.text}>Record</Text>
+				</TouchableOpacity>
+				{/* </ScrollView> */}
+			</KeyboardAwareScrollView>
 
 			<Modal
 				animationType="slide"
@@ -291,53 +294,49 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				visible={modalVisible}
 				onRequestClose={() => setModalVisible(false)}
 			>
-				<View style={modalStyles.centeredView}>
-					<View style={[modalStyles.modalView, { width: '90%', height: '60%' }]}>
-						{actionTriggered === 'SELECT_RECIPE' ? (
-							<View style={{ flex: 1 }}>
-								<Text style={modalStyles.modalText}>Select a Recipe</Text>
-								<ScrollView>
-									{Object.keys(recipeList).map((recipeName, index) => (
-										<View key={index} style={modalStyles.recipeContainer}>
-											<Image
-												source={getAlchoholIcon(recipeList[recipeName].icon)}
-												style={{ width: 30, height: 30, resizeMode: "center" }}
-											/>
-											<View style={modalStyles.recipeDetails}>
-												<Text>{recipeName}</Text>
-												<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
+				<KeyboardAvoidingView>
+					<View style={modalStyles.centeredView}>
+						<View style={[modalStyles.modalView, { width: '90%', height: '60%' }]}>
+							{actionTriggered === 'SELECT_RECIPE' ? (
+								<View style={{ flex: 1 }}>
+									<Text style={modalStyles.modalText}>Select a Recipe</Text>
+									<ScrollView>
+										{Object.keys(recipeList).map((recipeName, index) => (
+											<View key={index} style={modalStyles.recipeContainer}>
+												<Image
+													source={getAlchoholIcon(recipeList[recipeName].icon)}
+													style={{ width: 30, height: 30, resizeMode: "center" }}
+												/>
+												<View style={modalStyles.recipeDetails}>
+													<Text>{recipeName}</Text>
+													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
+												</View>
+												<TouchableOpacity
+													style={modalStyles.addButton}
+													onPress={() => {
+														addNewUnit(recipeName);
+														setModalVisible(false);
+													}}
+												>
+													<Text style={modalStyles.addButtonText}>Add</Text>
+												</TouchableOpacity>
 											</View>
-											<TouchableOpacity
-												style={modalStyles.addButton}
-												onPress={() => {
-													addNewUnit(recipeName);
-													setModalVisible(false);
-												}}
-											>
-												<Text style={modalStyles.addButtonText}>Add</Text>
-											</TouchableOpacity>
-										</View>
-									))}
-								</ScrollView>
-								<TouchableOpacity
-									style={modalStyles.addNewButton}
-									onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
-								>
-									<Text style={modalStyles.textStyle}>Add new recipe</Text>
-								</TouchableOpacity>
-								<TouchableOpacity
-									style={modalStyles.buttonClose}
-									onPress={() => setModalVisible(false)}
-								>
-									<Text style={modalStyles.textStyle}>Close</Text>
-								</TouchableOpacity>
-							</View>
-						) : (
-							<KeyboardAvoidingView
-								style={{ flex: 1 }}
-								behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-								keyboardVerticalOffset={Platform.OS === 'ios' ? 64 : 0}
-							>
+										))}
+									</ScrollView>
+									<TouchableOpacity
+										style={modalStyles.addNewButton}
+										onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
+									>
+										<Text style={modalStyles.textStyle}>Add new recipe</Text>
+									</TouchableOpacity>
+									<TouchableOpacity
+										style={modalStyles.buttonClose}
+										onPress={() => setModalVisible(false)}
+									>
+										<Text style={modalStyles.textStyle}>Close</Text>
+									</TouchableOpacity>
+								</View>
+							) : (
 								<View style={{ flex: 1 }}>
 									<Text style={modalStyles.modalText}>Add New Recipe</Text>
 									<ScrollView>
@@ -377,6 +376,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 											style={modalStyles.input}
 											placeholder="Description"
 											value={newRecipe.description}
+											multiline
 											onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
 										/>
 									</ScrollView>
@@ -393,10 +393,10 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 										<Text style={modalStyles.textStyle}>Back</Text>
 									</TouchableOpacity>
 								</View>
-							</KeyboardAvoidingView>
-						)}
+							)}
+						</View>
 					</View>
-				</View>
+				</KeyboardAvoidingView>
 			</Modal>
 		</View>
 	);
@@ -467,7 +467,7 @@ const modalStyles = StyleSheet.create({
 		color: 'white',
 	},
 	input: {
-		height: 40,
+		// height: 40,
 		borderColor: '#ccc',
 		borderWidth: 1,
 		borderRadius: 5,
