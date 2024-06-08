@@ -246,6 +246,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	];
 
 	return (
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 		<View
 			style={containerStyle}
 			onLayout={(event) => {
@@ -403,6 +404,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				</TouchableWithoutFeedback>
 			</Modal>
 		</View>
+		</TouchableWithoutFeedback>
 	);
 };
 

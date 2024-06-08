@@ -46,18 +46,16 @@ const AddLive = ({ navigation }) => {
     };
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.addLiveContainer}>
-                <AddHeader containerStyle={styles.addHeaderContainer} />
-                <AddRecord
-                    containerStyle={styles.addRecordContainer}
-                    startTime={date}
-                    navigation={navigation}
-                    recipeList={recipeList}
-                    updateRecipeList={updateRecipeList}
-                />
-            </View>
-        </TouchableWithoutFeedback>
+        <View style={styles.addLiveContainer}>
+            <AddHeader containerStyle={styles.addHeaderContainer} />
+            <AddRecord 
+                containerStyle={styles.addRecordContainer}
+                startTime={date}
+                navigation={navigation}
+                recipeList={recipeList}
+                updateRecipeList={updateRecipeList}
+            />
+        </View>
     );
 };
 
