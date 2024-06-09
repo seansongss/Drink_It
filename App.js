@@ -12,6 +12,7 @@ SplashScreen.preventAutoHideAsync();
 
 // Hide the splash screen after fetching resources (set to 2 seconds by default)
 //  later need edit to hide splash screen after fetching all resources from server
+// Add animation when hiding splash screen
 setTimeout(async () => {
     await SplashScreen.hideAsync();
 }, 2000);
