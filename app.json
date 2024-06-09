@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Drink It",
-    "slug": "Drink It",
-    "version": "1.0.0",
+    "slug": "Drink_It",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/main_logo.png",
     "userInterfaceStyle": "light",
@@ -35,6 +35,12 @@
     },
     "plugins": [
       "expo-font"
-    ]
+    ],
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e2e7f6f5-b3c9-4f14-a831-52bac6c5d5a4"
+    }
   }
 }
