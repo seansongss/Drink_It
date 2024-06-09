@@ -4,10 +4,10 @@
     "slug": "Drink_It",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/main_logo.png",
+    "icon": "./assets/main-logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/main_logo.png",
+      "image": "./assets/main-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
