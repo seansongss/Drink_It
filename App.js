@@ -5,6 +5,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import BottomNav from './BottomNav';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SplashScreen from 'expo-splash-screen';
+
+// Keep the splash screen visible while we fetch resources
+SplashScreen.preventAutoHideAsync();
+
+// Hide the splash screen after fetching resources
+setTimeout(async () => {
+    await SplashScreen.hideAsync();
+}, 2000);
 
 export default function App() {
     // // Clear storage for development purposes
@@ -20,6 +29,7 @@ export default function App() {
 
     //     clearStorage();
     // }, []);
+    
 
     let [fontsLoaded] = useFonts({
         Jaldi_400Regular,

@@ -257,7 +257,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			<KeyboardAwareScrollView
 				// ref={scrollRef}
 				keyboardShouldPersistTaps="handled"
-				extraHeight={500}
+				extraHeight={300}
 				extraScrollHeight={-70}
 			>
 				{/* <ScrollView
