@@ -159,7 +159,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 
 		const changeFeeling = () => {
 			setFeelings(prev => {
-				const newValue = prev[name.toLowerCase()] !== 5 ? prev[name.toLowerCase()] + 1 : 1;
+				const newValue = prev[name.toLowerCase()] % 5 + 1;
 				return { ...prev, [name.toLowerCase()]: newValue };
 			});
 		};
@@ -170,14 +170,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					onPress={changeFeeling}
 					style={styles.addFeelingImage}
 				>
-					{/* <Image
-						source={getfeelingicon(feelingValue)}
-						style={{
-							width: 50,
-							height: 50,
-							resizeMode: "center",
-						}}
-					/> */}
 					<ImageComponent type={'feeling'} value={feelingValue} size={50} />
 				</TouchableOpacity>
 				<Text style={styles.text}>{name}</Text>
@@ -220,13 +212,10 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			}}
 		>
 			<KeyboardAwareScrollView
-				// ref={scrollRef}
 				keyboardShouldPersistTaps="handled"
 				extraHeight={300}
 				extraScrollHeight={-70}
 			>
-				{/* <ScrollView
-					keyboardShouldPersistTaps='never'> */}
 				{addAlcoholList.map((item, i) => (
 					<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
 				))}
@@ -255,7 +244,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				>
 					<Text style={styles.text}>Record</Text>
 				</TouchableOpacity>
-				{/* </ScrollView> */}
 			</KeyboardAwareScrollView>
 
 			<Modal
@@ -273,10 +261,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 									<ScrollView>
 										{Object.keys(recipeList).map((recipeName, index) => (
 											<View key={index} style={modalStyles.recipeContainer}>
-												{/* <Image
-													source={getAlchoholIcon(recipeList[recipeName].icon)}
-													style={{ width: 30, height: 30, resizeMode: "center" }}
-												/> */}
 												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
 												<View style={modalStyles.recipeDetails}>
 													<Text>{recipeName}</Text>
@@ -327,12 +311,10 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 												setNewRecipe({ ...newRecipe, icon: item.value });
 											}}
 											renderLeftIcon={() => (
-												// <Image source={getAlchoholIcon(newRecipe.icon)} style={modalStyles.dropdownIcon} />
 												<ImageComponent type={'alcohol'} value={newRecipe.icon} size={30} />
 											)}
 											renderItem={item => (
 												<View style={modalStyles.dropdownItem}>
-													{/* <Image source={getAlchoholIcon(item.value)} style={modalStyles.dropdownIcon} /> */}
 													<ImageComponent type={'alcohol'} value={item.value} size={30} />
 													<Text style={modalStyles.dropdownText}>{item.label}</Text>
 												</View>
