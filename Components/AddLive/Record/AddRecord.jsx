@@ -13,40 +13,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import styles from './styles';
 import { ImageComponent } from '../../utils/ImageComponent';
 
-const getAlchoholIcon = (name) => {
-	switch (name) {
-		case "soju":
-			return require("../../../assets/alcohol/soju_logo.png");
-		case "beer":
-			return require("../../../assets/alcohol/beer_logo.png");
-		case "wine":
-			return require("../../../assets/alcohol/wine_logo.png");
-		case "vodka":
-			return require("../../../assets/alcohol/vodka_logo.png");
-		default:
-			console.error('Invalid alcohol name');
-			return null;
-	}
-};
-
-const getfeelingicon = (feeling) => {
-	switch (feeling) {
-		case 1:
-			return require("../../../assets/Daily_view/feeling5.png");
-		case 2:
-			return require("../../../assets/Daily_view/feeling4.png");
-		case 3:
-			return require("../../../assets/Daily_view/feeling3.png");
-		case 4:
-			return require("../../../assets/Daily_view/feeling2.png");
-		case 5:
-			return require("../../../assets/Daily_view/feeling1.png");
-		default:
-			console.error('Invalid feeling number');
-			return null;
-	}
-};
-
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	const { loadRecords } = useContext(RecordsContext);
 	const scrollRef = useRef(null);
@@ -169,7 +135,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					source={getAlchoholIcon(icon)}
 					style={{ width: 30, height: 30, resizeMode: "center" }}
 				/> */}
-				<ImageComponent type={'alcohol'} name={icon} size={30} />
+				<ImageComponent type={'alcohol'} value={icon} size={30} />
 				<Text style={styles.text}>{name}</Text>
 			</View>
 			<Text style={styles.text}>{count}</Text>
@@ -216,7 +182,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 							resizeMode: "center",
 						}}
 					/> */}
-					<ImageComponent type={'feeling'} name={feelingValue} size={50} />
+					<ImageComponent type={'feeling'} value={feelingValue} size={50} />
 				</TouchableOpacity>
 				<Text style={styles.text}>{name}</Text>
 			</View>
@@ -315,7 +281,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 													source={getAlchoholIcon(recipeList[recipeName].icon)}
 													style={{ width: 30, height: 30, resizeMode: "center" }}
 												/> */}
-												<ImageComponent type={'alcohol'} name={recipeList[recipeName].icon} />
+												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} />
 												<View style={modalStyles.recipeDetails}>
 													<Text>{recipeName}</Text>
 													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
@@ -366,12 +332,12 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 											}}
 											renderLeftIcon={() => (
 												// <Image source={getAlchoholIcon(newRecipe.icon)} style={modalStyles.dropdownIcon} />
-												<ImageComponent type={'alcohol'} name={newRecipe.icon} size={30} />
+												<ImageComponent type={'alcohol'} value={newRecipe.icon} size={30} />
 											)}
 											renderItem={item => (
 												<View style={modalStyles.dropdownItem}>
 													{/* <Image source={getAlchoholIcon(item.value)} style={modalStyles.dropdownIcon} /> */}
-													<ImageComponent type={'alcohol'} name={item.value} size={30} />
+													<ImageComponent type={'alcohol'} value={item.value} size={30} />
 													<Text style={modalStyles.dropdownText}>{item.label}</Text>
 												</View>
 											)}
