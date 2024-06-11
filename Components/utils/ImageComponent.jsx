@@ -47,7 +47,6 @@ export const getImage = (type, value) => {
         console.error('Invalid calendar icon: ' + value);
         return null;
     }
-    
   } else {
     console.error('Invalid type');
     return null;
@@ -56,7 +55,6 @@ export const getImage = (type, value) => {
 
 const ImageComponent = ({ type, value, size }) => {
   const source = useMemo(() => getImage(type, value), [type, value]);
-  // const source = getImage(type, value);
 
   if (!source) {
     return null; // Return null if the source is invalid
@@ -71,4 +69,6 @@ const ImageComponent = ({ type, value, size }) => {
   );
 };
 
-export default React.memo(ImageComponent);
+export default React.memo(ImageComponent, (prevProps, nextProps) => {
+  return prevProps.type === nextProps.type && prevProps.value === nextProps.value && prevProps.size === nextProps.size;
+});
