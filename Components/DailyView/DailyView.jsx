@@ -3,44 +3,9 @@ import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-na
 import { Divider, Button } from '@rneui/themed';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
+import { ImageComponent } from '../utils/ImageComponent'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
-
-// getAlcoholIcon by name
-const getAlchoholIcon = (name) => {
-    switch (name) {
-        case "soju":
-            return require("../../assets/alcohol/soju_logo.png");
-        case "beer":
-            return require("../../assets/alcohol/beer_logo.png");
-        case "wine":
-            return require("../../assets/alcohol/wine_logo.png");
-        case "vodka":
-            return require("../../assets/alcohol/vodka_logo.png");
-        default:
-            console.error('Invalid alcohol name');
-            return null;
-    }
-};
-
-// getFeelingIcon by feeling 1-5
-const getFeelingIcon = (feeling) => {
-    switch (feeling) {
-        case 1:
-            return require("../../assets/Daily_view/feeling5.png");
-        case 2:
-            return require("../../assets/Daily_view/feeling4.png");
-        case 3:
-            return require("../../assets/Daily_view/feeling3.png");
-        case 4:
-            return require("../../assets/Daily_view/feeling2.png");
-        case 5:
-            return require("../../assets/Daily_view/feeling1.png");
-        default:
-            console.error('Invalid feeling number');
-            return null;
-    }
-};
 
 const DailyView = ({ navigation, route }) => {
     const { year, month, date } = route.params;
@@ -82,10 +47,11 @@ const DailyView = ({ navigation, route }) => {
         return (
             <View style={styles.unitContainer}>
                 <View style={styles.unitWrapper}>
-                    <Image
+                    {/* <Image
                         source={getAlchoholIcon(icon)}
                         style={{ width: 30, height: 30, resizeMode: "center" }}
-                    />
+                    /> */}
+                    <ImageComponent type={'alcohol'} value={icon} size={30} />
                     <Text style={styles.text}>{name}</Text>
                 </View>
                 <Text style={styles.text}>x {count}</Text>
@@ -97,14 +63,15 @@ const DailyView = ({ navigation, route }) => {
         return (
             <View style={styles.Feeling}>
                 <View style={styles.FeelingImage}>
-                    <Image
+                    {/* <Image
                         source={getFeelingIcon(feelingValue)}
                         style={{
                             width: 50,
                             height: 50,
                             resizeMode: "center",
                         }}
-                    />
+                    /> */}
+                    <ImageComponent type={'feeling'} value={feelingValue} size={50} />
                 </View>
                 <Text style={styles.text}>{name}</Text>
             </View>
@@ -146,9 +113,10 @@ const DailyView = ({ navigation, route }) => {
                 <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
                 <View style={styles.editContainer}>
                     <TouchableOpacity onPress={() => console.log('edit button pressed')}>
-                        <Image source={require('../../assets/Calendar_view/last_night.png')}
+                        {/* <Image source={require('../../assets/Calendar_view/last_night.png')}
                             style={{ width: 40, height: 40 }}
-                            resizeMode='contain' />
+                            resizeMode='contain' /> */}
+                        <ImageComponent type={'calendar'} value={'last_night'} size={40} />
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
@@ -158,15 +126,17 @@ const DailyView = ({ navigation, route }) => {
                         ))}
                     </View>
                     <View style={[styles.dailyViewInfo, { backgroundColor: '#E69C4D' }]}>
-                        <Image source={require('../../assets/Daily_view/clock.png')}
+                        {/* <Image source={require('../../assets/Daily_view/clock.png')}
                             style={{ width: 30, height: 30, marginHorizontal: 5, marginRight: 15 }}
-                            resizeMode='contain' />
+                            resizeMode='contain' /> */}
+                        <ImageComponent type={'calendar'} value={'clock'} size={30} />
                         <Text style={styles.text}>{new Date(record.startDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - {new Date(record.endDate).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Text>
                     </View>
                     <View style={[styles.dailyViewInfo, { backgroundColor: '#afeeee' }]}>
-                        <Image source={require('../../assets/Add_live/bright_location.png')}
+                        {/* <Image source={require('../../assets/Add_live/bright_location.png')}
                             style={{ width: 30, height: 30, marginHorizontal: 5, marginRight: 15 }}
-                            resizeMode='contain' />
+                            resizeMode='contain' /> */}
+                        <ImageComponent type={'calendar'} value={'location'} size={30} />
                         <Text style={styles.text}>DALDONGNAE, WATERLOO</Text>
                     </View>
                     <View style={styles.dailyViewFeeling}>
@@ -176,9 +146,10 @@ const DailyView = ({ navigation, route }) => {
                     </View>
                     <View style={styles.dailyViewNote}>
                         <View style={styles.dailyViewNoteHeader}>
-                            <Image source={require('../../assets/Add_live/bright_note.png')}
+                            {/* <Image source={require('../../assets/Add_live/bright_note.png')}
                                 style={{ width: 30, height: 30 }}
-                                resizeMode='contain' />
+                                resizeMode='contain' /> */}
+                            <ImageComponent type={'calendar'} value={'ntoe'} size={30} />
                             <Text style={[styles.text, { marginLeft: 5 }]}>Note</Text>
                         </View>
                         <Text style={styles.text}>{record.memo}</Text>

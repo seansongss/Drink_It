@@ -34,8 +34,21 @@ export const getImage = (type, value) => {
         console.error('Invalid feeling number');
         return null;
     }
-  } else if (type === 'last_night') {
-    return require("../../assets/Calendar_view/last_night.png")
+  } else if (type === 'calendar') {
+    switch (value) {
+      case "last_night":
+        return require("../../assets/calendar/last_night.png")
+      case "clock":
+        return require("../../assets/calendar/clock.png")
+      case "mapPin":
+        return require("../../assets/calendar/mapPin.png")
+      case "note":
+        return require("../../assets/calendar/note.png")
+      default:
+        console.error('Invalid calendar icon');
+        return null;
+    }
+    
   } else {
     console.error('Invalid type');
     return null;
