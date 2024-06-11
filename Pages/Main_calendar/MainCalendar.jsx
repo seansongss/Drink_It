@@ -23,7 +23,7 @@ const MainCalendar = ({ navigation, records, updateRecords }) => {
 
 const Stack = createNativeStackNavigator();
 
-function CalendarViewStack({ records, updateRecords }) {
+function CalendarViewStack() {
     return (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
             <Stack.Screen name="CalendarView" component={MainCalendar} />
