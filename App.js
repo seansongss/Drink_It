@@ -1,8 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import {
-    Animated, Button,
-    Platform, StyleSheet, Text, View
-} from 'react-native';
+import { Animated, StyleSheet, View } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
