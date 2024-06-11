@@ -125,7 +125,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AddUnit = ({ name, icon, count, index }) => (
+	const AlcoholUnit = ({ name, icon, count, index }) => (
 		<View style={styles.addUnitContainer}>
 			<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
 				<Icon name="remove" color={"#c1dfb0"} size={50} />
@@ -154,7 +154,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		</View>
 	);
 
-	const Feeling = ({ name }) => {
+	const FeelingUnit = ({ name }) => {
 		const feelingValue = feelings[name.toLowerCase()];
 
 		const changeFeeling = () => {
@@ -217,15 +217,15 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				extraScrollHeight={-70}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AddUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
+					<AlcoholUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
 					<Text style={styles.text}>How are you feeling? </Text>
 					<View style={styles.addFeelingWrapper}>
-						<Feeling name="Before" />
-						<Feeling name="During" />
-						<Feeling name="After" />
+						<FeelingUnit name="Before" />
+						<FeelingUnit name="During" />
+						<FeelingUnit name="After" />
 					</View>
 				</View>
 				<View style={styles.memoContainer}>
