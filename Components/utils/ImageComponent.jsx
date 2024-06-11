@@ -21,27 +21,29 @@ export const getImage = (type, value) => {
   } else if (type === 'feeling') { // get Feeling icon
     switch (value) {
       case 1:
-        return require("../../assets/Daily_view/feeling5.png");
+        return require("../../assets/feeling/feeling5.png");
       case 2:
-        return require("../../assets/Daily_view/feeling4.png");
+        return require("../../assets/feeling/feeling4.png");
       case 3:
-        return require("../../assets/Daily_view/feeling3.png");
+        return require("../../assets/feeling/feeling3.png");
       case 4:
-        return require("../../assets/Daily_view/feeling2.png");
+        return require("../../assets/feeling/feeling2.png");
       case 5:
-        return require("../../assets/Daily_view/feeling1.png");
+        return require("../../assets/feeling/feeling1.png");
       default:
         console.error('Invalid feeling number');
         return null;
     }
+  } else if (type === 'last_night') {
+    return require("../../assets/Calendar_view/last_night.png")
   } else {
     console.error('Invalid type');
     return null;
   }
 };
 
-export const ImageComponent = ({ type, name, size }) => {
-  const source = getImage(type, name);
+export const ImageComponent = ({ type, value, size }) => {
+  const source = getImage(type, value);
 
   if (!source) {
     return null; // Return null if the source is invalid
