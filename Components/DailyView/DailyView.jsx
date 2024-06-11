@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-na
 import { Divider, Button } from '@rneui/themed';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
-import { ImageComponent } from '../utils/ImageComponent'
+import ImageComponent from '../utils/ImageComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from './styles';
 
@@ -149,7 +149,7 @@ const DailyView = ({ navigation, route }) => {
                             {/* <Image source={require('../../assets/Add_live/bright_note.png')}
                                 style={{ width: 30, height: 30 }}
                                 resizeMode='contain' /> */}
-                            <ImageComponent type={'calendar'} value={'ntoe'} size={30} />
+                            <ImageComponent type={'calendar'} value={'note'} size={30} />
                             <Text style={[styles.text, { marginLeft: 5 }]}>Note</Text>
                         </View>
                         <Text style={styles.text}>{record.memo}</Text>

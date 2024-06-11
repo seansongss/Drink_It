@@ -1,5 +1,4 @@
-import React from 'react';
-import FastImage from 'react-native-fast-image';
+import React, { useMemo } from 'react';
 import { Image } from 'expo-image';
 
 // getImage function with Alcohol and Feeling methods
@@ -15,7 +14,7 @@ export const getImage = (type, value) => {
       case "vodka":
         return require("../../assets/alcohol/vodka_logo.png");
       default:
-        console.error('Invalid alcohol name');
+        console.error('Invalid alcohol name: ' + value);
         return null;
     }
   } else if (type === 'feeling') { // get Feeling icon
@@ -31,7 +30,7 @@ export const getImage = (type, value) => {
       case 5:
         return require("../../assets/feeling/feeling1.png");
       default:
-        console.error('Invalid feeling number');
+        console.error('Invalid feeling number: ' + value);
         return null;
     }
   } else if (type === 'calendar') {
@@ -40,41 +39,36 @@ export const getImage = (type, value) => {
         return require("../../assets/calendar/last_night.png")
       case "clock":
         return require("../../assets/calendar/clock.png")
-      case "mapPin":
+      case "location":
         return require("../../assets/calendar/mapPin.png")
       case "note":
         return require("../../assets/calendar/note.png")
       default:
-        console.error('Invalid calendar icon');
+        console.error('Invalid calendar icon: ' + value);
         return null;
     }
-    
   } else {
     console.error('Invalid type');
     return null;
   }
 };
 
-export const ImageComponent = ({ type, value, size }) => {
-  const source = getImage(type, value);
+const ImageComponent = ({ type, value, size }) => {
+  const source = useMemo(() => getImage(type, value), [type, value]);
 
   if (!source) {
     return null; // Return null if the source is invalid
   }
 
   return (
-    // // Image using react-native-fast-image
-    // <FastImage
-    //   style={{ width: size, height: size }}
-    //   source={source}
-    //   resizeMode={FastImage.resizeMode.contain}
-    // />
-
-    // Image using expo-image
     <Image
       style={{ width: size, height: size }}
       source={source}
-      resizeMode="cover"
+      contentFit="contain"
     />
   );
 };
+
+export default React.memo(ImageComponent, (prevProps, nextProps) => {
+  return prevProps.type === nextProps.type && prevProps.value === nextProps.value && prevProps.size === nextProps.size;
+});

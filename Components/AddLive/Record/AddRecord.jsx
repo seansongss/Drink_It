@@ -11,7 +11,7 @@ import { RecordsContext } from '../../Context/RecordsContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import styles from './styles';
-import { ImageComponent } from '../../utils/ImageComponent';
+import ImageComponent from '../../utils/ImageComponent';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	const { loadRecords } = useContext(RecordsContext);
@@ -131,10 +131,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				<Icon name="remove" color={"#c1dfb0"} size={50} />
 			</TouchableOpacity>
 			<View style={styles.addUnit}>
-				{/* <Image
-					source={getAlchoholIcon(icon)}
-					style={{ width: 30, height: 30, resizeMode: "center" }}
-				/> */}
 				<ImageComponent type={'alcohol'} value={icon} size={30} />
 				<Text style={styles.text}>{name}</Text>
 			</View>
@@ -281,7 +277,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 													source={getAlchoholIcon(recipeList[recipeName].icon)}
 													style={{ width: 30, height: 30, resizeMode: "center" }}
 												/> */}
-												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} />
+												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
 												<View style={modalStyles.recipeDetails}>
 													<Text>{recipeName}</Text>
 													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>

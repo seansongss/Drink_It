@@ -4792,6 +4792,7 @@ __metadata:
     expo: "npm:~51.0.11"
     expo-dev-client: "npm:~4.0.15"
     expo-font: "npm:~12.0.7"
+    expo-image: "npm:^1.12.11"
     expo-splash-screen: "npm:~0.27.5"
     expo-status-bar: "npm:~1.12.1"
     expo-updates: "npm:~0.25.16"
@@ -5371,6 +5372,17 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: 10c0/2c4e3471a95d472272b8f6e5e94dc6d3b8125a3ce10c2f5d6f15edd81e422024d340c28a1166416aa25ecc3b14ecad324792a12f43dd14ca7bbc23371fd13d05
+  languageName: node
+  linkType: hard
+
+"expo-image@npm:^1.12.11":
+  version: 1.12.11
+  resolution: "expo-image@npm:1.12.11"
+  dependencies:
+    "@react-native/assets-registry": "npm:0.74.84"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/94599bef414917cee6e17cfd555d337b000fef8487f19f5eb892b897b12fb5ed012d7802c4deab8bc7635beb1e72571d92010d6cdb6623abfd706ff4313a10ab
   languageName: node
   linkType: hard
 
@@ -9160,6 +9172,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10c0/ff3078f613a2f2c0a0ea48a52f6cad625163b98a758d4b15e2662b019f6aae4a60a3693abb42ea95901972d0d927ff389e03b2fd31b9bb5173472a2f31f0e5e7
+  languageName: node
+  linkType: hard
+
+"react-native-fast-image@npm:^8.6.3":
+  version: 8.6.3
+  resolution: "react-native-fast-image@npm:8.6.3"
+  peerDependencies:
+    react: ^17 || ^18
+    react-native: ">=0.60.0"
+  checksum: 10c0/4ebeae53ffeadf1e7e5e133c1cfda81f9efe978f9ece10c732a0338149fe9104681bfdabc8427dad7c934b02bfcbd0e205bb6ca43e2844abc6054630ebe34454
   languageName: node
   linkType: hard
 
