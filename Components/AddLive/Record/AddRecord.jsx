@@ -203,7 +203,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	];
 
 	return (
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
 			<View
 				style={containerStyle}
 				onLayout={(event) => {
