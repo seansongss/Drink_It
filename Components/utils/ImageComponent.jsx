@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import { memo } from 'react';
 import { Image } from 'expo-image';
 
 // getImage function with Alcohol and Feeling methods
@@ -54,11 +54,13 @@ export const getImage = (type, value) => {
 };
 
 const ImageComponent = ({ type, value, size }) => {
-  const source = useMemo(() => getImage(type, value), [type, value]);
+  const source = getImage(type, value);
 
   if (!source) {
     return null; // Return null if the source is invalid
   }
+
+  console.log(`Image rendered: ${type} ${value}`);
 
   return (
     <Image
@@ -69,6 +71,4 @@ const ImageComponent = ({ type, value, size }) => {
   );
 };
 
-export default React.memo(ImageComponent, (prevProps, nextProps) => {
-  return prevProps.type === nextProps.type && prevProps.value === nextProps.value && prevProps.size === nextProps.size;
-});
+export default memo(ImageComponent);
