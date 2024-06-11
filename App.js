@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import BottomNav from './BottomNav';
@@ -45,64 +45,71 @@ export default function App() {
     );
 }
 
-function AnimatedSplashScreen({ children, image }) {
+function AnimatedSplashScreen({ children }) {
+    const image = Constants.expoConfig.splash.image;
     const animation = useMemo(() => new Animated.Value(1), []);
     const [isAppReady, setAppReady] = useState(false);
     const [isSplashAnimationComplete, setAnimationComplete] = useState(false);
-  
+
     useEffect(() => {
-      if (isAppReady) {
-        Animated.timing(animation, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: true,
-        }).start(() => setAnimationComplete(true));
-      }
-    }, [isAppReady]);
-  
-    const onImageLoaded = useCallback(async () => {
-      try {
-        await SplashScreen.hideAsync();
-        // Load stuff
-        await Promise.all([]);
-      } catch (e) {
-        // handle errors
-      } finally {
-        setAppReady(true);
-      }
+        const timer = setTimeout(() => {
+            setAppReady(true);
+        }, 2000);
+
+        return () => clearTimeout(timer); // Clear timeout if component unmounts
     }, []);
-  
+
+    useEffect(() => {
+        if (isAppReady) {
+            Animated.timing(animation, {
+                toValue: 0,
+                duration: 1000,
+                useNativeDriver: true,
+            }).start(() => setAnimationComplete(true));
+        }
+    }, [isAppReady]);
+
+    const onImageLoaded = useCallback(async () => {
+        try {
+            await SplashScreen.hideAsync();
+            // Load stuff
+            await Promise.all([]);
+        } catch (e) {
+            // handle errors
+        }
+    }, []);
+
     return (
-      <View style={{ flex: 1 }}>
-        {isAppReady && children}
-        {!isSplashAnimationComplete && (
-          <Animated.View
-            pointerEvents="none"
-            style={[
-              StyleSheet.absoluteFill,
-              {
-                backgroundColor: Constants.expoConfig.splash.backgroundColor,
-                opacity: animation,
-              },
-            ]}
-          >
-            <Animated.Image
-              style={{
-                width: "100%",
-                height: "100%",
-                resizeMode: Constants.expoConfig.splash.resizeMode || "contain",
-                transform: [
-                  {
-                    scale: animation,
-                  },
-                ],
-              }}
-              source={image}
-              onLoadEnd={onImageLoaded}
-              fadeDuration={0}
-            />
-          </Animated.View>
-        )}
-      </View>
+        <View style={{ flex: 1 }}>
+            {isAppReady && children}
+            {!isSplashAnimationComplete && (
+                <Animated.View
+                    pointerEvents="none"
+                    style={[
+                        StyleSheet.absoluteFill,
+                        {
+                            backgroundColor: Constants.expoConfig.splash.backgroundColor,
+                            opacity: animation,
+                        },
+                    ]}
+                >
+                    <Animated.Image
+                        style={{
+                            width: "100%",
+                            height: "100%",
+                            resizeMode: Constants.expoConfig.splash.resizeMode || "contain",
+                            transform: [
+                                {
+                                    scale: animation,
+                                },
+                            ],
+                        }}
+                        source={image}
+                        onLoadEnd={onImageLoaded}
+                        fadeDuration={0}
+                    />
+                </Animated.View>
+            )}
+        </View>
     );
-  }
+}
