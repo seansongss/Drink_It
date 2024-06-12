@@ -219,10 +219,11 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit
-						key={i}
-						{...item}
-					/>
+					React.memo(
+						<AlcoholUnit
+							key={i}
+							{...item}
+						/>)
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
