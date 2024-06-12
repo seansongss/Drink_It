@@ -126,21 +126,24 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {(
-		<View style={styles.addUnitContainer}>
-			<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
-				<Icon name="remove" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-			<View style={styles.addUnit}>
-				<ImageComponent type={'alcohol'} value={icon} size={30} />
-				<Text style={styles.text}>{name}</Text>
+	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {
+		console.log('AlcoholUnit rendered for', name, 'count:', count);
+		return (
+			<View style={styles.addUnitContainer}>
+				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
+					<Icon name="remove" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
+				<View style={styles.addUnit}>
+					<ImageComponent type={'alcohol'} value={icon} size={30} />
+					<Text style={styles.text}>{name}</Text>
+				</View>
+				<Text style={styles.text}>{count}</Text>
+				<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
+					<Icon name="add" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
 			</View>
-			<Text style={styles.text}>{count}</Text>
-			<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
-				<Icon name="add" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-		</View>
-	);}, (prevProps, nextProps) => prevProps.count === nextProps.count);
+		);
+	}, (prevProps, nextProps) => prevProps.count === nextProps.count)
 
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
@@ -219,11 +222,13 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					React.memo(
-						<AlcoholUnit
-							key={i}
-							{...item}
-						/>)
+					<AlcoholUnit
+						key={i}
+						index={i}
+						name={item.name}
+						icon={item.icon}
+						count={item.count}
+					/>
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
