@@ -216,10 +216,17 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				keyboardShouldPersistTaps="never"
 				extraHeight={300}
 				extraScrollHeight={-70}
-				// onStartShouldSetResponder={() => true}
+			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
+					<AlcoholUnit
+						key={i}
+						id={i}
+						name={item.name}
+						icon={item.icon}
+						count={item.count}
+						onChange={changeUnitCount}
+					/>
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
