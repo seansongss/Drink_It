@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState, useCallback } from 'react';
-import { Animated, StyleSheet, View } from 'react-native';
+import { Animated, StyleSheet, View, Image } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
@@ -50,7 +50,7 @@ export default function App() {
 }
 
 function AnimatedSplashScreen({ children }) {
-    const image = Constants.expoConfig.splash.image;
+    const image = require("./assets/main-logo.png");
     const animation = useMemo(() => new Animated.Value(1), []);
     const [isAppReady, setAppReady] = useState(false);
     const [isSplashAnimationComplete, setAnimationComplete] = useState(false);
@@ -77,7 +77,7 @@ function AnimatedSplashScreen({ children }) {
         try {
             await SplashScreen.hideAsync();
             // Load stuff
-            await Promise.all([]);
+            // await Promise.all([]);
         } catch (e) {
             // handle errors
         }
@@ -97,16 +97,11 @@ function AnimatedSplashScreen({ children }) {
                         },
                     ]}
                 >
-                    <Animated.Image
+                    <Image
                         style={{
                             width: "100%",
                             height: "100%",
                             resizeMode: Constants.expoConfig.splash.resizeMode || "contain",
-                            transform: [
-                                {
-                                    scale: animation,
-                                },
-                            ],
                         }}
                         source={image}
                         onLoadEnd={onImageLoaded}
