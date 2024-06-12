@@ -59,10 +59,6 @@ const ImageComponent = React.memo(({ type, value, size = 30 }) => {
       contentFit="contain"
     />
   );
-}, (prevProps, nextProps) => {
-  return prevProps.type === nextProps.type &&
-    prevProps.value === nextProps.value &&
-    prevProps.size === nextProps.size;
 });
 
 export default ImageComponent;
