@@ -126,7 +126,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AlcoholUnit = ({ name, icon, count, index }) => (
+	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {(
 		<View style={styles.addUnitContainer}>
 			<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
 				<Icon name="remove" color={"#c1dfb0"} size={50} />
@@ -140,7 +140,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				<Icon name="add" color={"#c1dfb0"} size={50} />
 			</TouchableOpacity>
 		</View>
-	);
+	);}, (prevProps, nextProps) => prevProps.count === nextProps.count);
 
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
