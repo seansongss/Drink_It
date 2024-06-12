@@ -101,7 +101,7 @@ function AnimatedSplashScreen({ children }) {
                         style={{
                             width: "100%",
                             height: "100%",
-                            resizeMode: Constants.expoConfig.splash.resizeMode || "contain",
+                            resizeMode: "contain",
                         }}
                         source={image}
                         onLoadEnd={onImageLoaded}
