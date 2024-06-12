@@ -59,6 +59,6 @@ const ImageComponent = React.memo(({ type, value, size = 30 }) => {
       contentFit="contain"
     />
   );
-});
+}, () => type !== 'feeling');
 
 export default ImageComponent;

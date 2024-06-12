@@ -221,11 +221,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				{addAlcoholList.map((item, i) => (
 					<AlcoholUnit
 						key={i}
-						id={i}
-						name={item.name}
-						icon={item.icon}
-						count={item.count}
-						onChange={changeUnitCount}
+						{...item}
 					/>
 				))}
 				<NewUnitButton />
