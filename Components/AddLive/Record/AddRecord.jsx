@@ -223,7 +223,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			>
 				{addAlcoholList.map((item, i) => (
 					<AlcoholUnit
-						key={i}
+						key={item.name}
 						index={i}
 						name={item.name}
 						icon={item.icon}
