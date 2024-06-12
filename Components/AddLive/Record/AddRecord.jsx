@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useCallback } from 'react';
 import {
 	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
 	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
@@ -54,7 +54,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		]);
 	};
 
-	const changeUnitCount = (index, change) => {
+	const changeUnitCount = useCallback((index, change) => {
 		setAddAlcoholList(prev => {
 			const newCount = prev[index].count + change;
 			if (newCount < 0) {
@@ -66,7 +66,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			}
 			return prev;
 		});
-	};
+	}, []);
 
 	const addNewUnit = (name) => {
 		const recipe = recipeList[name];
@@ -158,12 +158,12 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	const FeelingUnit = ({ name }) => {
 		const feelingValue = feelings[name];
 
-		const changeFeeling = () => {
+		const changeFeeling = useCallback(() => {
 			setFeelings(prev => {
 				const newValue = prev[name] % 5 + 1;
 				return { ...prev, [name]: newValue };
 			});
-		};
+		}, []);
 
 		return (
 			<View style={styles.addFeeling}>
