@@ -14,6 +14,7 @@ import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
+	console.log('AddRecord rendered');
 	const { loadRecords } = useContext(RecordsContext);
 	const scrollRef = useRef(null);
 	const [addAlcoholList, setAddAlcoholList] = useState([
