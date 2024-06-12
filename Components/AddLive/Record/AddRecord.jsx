@@ -24,9 +24,9 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	const [actionTriggered, setActionTriggered] = useState(null);
 	const [componentHeight, setComponentHeight] = useState(0);
 	const [feelings, setFeelings] = useState({
-		before: 3,
-		during: 3,
-		after: 3,
+		Before: 3,
+		During: 3,
+		After: 3,
 	});
 	const [memo, setMemo] = useState('');
 
@@ -155,12 +155,12 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	);
 
 	const FeelingUnit = ({ name }) => {
-		const feelingValue = feelings[name.toLowerCase()];
+		const feelingValue = feelings[name];
 
 		const changeFeeling = () => {
 			setFeelings(prev => {
-				const newValue = prev[name.toLowerCase()] % 5 + 1;
-				return { ...prev, [name.toLowerCase()]: newValue };
+				const newValue = prev[name] % 5 + 1;
+				return { ...prev, [name]: newValue };
 			});
 		};
 
