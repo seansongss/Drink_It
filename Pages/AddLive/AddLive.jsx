@@ -8,10 +8,10 @@ import styles from './styles';
 const AddLive = ({ navigation }) => {
     const startTime = new Date();
     const [recipeList, setRecipeList] = useState({
-        soju: { icon: "soju", alcohol: [17, 19] },
-        wine: { icon: "wine", alcohol: [12, 15] },
-        beer: { icon: "beer", alcohol: [4, 5] },
-        vodka: { icon: "vodka", alcohol: [30, 40] },
+        soju: { icon: "soju", alcohol: 17, description: 'Nice one sonny' },
+        wine: { icon: "wine", alcohol: 15, description: 'Nice one sonny' },
+        beer: { icon: "beer", alcohol: 4.5, description: 'Nice one sonny' },
+        vodka: { icon: "vodka", alcohol: 40, description: 'Nice one sonny' },
     });
     const [location, setLocation] = useState('DC Davis, Waterloo');
 

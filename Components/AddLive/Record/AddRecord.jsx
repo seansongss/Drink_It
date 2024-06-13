@@ -32,7 +32,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	const [memo, setMemo] = useState('');
 
 	const [newRecipe, setNewRecipe] = useState({
-		name: '',
 		icon: 'soju',
 		alcohol: '',
 		description: ''
@@ -186,11 +185,15 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			Alert.alert("Error", "Please fill out all fields.");
 			return;
 		}
-		const alcoholRange = newRecipe.alcohol.split('-').map(num => parseInt(num.trim()));
+
+		if (recipeList[newRecipe.name]) {
+			Alert.alert("Error", "Recipe exists.");
+		}
+
 		const newRecipeObj = {
 			name: newRecipe.name,
 			icon: newRecipe.icon,
-			alcohol: alcoholRange,
+			alcohol: parseFloat(newRecipe.alcohol),
 			description: newRecipe.description,
 		};
 		const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
@@ -275,7 +278,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
 												<View style={modalStyles.recipeDetails}>
 													<Text>{recipeName}</Text>
-													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
+													<Text>{recipeList[recipeName].alcohol}%</Text>
 												</View>
 												<TouchableOpacity
 													style={modalStyles.addButton}
@@ -334,8 +337,9 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 										/>
 										<TextInput
 											style={modalStyles.input}
-											placeholder="Alcohol Percentage (e.g., 4-5)"
+											placeholder="Alcohol Percentage (e.g., 4)"
 											value={newRecipe.alcohol}
+											keyboardType='decimal-pad'
 											onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
 										/>
 										<TextInput
