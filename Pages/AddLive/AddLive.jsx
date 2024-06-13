@@ -6,13 +6,14 @@ import AddRecord from '../../Components/AddLive/Record/AddRecord';
 import styles from './styles';
 
 const AddLive = ({ navigation }) => {
-    const date = new Date();
+    const startTime = new Date();
     const [recipeList, setRecipeList] = useState({
         soju: { icon: "soju", alcohol: [17, 19] },
         wine: { icon: "wine", alcohol: [12, 15] },
         beer: { icon: "beer", alcohol: [4, 5] },
         vodka: { icon: "vodka", alcohol: [30, 40] },
     });
+    const [location, setLocation] = useState('DC Davis, Waterloo');
 
     useEffect(() => {
         const loadRecipeList = async () => {
@@ -47,10 +48,16 @@ const AddLive = ({ navigation }) => {
 
     return (
         <View style={styles.addLiveContainer}>
-            <AddHeader containerStyle={styles.addHeaderContainer} />
-            <AddRecord 
+            <AddHeader
+                containerStyle={styles.addHeaderContainer}
+                location={location}
+                setLocation={setLocation}
+                today={startTime}
+            />
+            <AddRecord
                 containerStyle={styles.addRecordContainer}
-                startTime={date}
+                startTime={startTime}
+                location={location}
                 navigation={navigation}
                 recipeList={recipeList}
                 updateRecipeList={updateRecipeList}
