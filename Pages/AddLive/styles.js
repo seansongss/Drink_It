@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
     addRecordContainer: {
         flex: 1,
         backgroundColor: "#e5eef4",
-        paddingHorizontal: 40,
-        paddingVertical: 10,
+        // paddingHorizontal: 40,
+        // paddingVertical: 10,
         // borderWidth: 2,
     },
 });

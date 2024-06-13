@@ -42,7 +42,7 @@ const RecordHeader = ({ containerStyle, startTime, setStartTime, endTime, setEnd
   };
 
   return (
-    <KeyboardAvoidingView>
+    <KeyboardAvoidingView style={{paddingHorizontal: 30}}>
       <View>
         <TouchableOpacity
           style={styles.unitContainer}

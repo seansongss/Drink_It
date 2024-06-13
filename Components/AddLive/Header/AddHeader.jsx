@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 
 import styles from './styles';
 
-const AddHeader = ({ containerStyle }) => {
-    let today = new Date();
+const AddHeader = ({ containerStyle, location, setLocation, today }) => {
     const [timer, setTimer] = useState(0);
 
     useEffect(() => {
@@ -35,7 +34,11 @@ const AddHeader = ({ containerStyle }) => {
                 </Text>
             </View>
             <View style={styles.location}>
-                <Text style={styles.text}>Daldongnae, Waterloo</Text>
+                <TextInput
+                    style={styles.text}
+                    value={location}
+                    onChangeText={setLocation}
+                />
             </View>
         </View>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from 'react';
+import React, { useState, useContext, useRef, useCallback } from 'react';
 import {
 	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
 	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
@@ -14,6 +14,7 @@ import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
+	console.log('AddRecord rendered');
 	const { loadRecords } = useContext(RecordsContext);
 	const scrollRef = useRef(null);
 	const [addAlcoholList, setAddAlcoholList] = useState([
@@ -24,14 +25,13 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	const [actionTriggered, setActionTriggered] = useState(null);
 	const [componentHeight, setComponentHeight] = useState(0);
 	const [feelings, setFeelings] = useState({
-		before: 3,
-		during: 3,
-		after: 3,
+		Before: 3,
+		During: 3,
+		After: 3,
 	});
 	const [memo, setMemo] = useState('');
 
 	const [newRecipe, setNewRecipe] = useState({
-		name: '',
 		icon: 'soju',
 		alcohol: '',
 		description: ''
@@ -53,7 +53,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		]);
 	};
 
-	const changeUnitCount = (index, change) => {
+	const changeUnitCount = useCallback((index, change) => {
 		setAddAlcoholList(prev => {
 			const newCount = prev[index].count + change;
 			if (newCount < 0) {
@@ -65,7 +65,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			}
 			return prev;
 		});
-	};
+	}, []);
 
 	const addNewUnit = (name) => {
 		const recipe = recipeList[name];
@@ -125,21 +125,24 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AlcoholUnit = ({ name, icon, count, index }) => (
-		<View style={styles.addUnitContainer}>
-			<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
-				<Icon name="remove" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-			<View style={styles.addUnit}>
-				<ImageComponent type={'alcohol'} value={icon} size={30} />
-				<Text style={styles.text}>{name}</Text>
+	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {
+		console.log('AlcoholUnit rendered for', name, 'count:', count);
+		return (
+			<View style={styles.addUnitContainer}>
+				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
+					<Icon name="remove" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
+				<View style={styles.addUnit}>
+					<ImageComponent type={'alcohol'} value={icon} size={30} />
+					<Text style={styles.text}>{name}</Text>
+				</View>
+				<Text style={styles.text}>{count}</Text>
+				<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
+					<Icon name="add" color={"#c1dfb0"} size={50} />
+				</TouchableOpacity>
 			</View>
-			<Text style={styles.text}>{count}</Text>
-			<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
-				<Icon name="add" color={"#c1dfb0"} size={50} />
-			</TouchableOpacity>
-		</View>
-	);
+		);
+	}, (prevProps, nextProps) => prevProps.count === nextProps.count)
 
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
@@ -155,14 +158,14 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	);
 
 	const FeelingUnit = ({ name }) => {
-		const feelingValue = feelings[name.toLowerCase()];
+		const feelingValue = feelings[name];
 
-		const changeFeeling = () => {
+		const changeFeeling = useCallback(() => {
 			setFeelings(prev => {
-				const newValue = prev[name.toLowerCase()] % 5 + 1;
-				return { ...prev, [name.toLowerCase()]: newValue };
+				const newValue = prev[name] % 5 + 1;
+				return { ...prev, [name]: newValue };
 			});
-		};
+		}, []);
 
 		return (
 			<View style={styles.addFeeling}>
@@ -182,11 +185,15 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			Alert.alert("Error", "Please fill out all fields.");
 			return;
 		}
-		const alcoholRange = newRecipe.alcohol.split('-').map(num => parseInt(num.trim()));
+
+		if (recipeList[newRecipe.name]) {
+			Alert.alert("Error", "Recipe exists.");
+		}
+
 		const newRecipeObj = {
 			name: newRecipe.name,
 			icon: newRecipe.icon,
-			alcohol: alcoholRange,
+			alcohol: parseFloat(newRecipe.alcohol),
 			description: newRecipe.description,
 		};
 		const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
@@ -203,7 +210,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	];
 
 	return (
-		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 		<View
 			style={containerStyle}
 			onLayout={(event) => {
@@ -212,12 +218,20 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			}}
 		>
 			<KeyboardAwareScrollView
-				keyboardShouldPersistTaps="handled"
+				style={{ paddingHorizontal: 30 }}
+				keyboardShouldPersistTaps="never"
 				extraHeight={300}
 				extraScrollHeight={-70}
+			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit key={i} name={item.name} icon={item.icon} count={item.count} index={i} />
+					<AlcoholUnit
+						key={item.name}
+						index={i}
+						name={item.name}
+						icon={item.icon}
+						count={item.count}
+					/>
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
@@ -264,7 +278,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 												<ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
 												<View style={modalStyles.recipeDetails}>
 													<Text>{recipeName}</Text>
-													<Text>{recipeList[recipeName].alcohol[0]}% - {recipeList[recipeName].alcohol[1]}%</Text>
+													<Text>{recipeList[recipeName].alcohol}%</Text>
 												</View>
 												<TouchableOpacity
 													style={modalStyles.addButton}
@@ -323,8 +337,9 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 										/>
 										<TextInput
 											style={modalStyles.input}
-											placeholder="Alcohol Percentage (e.g., 4-5)"
+											placeholder="Alcohol Percentage (e.g., 4)"
 											value={newRecipe.alcohol}
+											keyboardType='decimal-pad'
 											onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
 										/>
 										<TextInput
@@ -354,7 +369,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				</TouchableWithoutFeedback>
 			</Modal>
 		</View>
-		</TouchableWithoutFeedback>
 	);
 };
 

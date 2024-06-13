@@ -48,19 +48,17 @@ const ImageComponent = React.memo(({ type, value, size = 30 }) => {
     return null; // Return null if the source is invalid
   }
 
-  console.log(`Image rendered: ${type} ${value}`);
+  // console.log(`Image rendered: ${type} ${value}`);
 
   return (
     <Image
       style={{ width: size, height: size }}
+      // placeholder={source}
+      // placeholderContentFit="contain"
       source={source}
       contentFit="contain"
     />
   );
-}, (prevProps, nextProps) => {
-  return prevProps.type === nextProps.type &&
-    prevProps.value === nextProps.value &&
-    prevProps.size === nextProps.size;
 });
 
 export default ImageComponent;

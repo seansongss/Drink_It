@@ -2,7 +2,7 @@
   "expo": {
     "name": "Drink It",
     "slug": "Drink_It",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/main-logo.png",
     "userInterfaceStyle": "light",
