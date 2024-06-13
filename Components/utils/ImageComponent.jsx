@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Image } from 'expo-image';
 
-// getImage function with Alcohol and Feeling methods
 export const getImage = (type, value) => {
   switch (type) {
     case 'alcohol':
@@ -42,19 +41,17 @@ export const getImage = (type, value) => {
 };
 
 const ImageComponent = React.memo(({ type, value, size = 30 }) => {
-  const source = getImage(type, value);
+  const source = useMemo(() => getImage(type, value), [type, value]);
 
   if (!source) {
     return null; // Return null if the source is invalid
   }
 
-  // console.log(`Image rendered: ${type} ${value}`);
+  console.log(`Image rendered: ${type} ${value}`);
 
   return (
     <Image
       style={{ width: size, height: size }}
-      // placeholder={source}
-      // placeholderContentFit="contain"
       source={source}
       contentFit="contain"
     />

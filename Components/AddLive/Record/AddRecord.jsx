@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useState, useContext, useRef, useCallback, useMemo } from 'react';
 import {
 	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
 	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
@@ -37,27 +37,23 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		description: ''
 	});
 
-	const unitDelete = (index) => {
-		Alert.alert(`Delete ${addAlcoholList[index].name}`, 'Are you sure you want to delete this?', [
-			{
-				text: 'Cancel',
-				style: 'cancel'
-			},
-			{
-				text: 'Delete',
-				onPress: () => {
-					setAddAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
-				},
-				style: 'destructive'
-			},
-		]);
-	};
-
 	const changeUnitCount = useCallback((index, change) => {
-		setAddAlcoholList(prev => {
+		setAddAlcoholList((prev) => {
 			const newCount = prev[index].count + change;
 			if (newCount < 0) {
-				unitDelete(index);
+				Alert.alert(`Delete ${prev[index].name}`, 'Are you sure you want to delete this?', [
+					{
+						text: 'Cancel',
+						style: 'cancel'
+					},
+					{
+						text: 'Delete',
+						onPress: () => {
+							setAddAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+						},
+						style: 'destructive'
+					},
+				]);
 			} else {
 				const updatedList = [...prev];
 				updatedList[index] = { ...updatedList[index], count: newCount };
@@ -125,24 +121,24 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {
-		console.log('AlcoholUnit rendered for', name, 'count:', count);
+	const AlcoholUnit = React.memo(({ alcohol, index }) => {
+		console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
 		return (
 			<View style={styles.addUnitContainer}>
 				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
 					<Icon name="remove" color={"#c1dfb0"} size={50} />
 				</TouchableOpacity>
 				<View style={styles.addUnit}>
-					<ImageComponent type={'alcohol'} value={icon} size={30} />
-					<Text style={styles.text}>{name}</Text>
+					<ImageComponent type={'alcohol'} value={alcohol.icon} size={30} />
+					<Text style={styles.text}>{alcohol.name}</Text>
 				</View>
-				<Text style={styles.text}>{count}</Text>
+				<Text style={styles.text}>{alcohol.count}</Text>
 				<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
 					<Icon name="add" color={"#c1dfb0"} size={50} />
 				</TouchableOpacity>
 			</View>
 		);
-	}, (prevProps, nextProps) => prevProps.count === nextProps.count)
+	});
 
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
@@ -224,15 +220,15 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				extraScrollHeight={-70}
 			// onStartShouldSetResponder={() => true}
 			>
-				{addAlcoholList.map((item, i) => (
+				{addAlcoholList.map((item, i) => {
+					const alcohol = useMemo(() => item, [item.count]);
+					return (
 					<AlcoholUnit
-						key={item.name}
+						key={`${item.name}-${i}`} // Ensure the key is unique
 						index={i}
-						name={item.name}
-						icon={item.icon}
-						count={item.count}
+						alcohol={alcohol}
 					/>
-				))}
+				)})}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
 					<Text style={styles.text}>How are you feeling? </Text>
