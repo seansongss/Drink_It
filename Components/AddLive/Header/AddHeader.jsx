@@ -34,7 +34,11 @@ const AddHeader = ({ containerStyle, location, setLocation, today }) => {
                 </Text>
             </View>
             <View style={styles.location}>
-                <Text style={styles.text}>{location}</Text>
+                <TextInput
+                    style={styles.text}
+                    value={location}
+                    onChangeText={setLocation}
+                />
             </View>
         </View>
     );
