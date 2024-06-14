@@ -220,15 +220,9 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				extraScrollHeight={-70}
 			// onStartShouldSetResponder={() => true}
 			>
-				{addAlcoholList.map((item, i) => {
-					const alcohol = useMemo(() => item, [item.count]);
-					return (
-					<AlcoholUnit
-						key={`${item.name}-${i}`} // Ensure the key is unique
-						index={i}
-						alcohol={alcohol}
-					/>
-				)})}
+				{addAlcoholList.map((item, i) => (
+					<AlcoholUnit key={`${item.name}-${i}`} alcohol={item} />
+				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
 					<Text style={styles.text}>How are you feeling? </Text>
