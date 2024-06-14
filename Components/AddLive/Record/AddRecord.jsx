@@ -53,6 +53,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		]);
 	};
 
+	// fix needed
 	const changeUnitCount = useCallback((index, change) => {
 		setAddAlcoholList(prev => {
 			const newCount = prev[index].count + change;
