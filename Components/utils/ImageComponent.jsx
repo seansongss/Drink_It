@@ -40,8 +40,8 @@ export const getImage = (type, value) => {
   }
 };
 
-const ImageComponent = React.memo(({ type, value, size = 30 }) => {
-  const source = useMemo(() => getImage(type, value), [type, value]);
+const ImageComponent = memo(({ type, value, size = 30 }) => {
+  const source = getImage(type, value);
 
   if (!source) {
     return null; // Return null if the source is invalid
