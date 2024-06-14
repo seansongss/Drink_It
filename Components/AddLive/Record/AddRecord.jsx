@@ -39,7 +39,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 
 	const changeUnitCount = useCallback((index, change) => {
 		setAddAlcoholList((prev) => {
-			const newCount = prev[index].count + change;
 			if (newCount < 0) {
 				Alert.alert(`Delete ${prev[index].name}`, 'Are you sure you want to delete this?', [
 					{
@@ -55,6 +54,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					},
 				]);
 			} else {
+				const newCount = prev[index].count + change;
 				const updatedList = [...prev];
 				updatedList[index] = { ...updatedList[index], count: newCount };
 				return updatedList;
@@ -221,7 +221,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit key={`${item.name}-${i}`} alcohol={item} />
+					<AlcoholUnit key={`${item.name}-${i}`} index={i} alcohol={item} />
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
