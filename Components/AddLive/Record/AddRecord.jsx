@@ -131,27 +131,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	// const AlcoholUnit = React.memo(({ alcohol, index, changeUnitCount }) => {
-	// 	useEffect(() => {
-	// 		console.log(`${alcohol.name} component rerendered: ${alcohol.count}`);
-	// 	});
-	// 	return (
-	// 		<View style={styles.addUnitContainer}>
-	// 			<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
-	// 				<Icon name="remove" color={"#c1dfb0"} size={50} />
-	// 			</TouchableOpacity>
-	// 			<View style={styles.addUnit}>
-	// 				<ImageComponent type={'alcohol'} value={alcohol.icon} size={30} />
-	// 				<Text style={styles.text}>{alcohol.name}</Text>
-	// 			</View>
-	// 			<Text style={styles.text}>{alcohol.count}</Text>
-	// 			<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
-	// 				<Icon name="add" color={"#c1dfb0"} size={50} />
-	// 			</TouchableOpacity>
-	// 		</View>
-	// 	);
-	// });
-
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
 			<TouchableOpacity
@@ -164,23 +143,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			</TouchableOpacity>
 		</View>
 	);
-
-	// const FeelingUnit = ({ name }) => {
-	// 	const feelingValue = feelings[name];
-
-
-	// 	return (
-	// 		<View style={styles.addFeeling}>
-	// 			<TouchableOpacity
-	// 				onPress={changeFeeling}
-	// 				style={styles.addFeelingImage}
-	// 			>
-	// 				<ImageComponent type={'feeling'} value={feelingValue} size={50} />
-	// 			</TouchableOpacity>
-	// 			<Text style={styles.text}>{name}</Text>
-	// 		</View>
-	// 	);
-	// };
 
 	const handleAddNewRecipe = () => {
 		if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
