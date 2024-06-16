@@ -53,8 +53,6 @@ const ImageComponent = React.memo(({ type, value, size = 30 }) => {
   return (
     <Image
       style={{ width: size, height: size }}
-      // placeholder={source}
-      // placeholderContentFit="contain"
       source={source}
       contentFit="contain"
     />
