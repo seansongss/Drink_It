@@ -5,7 +5,7 @@ import { Icon } from "@rneui/base";
 import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
 
-const AlcoholUnit = memo(({ alcohol, index }) => {
+const AlcoholUnit = memo(({ alcohol, index, changeUnitCount }) => {
     console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
     return (
         <View style={styles.addUnitContainer}>
@@ -22,6 +22,6 @@ const AlcoholUnit = memo(({ alcohol, index }) => {
             </TouchableOpacity>
         </View>
     );
-}, (prevProps, nextProps) => prevProps.alcohol.count === nextProps.alcohol.count);
+});
 
 export default AlcoholUnit;
