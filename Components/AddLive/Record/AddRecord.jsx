@@ -143,7 +143,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				</TouchableOpacity>
 			</View>
 		);
-	}, (prevProps, nextProps) => prevProps.count === nextProps.count)
+	});
 
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
