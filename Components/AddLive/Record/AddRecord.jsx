@@ -16,7 +16,7 @@ import AlcoholUnit from './AlcoholUnit';
 import FeelingUnit from './FeelingUnit';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
-	console.log('AddRecord rendered');
+	// console.log('AddRecord rendered');
 	const { loadRecords } = useContext(RecordsContext);
 	const scrollRef = useRef(null);
 	const [addAlcoholList, setAddAlcoholList] = useState([
@@ -39,8 +39,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		description: ''
 	});
 
-<<<<<<< HEAD
-=======
 	const unitDelete = (index) => {
 		Alert.alert(`Delete ${addAlcoholList[index].name}`, 'Are you sure you want to delete this?', [
 			{
@@ -57,8 +55,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		]);
 	};
 
-	// fix needed
->>>>>>> origin/master
 	const changeUnitCount = useCallback((index, change) => {
 		// console.log('changeUnitCount rendered for', addAlcoholList[index].name);
 		setAddAlcoholList((prev) => {
@@ -151,28 +147,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-<<<<<<< HEAD
-=======
-	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {
-		console.log('AlcoholUnit rendered for', name, 'count:', count);
-		return (
-			<View style={styles.addUnitContainer}>
-				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
-					<Icon name="remove" color={"#c1dfb0"} size={50} />
-				</TouchableOpacity>
-				<View style={styles.addUnit}>
-					<ImageComponent type={'alcohol'} value={icon} size={30} />
-					<Text style={styles.text}>{name}</Text>
-				</View>
-				<Text style={styles.text}>{count}</Text>
-				<TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
-					<Icon name="add" color={"#c1dfb0"} size={50} />
-				</TouchableOpacity>
-			</View>
-		);
-	});
-
->>>>>>> origin/master
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
 			<TouchableOpacity
