@@ -6,7 +6,7 @@ import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
 
 const AlcoholUnit = memo(({ alcohol, index, changeUnitCount }) => {
-    console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
+    // console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
     return (
         <View style={styles.addUnitContainer}>
             <TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
