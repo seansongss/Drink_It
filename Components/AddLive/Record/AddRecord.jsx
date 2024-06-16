@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback, useMemo } from 'react';
+import React, { useEffect, useState, useContext, useRef, useCallback, useMemo } from 'react';
 import {
 	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
 	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
@@ -38,7 +38,9 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	});
 
 	const changeUnitCount = useCallback((index, change) => {
+		// console.log('changeUnitCount rendered for', addAlcoholList[index].name);
 		setAddAlcoholList((prev) => {
+			const newCount = prev[index].count + change;
 			if (newCount < 0) {
 				Alert.alert(`Delete ${prev[index].name}`, 'Are you sure you want to delete this?', [
 					{
@@ -54,7 +56,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					},
 				]);
 			} else {
-				const newCount = prev[index].count + change;
 				const updatedList = [...prev];
 				updatedList[index] = { ...updatedList[index], count: newCount };
 				return updatedList;
@@ -121,8 +122,10 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
-	const AlcoholUnit = React.memo(({ alcohol, index }) => {
-		console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
+	const AlcoholUnit = React.memo(({ alcohol, index, changeUnitCount }) => {
+		useEffect(() => {
+			console.log(`${alcohol.name} component rerendered: ${alcohol.count}`);
+		});
 		return (
 			<View style={styles.addUnitContainer}>
 				<TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
@@ -221,7 +224,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit key={`${item.name}-${i}`} index={i} alcohol={item} />
+					<AlcoholUnit key={`${item.name}`} index={i} alcohol={item} changeUnitCount={changeUnitCount} />
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
