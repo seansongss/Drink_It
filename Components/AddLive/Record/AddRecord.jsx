@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useContext, useRef, useCallback, useMemo } from 'react';
 import {
 	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
 	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
@@ -12,6 +12,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
+import AlcoholUnit from './AlcoholUnit';
+import FeelingUnit from './FeelingUnit';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	console.log('AddRecord rendered');
@@ -37,6 +39,8 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		description: ''
 	});
 
+<<<<<<< HEAD
+=======
 	const unitDelete = (index) => {
 		Alert.alert(`Delete ${addAlcoholList[index].name}`, 'Are you sure you want to delete this?', [
 			{
@@ -54,17 +58,38 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	};
 
 	// fix needed
+>>>>>>> origin/master
 	const changeUnitCount = useCallback((index, change) => {
-		setAddAlcoholList(prev => {
+		// console.log('changeUnitCount rendered for', addAlcoholList[index].name);
+		setAddAlcoholList((prev) => {
 			const newCount = prev[index].count + change;
 			if (newCount < 0) {
-				unitDelete(index);
+				Alert.alert(`Delete ${prev[index].name}`, 'Are you sure you want to delete this?', [
+					{
+						text: 'Cancel',
+						style: 'cancel'
+					},
+					{
+						text: 'Delete',
+						onPress: () => {
+							setAddAlcoholList(prev => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+						},
+						style: 'destructive'
+					},
+				]);
 			} else {
 				const updatedList = [...prev];
 				updatedList[index] = { ...updatedList[index], count: newCount };
 				return updatedList;
 			}
 			return prev;
+		});
+	}, []);
+
+	const changeFeeling = useCallback(( name ) => {
+		setFeelings(prev => {
+			const newValue = prev[name] % 5 + 1;
+			return { ...prev, [name]: newValue };
 		});
 	}, []);
 
@@ -126,6 +151,8 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		}
 	};
 
+<<<<<<< HEAD
+=======
 	const AlcoholUnit = React.memo(({ name, icon, count, index }) => {
 		console.log('AlcoholUnit rendered for', name, 'count:', count);
 		return (
@@ -145,6 +172,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		);
 	});
 
+>>>>>>> origin/master
 	const NewUnitButton = () => (
 		<View style={styles.addUnitContainer}>
 			<TouchableOpacity
@@ -157,29 +185,6 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			</TouchableOpacity>
 		</View>
 	);
-
-	const FeelingUnit = ({ name }) => {
-		const feelingValue = feelings[name];
-
-		const changeFeeling = useCallback(() => {
-			setFeelings(prev => {
-				const newValue = prev[name] % 5 + 1;
-				return { ...prev, [name]: newValue };
-			});
-		}, []);
-
-		return (
-			<View style={styles.addFeeling}>
-				<TouchableOpacity
-					onPress={changeFeeling}
-					style={styles.addFeelingImage}
-				>
-					<ImageComponent type={'feeling'} value={feelingValue} size={50} />
-				</TouchableOpacity>
-				<Text style={styles.text}>{name}</Text>
-			</View>
-		);
-	};
 
 	const handleAddNewRecipe = () => {
 		if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
@@ -226,21 +231,15 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			// onStartShouldSetResponder={() => true}
 			>
 				{addAlcoholList.map((item, i) => (
-					<AlcoholUnit
-						key={item.name}
-						index={i}
-						name={item.name}
-						icon={item.icon}
-						count={item.count}
-					/>
+					<AlcoholUnit key={`${item.name}`} index={i} alcohol={item} changeUnitCount={changeUnitCount} />
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
 					<Text style={styles.text}>How are you feeling? </Text>
 					<View style={styles.addFeelingWrapper}>
-						<FeelingUnit name="Before" />
-						<FeelingUnit name="During" />
-						<FeelingUnit name="After" />
+						<FeelingUnit name="Before" feelingValue={feelings['Before']} changeFeeling={changeFeeling} />
+						<FeelingUnit name="During" feelingValue={feelings['During']} changeFeeling={changeFeeling} />
+						<FeelingUnit name="After" feelingValue={feelings['After']} changeFeeling={changeFeeling} />
 					</View>
 				</View>
 				<View style={styles.memoContainer}>
