@@ -209,7 +209,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 				))}
 				<NewUnitButton />
 				<View style={styles.addFeelingContainer}>
-					<Text style={styles.text}>How are you feeling? </Text>
+					<Text style={styles.text}>How are you feeling?</Text>
 					<View style={styles.addFeelingWrapper}>
 						<FeelingUnit name="Before" feelingValue={feelings['Before']} changeFeeling={changeFeeling} />
 						<FeelingUnit name="During" feelingValue={feelings['During']} changeFeeling={changeFeeling} />
