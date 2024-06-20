@@ -11,6 +11,7 @@ import { RecordsContext } from '../../Context/RecordsContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import styles from './styles';
+import modalStyles from './modalStyles';
 import ImageComponent from '../../utils/ImageComponent';
 import AlcoholUnit from './AlcoholUnit';
 import FeelingUnit from './FeelingUnit';
@@ -82,7 +83,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		});
 	}, []);
 
-	const changeFeeling = useCallback(( name ) => {
+	const changeFeeling = useCallback((name) => {
 		setFeelings(prev => {
 			const newValue = prev[name] % 5 + 1;
 			return { ...prev, [name]: newValue };
@@ -280,58 +281,70 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 									</TouchableOpacity>
 								</View>
 							) : (
-								<View style={{ flex: 1 }}>
+								<View style={{ width: '100%', height: '100%' }}>
 									<Text style={modalStyles.modalText}>Add New Recipe</Text>
-									<ScrollView>
-										<TextInput
-											style={modalStyles.input}
-											placeholder="Name"
-											value={newRecipe.name}
-											onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
-										/>
-										<Dropdown
-											data={alcoholOptions}
-											labelField="label"
-											valueField="value"
-											placeholder="Select Icon"
-											value={newRecipe.icon}
-											onChange={item => {
-												setNewRecipe({ ...newRecipe, icon: item.value });
-											}}
-											renderLeftIcon={() => (
-												<ImageComponent type={'alcohol'} value={newRecipe.icon} size={30} />
-											)}
-											renderItem={item => (
-												<View style={modalStyles.dropdownItem}>
-													<ImageComponent type={'alcohol'} value={item.value} size={30} />
-													<Text style={modalStyles.dropdownText}>{item.label}</Text>
-												</View>
-											)}
-											style={modalStyles.dropdown}
-										/>
-										<TextInput
-											style={modalStyles.input}
-											placeholder="Alcohol Percentage (e.g., 4)"
-											value={newRecipe.alcohol}
-											keyboardType='decimal-pad'
-											onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
-										/>
-										<TextInput
-											style={modalStyles.input}
-											placeholder="Description"
-											value={newRecipe.description}
-											multiline
-											onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
-										/>
+									<ScrollView style={{ paddingHorizontal: 5 }}>
+										<View style={modalStyles.itemContainer}>
+											<Text style={modalStyles.text}>Name</Text>
+											<TextInput
+												style={modalStyles.input}
+												placeholder="Name"
+												value={newRecipe.name}
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
+											/>
+										</View>
+										<View style={modalStyles.itemContainer}>
+											<Text style={modalStyles.text}>Type</Text>
+											<Dropdown
+												data={alcoholOptions}
+												labelField="label"
+												valueField="value"
+												placeholder="Select Icon"
+												value={newRecipe.icon}
+												onChange={item => {
+													setNewRecipe({ ...newRecipe, icon: item.value });
+												}}
+												renderLeftIcon={() => (
+													<ImageComponent type={'alcohol'} value={newRecipe.icon} size={30} />
+												)}
+												renderItem={item => (
+													<View style={modalStyles.dropdownItem}>
+														<ImageComponent type={'alcohol'} value={item.value} size={30} />
+														<Text style={modalStyles.dropdownText}>{item.label}</Text>
+													</View>
+												)}
+												style={modalStyles.dropdown}
+											/>
+										</View>
+										<View style={modalStyles.itemContainer}>
+											<Text style={modalStyles.text}>Alcohol Percentage</Text>
+											<TextInput
+												style={modalStyles.input}
+												placeholder="Alcohol Percentage (e.g., 4)"
+												value={newRecipe.alcohol}
+												keyboardType='decimal-pad'
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
+											/>
+										</View>
+										<View style={modalStyles.itemContainer}>
+											<Text style={modalStyles.text}>Description</Text>
+											<TextInput
+												style={[modalStyles.input, { height: 100 }]}
+												placeholder="Description"
+												value={newRecipe.description}
+												multiline
+												onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
+											/>
+										</View>
 									</ScrollView>
 									<TouchableOpacity
-										style={modalStyles.addNewButton}
+										style={[modalStyles.button, { backgroundColor: '#c1dfb0' }]}
 										onPress={handleAddNewRecipe}
 									>
 										<Text style={modalStyles.textStyle}>Add Recipe</Text>
 									</TouchableOpacity>
 									<TouchableOpacity
-										style={modalStyles.buttonClose}
+										style={[modalStyles.button, { backgroundColor: '#2196F3' }]}
 										onPress={() => setActionTriggered('SELECT_RECIPE')}
 									>
 										<Text style={modalStyles.textStyle}>Back</Text>
@@ -345,103 +358,5 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 		</View>
 	);
 };
-
-const modalStyles = StyleSheet.create({
-	centeredView: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginTop: 22,
-	},
-	modalView: {
-		margin: 20,
-		backgroundColor: 'white',
-		borderRadius: 20,
-		padding: 35,
-		alignItems: 'center',
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 4,
-		elevation: 5,
-	},
-	buttonClose: {
-		backgroundColor: '#2196F3',
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-		marginTop: 10,
-	},
-	addNewButton: {
-		backgroundColor: '#c1dfb0',
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-		marginTop: 10,
-	},
-	textStyle: {
-		color: 'white',
-		fontWeight: 'bold',
-		textAlign: 'center',
-	},
-	modalText: {
-		marginBottom: 15,
-		textAlign: 'center',
-	},
-	recipeContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		alignItems: 'center',
-		width: '100%',
-		padding: 10,
-	},
-	recipeDetails: {
-		flex: 1,
-		marginLeft: 10,
-	},
-	addButton: {
-		backgroundColor: '#c1dfb0',
-		padding: 10,
-		borderRadius: 5,
-	},
-	addButtonText: {
-		color: 'white',
-	},
-	input: {
-		// height: 40,
-		borderColor: '#ccc',
-		borderWidth: 1,
-		borderRadius: 5,
-		marginBottom: 10,
-		paddingHorizontal: 10,
-		width: '100%',
-	},
-	dropdown: {
-		width: '100%',
-		height: 40,
-		borderColor: '#ccc',
-		borderWidth: 1,
-		borderRadius: 5,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginBottom: 10,
-	},
-	dropdownItem: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		padding: 10,
-	},
-	dropdownIcon: {
-		width: 30,
-		height: 30,
-		marginRight: 10,
-	},
-	dropdownText: {
-		fontSize: 16,
-	},
-});
 
 export default AddRecord;
