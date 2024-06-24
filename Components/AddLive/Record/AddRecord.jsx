@@ -245,8 +245,8 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 					<View style={modalStyles.centeredView}>
 						<View style={[modalStyles.modalView, { width: '90%', height: '60%' }]}>
 							{actionTriggered === 'SELECT_RECIPE' ? (
-								<View style={{ flex: 1 }}>
-									<Text style={modalStyles.modalText}>Select a Recipe</Text>
+								<View style={{ width: '100%', height: '100%' }}>
+									<Text style={[modalStyles.text, modalStyles.modalText]}>Select a Recipe</Text>
 									<ScrollView>
 										{Object.keys(recipeList).map((recipeName, index) => (
 											<View key={index} style={modalStyles.recipeContainer}>
@@ -282,7 +282,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 								</View>
 							) : (
 								<View style={{ width: '100%', height: '100%' }}>
-									<Text style={modalStyles.modalText}>Add New Recipe</Text>
+									<Text style={[modalStyles.text, modalStyles.modalText]}>Add New Recipe</Text>
 									<ScrollView style={{ paddingHorizontal: 5 }}>
 										<View style={modalStyles.itemContainer}>
 											<Text style={modalStyles.text}>Name</Text>
