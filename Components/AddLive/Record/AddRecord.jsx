@@ -243,7 +243,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 			>
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 					<View style={modalStyles.centeredView}>
-						<View style={[modalStyles.modalView, { width: '90%', height: '60%' }]}>
+						<View style={[modalStyles.modalView, { width: '90%', height: '70%' }]}>
 							{actionTriggered === 'SELECT_RECIPE' ? (
 								<View style={{ width: '100%', height: '100%' }}>
 									<Text style={[modalStyles.text, modalStyles.modalText]}>Select a Recipe</Text>
@@ -268,13 +268,13 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 										))}
 									</ScrollView>
 									<TouchableOpacity
-										style={modalStyles.addNewButton}
+										style={[modalStyles.button, { backgroundColor: '#c1dfb0' }]}
 										onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
 									>
 										<Text style={modalStyles.textStyle}>Add new recipe</Text>
 									</TouchableOpacity>
 									<TouchableOpacity
-										style={modalStyles.buttonClose}
+										style={[modalStyles.button, { backgroundColor: '#2196F3' }]}
 										onPress={() => setModalVisible(false)}
 									>
 										<Text style={modalStyles.textStyle}>Close</Text>
