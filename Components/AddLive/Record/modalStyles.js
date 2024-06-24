@@ -22,29 +22,11 @@ const modalStyles = StyleSheet.create({
 		shadowRadius: 4,
 		elevation: 5,
 	},
-	buttonClose: {
-		backgroundColor: '#2196F3',
-		borderRadius: 20,
-		padding: 10,
-		elevation: 2,
-		marginTop: 10,
-	},
 	button: {
-		// backgroundColor: '#c1dfb0',
 		borderRadius: 20,
 		padding: 5,
 		elevation: 2,
 		marginTop: 10,
-	},
-	textStyle: {
-		color: 'white',
-        fontFamily: 'Jaldi_700Bold',
-        fontSize: 16,
-		textAlign: 'center',
-	},
-	modalText: {
-		marginBottom: 15,
-		textAlign: 'center',
 	},
 	recipeContainer: {
 		flexDirection: 'row',
@@ -113,6 +95,16 @@ const modalStyles = StyleSheet.create({
         justifyContent: 'space-between',
         gap: 3,
     },
+	textStyle: {
+		color: 'white',
+        fontFamily: 'Jaldi_700Bold',
+        fontSize: 16,
+		textAlign: 'center',
+	},
+	modalText: {
+		marginBottom: 15,
+		textAlign: 'center',
+	},
     text: {
         fontFamily: 'Jaldi_400Regular',
         fontSize: 16,
