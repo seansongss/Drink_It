@@ -27,6 +27,7 @@ export const getImage = (type, value) => {
     case 'calendar':
       switch (value) {
         case 'last_night': return require('../../assets/calendar/last_night.png');
+        case 'rankings': return require('../../assets/calendar/rankings.png');
         case 'clock': return require('../../assets/calendar/clock.png');
         case 'location': return require('../../assets/calendar/mapPin.png');
         case 'note': return require('../../assets/calendar/note.png');
