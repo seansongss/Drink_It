@@ -23,9 +23,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-    },
-    monthButton: {
-        // borderColor: 'black',
         // borderWidth: 1,
     },
     month: {
@@ -37,9 +34,15 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
     },
     rankingContainer: {
-        flex: 1.2,
+        flex: 1.5,
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
+        alignItems: 'center',
+        // borderWidth: 1,
+    },
+    rankingItem: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
         // borderColor: 'black',
         // borderWidth: 1,

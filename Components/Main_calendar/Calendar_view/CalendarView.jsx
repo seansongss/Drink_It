@@ -7,6 +7,7 @@ import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/ja
 import { RecordsContext } from '../../Context/RecordsContext';
 
 import styles from './styles';
+import ImageComponent from '../../utils/ImageComponent';
 
 // Preload images
 const preloadImages = [
@@ -132,7 +133,6 @@ function CalendarView({ navigation }) {
                         name='keyboard-arrow-left'
                         size={40}
                         color="#FFC870"
-                        style={[styles.monthButton]}
                         onPress={() => changeMonth(-1)} />
                     <Text style={styles.month}>
                         {months[activeDate.getMonth()]} {activeDate.getFullYear()}
@@ -141,20 +141,17 @@ function CalendarView({ navigation }) {
                         name='keyboard-arrow-right'
                         size={40}
                         color="#FFC870"
-                        style={[styles.monthButton]}
                         onPress={() => changeMonth(+1)} />
                 </View>
-                <View style={{ flex: 1 }} />
                 <View style={styles.rankingContainer}>
-                    <TouchableOpacity style={{ marginRight: 5 }} onPress={() => setActiveDate(new Date())}>
-                        <Image source={require('../../../assets/Calendar_view/last_night.png')}
-                            style={{ width: 40, height: 40 }}
-                            resizeMode='contain' />
+                    <TouchableOpacity style={styles.rankingItem} onPress={() => setActiveDate(new Date())}>
+                        <ImageComponent type='calendar' value='last_night' size={40} />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('NewRecord')}>
-                        <Image source={require('../../../assets/Calendar_view/last_night.png')}
-                            style={{ width: 40, height: 40 }}
-                            resizeMode='contain' />
+                    <TouchableOpacity style={styles.rankingItem} onPress={() => navigation.navigate('NewRecord')}>
+                        <ImageComponent type='calendar' value='last_night' size={40} />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.rankingItem} onPress={() => loadRecords()}>
+                        <ImageComponent type='calendar' value='rankings' size={35} />
                     </TouchableOpacity>
                 </View>
             </View>
