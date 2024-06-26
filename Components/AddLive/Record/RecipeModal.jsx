@@ -9,7 +9,7 @@ import { ImageComponent } from '../../utils/ImageComponent';
 
 import { modalStyles } from './modalStyles';
 
-const RecipeModal = ({ modalVisible, setModalVisible }) => {
+const RecipeModal = ({ modalVisible, setModalVisible,  }) => {
     return (
         <Modal
             animationType="slide"
