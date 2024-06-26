@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext, useRef, useCallback, useMemo } from 'react';
 import {
-	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
-	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
+	View, Text, TouchableOpacity, Image, ScrollView, Alert,
+	Modal, StyleSheet, TextInput, KeyboardAvoidingView,
 	TouchableWithoutFeedback, Keyboard
 } from 'react-native';
 import { Icon } from "@rneui/base";

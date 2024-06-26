@@ -1,7 +1,7 @@
 import React from 'react'
 import {
-	View, Text, TouchableOpacity, Platform, Image, ScrollView, Alert,
-	Modal, StyleSheet, TextInput, KeyboardAvoidingView, findNodeHandle,
+	View, Text, TouchableOpacity, Image, ScrollView, Alert,
+	Modal, StyleSheet, TextInput, KeyboardAvoidingView,
 	TouchableWithoutFeedback, Keyboard
 } from 'react-native';
 import { Dropdown } from 'react-native-material-dropdown';
@@ -9,7 +9,7 @@ import { ImageComponent } from '../../utils/ImageComponent';
 
 import { modalStyles } from './modalStyles';
 
-const RecipeModal = ({  }) => {
+const RecipeModal = ({ modalVisible, setModalVisible }) => {
     return (
         <Modal
             animationType="slide"
