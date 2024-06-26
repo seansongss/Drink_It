@@ -191,13 +191,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
 	];
 
 	return (
-		<View
-			style={containerStyle}
-			onLayout={(event) => {
-				const { height } = event.nativeEvent.layout;
-				setComponentHeight(height);
-			}}
-		>
+		<View style={containerStyle}>
 			<KeyboardAwareScrollView
 				style={{ paddingHorizontal: 30 }}
 				keyboardShouldPersistTaps="never"
