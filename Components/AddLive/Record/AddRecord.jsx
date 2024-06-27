@@ -19,7 +19,6 @@ import FeelingUnit from './FeelingUnit';
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
 	// console.log('AddRecord rendered');
 	const { loadRecords } = useContext(RecordsContext);
-	const scrollRef = useRef(null);
 	const [addAlcoholList, setAddAlcoholList] = useState([
 		{ name: 'soju', icon: 'soju', count: 0 },
 		{ name: 'beer', icon: 'beer', count: 0 }
