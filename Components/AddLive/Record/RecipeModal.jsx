@@ -1,15 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react';
 import {
-	View, Text, TouchableOpacity, Image, ScrollView, Alert,
-	Modal, StyleSheet, TextInput, KeyboardAvoidingView,
-	TouchableWithoutFeedback, Keyboard
+    View, Text, TouchableOpacity, ScrollView, Modal, TextInput, TouchableWithoutFeedback, Keyboard
 } from 'react-native';
-import { Dropdown } from 'react-native-material-dropdown';
-import { ImageComponent } from '../../utils/ImageComponent';
+import { Icon } from "@rneui/base";
+import { Dropdown } from 'react-native-element-dropdown';
+import ImageComponent from '../../utils/ImageComponent';
+import modalStyles from './modalStyles';
 
-import { modalStyles } from './modalStyles';
+const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, updateRecipeList }) => {
+    const [actionTriggered, setActionTriggered] = useState('SELECT_RECIPE');
+    const [newRecipe, setNewRecipe] = useState({
+        icon: 'soju',
+        name: '',
+        alcohol: '',
+        description: ''
+    });
 
-const RecipeModal = ({ modalVisible, setModalVisible,  }) => {
+    const handleAddNewRecipe = () => {
+        if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
+            Alert.alert("Error", "Please fill out all fields.");
+            return;
+        }
+
+        if (recipeList[newRecipe.name]) {
+            Alert.alert("Error", "Recipe exists.");
+        }
+
+        const newRecipeObj = {
+            name: newRecipe.name,
+            icon: newRecipe.icon,
+            alcohol: parseFloat(newRecipe.alcohol),
+            description: newRecipe.description,
+        };
+        const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
+        updateRecipeList(updatedRecipeList);
+        setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
+        setActionTriggered('SELECT_RECIPE');
+    };
+
+    const alcoholOptions = [
+        { label: 'Soju', value: 'soju' },
+        { label: 'Beer', value: 'beer' },
+        { label: 'Wine', value: 'wine' },
+        { label: 'Vodka', value: 'vodka' },
+    ];
+
     return (
         <Modal
             animationType="slide"
@@ -131,7 +166,7 @@ const RecipeModal = ({ modalVisible, setModalVisible,  }) => {
                 </View>
             </TouchableWithoutFeedback>
         </Modal>
-    )
-}
+    );
+};
 
-export default RecipeModal
+export default RecipeModal;
