@@ -4805,6 +4805,7 @@ __metadata:
     react-native-modal-dropdown: "npm:^1.0.2"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
+    rn-multi-progress-bar: "npm:^1.1.2"
     yarn: "npm:^1.22.22"
   languageName: unknown
   linkType: soft
@@ -9658,6 +9659,13 @@ __metadata:
   bin:
     rimraf: ./bin.js
   checksum: 10c0/f1e646f8c567795f2916aef7aadf685b543da6b9a53e482bb04b07472c7eef2b476045ba1e29f401c301c66b630b22b815ab31fdd60c5e1ae6566ff523debf45
+  languageName: node
+  linkType: hard
+
+"rn-multi-progress-bar@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "rn-multi-progress-bar@npm:1.1.2"
+  checksum: 10c0/b30d2e66520329790c9428276f2f5783b3ccbab8e740e76931bd9800aeb9a0df34ab8a14839fd8cd110c12440e169896af9064add1b3fce93468edfe4746122c
   languageName: node
   linkType: hard
 
