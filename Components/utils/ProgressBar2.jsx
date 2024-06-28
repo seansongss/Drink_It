@@ -10,7 +10,8 @@ class ProgressBar extends React.Component {
     Animated.timing(this.state.animatedValue, {
       toValue: 1,
       duration: this.props.animateDuration || 1000,
-      easing: Easing.linear
+      easing: Easing.linear,
+      useNativeDriver: false,
     }).start();
 
     let totalProgress = this.props.data.reduce((acc, d) => acc + d.progress, 0);

@@ -21,6 +21,7 @@ const StatSimple = () => {
                 />
             </View> */}
             <ProgressBar2
+                barHeight={16}
                 shouldAnimate={true} // to enable animation, default false
                 animateDuration={1000} // if animation enabled
                 data={[
