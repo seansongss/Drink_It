@@ -1,70 +1,72 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { View, Animated, Easing } from "react-native";
 
 const ProgressBar = ({ data, animateDuration = 1000, barHeight = 8, shouldAnimate = true, style }) => {
     const [progressData, setProgressData] = useState([]);
-    const animatedValue = new Animated.Value(0);
+    const animation = useMemo(() => new Animated.Value(0), []);
 
     useEffect(() => {
-        Animated.timing(animatedValue, {
+        Animated.timing(animation, {
             toValue: 1,
-            duration: animateDuration,
-            easing: Easing.linear,
-            useNativeDriver: false,
+            duration: 1000,
+            // easing: Easing.linear,
+            useNativeDriver: true,
         }).start();
 
         let totalProgress = data.reduce((acc, d) => acc + d.progress, 0);
         let value = 0;
         let processedData = data.map(d => {
-            value += (d.progress / totalProgress) * 100;
+            value = d.progress / totalProgress;
             return {
                 progress: value,
                 color: d.color
             };
         });
-        // processedData = processedData.reverse();
+
         setProgressData(processedData);
-    }, [data, animateDuration]);
+    }, []);
 
     const animatedValues = progressData.map(d => {
-        return animatedValue.interpolate({
+        return animation.interpolate({
             inputRange: [0, 1],
-            outputRange: ["0%", `${d.progress}%`]
+            outputRange: ["0%", `${d.progress * 100}%`]
         });
     });
 
     console.log(data);
     console.log(progressData);
-    console.log(animatedValues);
 
     return (
         <View
             style={[
                 {
-                    position: "relative",
+                    display: "flex",
                     flexDirection: "row",
                     marginTop: 16,
                     marginBottom: 16 + barHeight,
                     width: "100%",
-                    borderWidth: 1,
                     height: barHeight,
+                    borderRadius: 5,
+                    borderWidth: 1,
                 },
                 style
             ]}
         >
-            {progressData.map((d, i) => (
-                <Animated.View
-                    key={i}
-                    style={{
-                        position: "absolute",
-                        height: barHeight,
-                        width: shouldAnimate ? animatedValues[i] : `${d.progress}%`,
-                        backgroundColor: d.color,
-                        borderRadius: 5
-                    }}
-                />
-            ))}
-            {console.log(animatedValues)}
+            {progressData.map((d, i) => {
+                console.log(d.progress * 100);
+                return (
+                    <Animated.View
+                        key={i}
+                        style={{
+                            display: "flex",
+                            flex: d.progress,
+                            height: barHeight || 8,
+                            backgroundColor: d.color,
+                            opacity: animation
+                        }}
+                    />
+                );
+            })}
         </View>
     );
 };

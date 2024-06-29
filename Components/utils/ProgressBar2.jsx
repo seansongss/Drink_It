@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Animated, Easing } from "react-native";
 
-class ProgressBar extends React.Component {
+class ProgressBar2 extends React.Component {
   constructor(props) {
     super(props);
     this.state = { progressData: [], animatedValue: new Animated.Value(0) };
@@ -67,4 +67,4 @@ class ProgressBar extends React.Component {
   }
 }
 
-export default ProgressBar;
+export default ProgressBar2;
