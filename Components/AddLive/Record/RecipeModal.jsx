@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import {
-    View, Text, TouchableOpacity, ScrollView, Modal, TextInput, TouchableWithoutFeedback, Keyboard
+    View, Text, TouchableOpacity, ScrollView, Modal,
+    TextInput, TouchableWithoutFeedback, Keyboard, Alert
 } from 'react-native';
 import { Icon } from "@rneui/base";
 import { Dropdown } from 'react-native-element-dropdown';
 import ImageComponent from '../../utils/ImageComponent';
+
 import modalStyles from './modalStyles';
 
 const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, updateRecipeList }) => {
@@ -27,7 +29,6 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
         }
 
         const newRecipeObj = {
-            name: newRecipe.name,
             icon: newRecipe.icon,
             alcohol: parseFloat(newRecipe.alcohol),
             description: newRecipe.description,
