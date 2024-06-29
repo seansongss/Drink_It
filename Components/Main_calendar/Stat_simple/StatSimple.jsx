@@ -20,14 +20,14 @@ const StatSimple = () => {
                     ]}
                 />
             </View> */}
-            <ProgressBar2
+            <ProgressBar
                 barHeight={16}
-                shouldAnimate={true} // to enable animation, default false
+                shouldAnimate={false} // to enable animation, default false
                 animateDuration={1000} // if animation enabled
                 data={[
-                    { progress: 7, color: "rgb(255, 193, 2)" },
-                    { progress: 13, color: "rgb(55, 106, 255)" },
-                    { progress: 5, color: "rgb(229, 232, 249)" }
+                    { progress: 7, color: "yellow" },
+                    { progress: 13, color: "blue" },
+                    { progress: 5, color: "green" }
                 ]}
             />
             <View style={styles.statBox} />
