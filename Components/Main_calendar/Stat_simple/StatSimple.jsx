@@ -1,7 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
 import ProgressBar from '../../utils/ProgressBar'
-import ProgressBar2 from '../../utils/ProgressBar2'
 
 import styles from './styles'
 
