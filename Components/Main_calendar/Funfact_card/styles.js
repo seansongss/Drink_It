@@ -6,9 +6,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFFAE0",
         borderRadius: 10,
         margin: 10,
+        justifyContent: "center",
     },
     text: {
-        fontSize: 18,
+        fontSize: 14,
         textAlign: "center",
         padding: 10,
     },
