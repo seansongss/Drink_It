@@ -7,6 +7,11 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         margin: 10,
     },
+    text: {
+        fontSize: 18,
+        textAlign: "center",
+        padding: 10,
+    },
 });
 
 export default styles;
