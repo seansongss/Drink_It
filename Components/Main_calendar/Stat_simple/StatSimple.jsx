@@ -21,17 +21,38 @@ const StatSimple = () => {
                 />
             </View> */}
             <ProgressBar
+                style={styles.statBox}
                 barHeight={16}
                 shouldAnimate={false} // to enable animation, default false
-                animateDuration={1000} // if animation enabled
+                animateDuration={1500} // if animation enabled
+                data={[
+                    { progress: 7, color: "orange" },
+                    { progress: 13, color: "blue" },
+                    { progress: 5, color: "green" }
+                ]}
+            />
+            <ProgressBar
+                style={styles.statBox}
+                barHeight={16}
+                shouldAnimate={false} // to enable animation, default false
+                animateDuration={1500} // if animation enabled
+                data={[
+                    { progress: 3, color: "yellow" },
+                    { progress: 1, color: "orange" },
+                    { progress: 1, color: "green" }
+                ]}
+            />
+            <ProgressBar
+                style={styles.statBox}
+                barHeight={16}
+                shouldAnimate={false} // to enable animation, default false
+                animateDuration={1500} // if animation enabled
                 data={[
                     { progress: 7, color: "yellow" },
                     { progress: 13, color: "blue" },
                     { progress: 5, color: "green" }
                 ]}
             />
-            <View style={styles.statBox} />
-            <View style={styles.statBox} />
         </View>
     )
 }
