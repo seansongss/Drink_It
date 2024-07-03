@@ -42,7 +42,6 @@ const ProgressBar = ({ data, animateDuration = 1000, shouldAnimate = true, style
                 {
                     display: "flex",
                     flexDirection: "row",
-                    borderWidth: 1,
                     overflow: 'hidden' // Ensure children do not overflow the rounded container
                 },
                 style
