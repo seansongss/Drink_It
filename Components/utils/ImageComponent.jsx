@@ -3,6 +3,13 @@ import { Image } from 'expo-image';
 
 export const getImage = (type, value) => {
   switch (type) {
+    case 'logo':
+      switch (value) {
+        case 'logo': return require('../../assets/main_logo.png');
+        default:
+          console.error('Invalid logo name:', value);
+          return null;
+      }
     case 'alcohol':
       switch (value) {
         case 'soju': return require('../../assets/alcohol/soju_logo.png');
@@ -33,6 +40,14 @@ export const getImage = (type, value) => {
         case 'note': return require('../../assets/calendar/note.png');
         default:
           console.error('Invalid calendar icon:', value);
+          return null;
+      }
+    case 'social':
+      switch (value) {
+        case 'google': return require('../../assets/social/google.png');
+        case 'apple': return require('../../assets/social/apple.png');
+        default:
+          console.error('Invalid social icon:', value);
           return null;
       }
     default:
