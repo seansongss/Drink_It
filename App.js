@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomNav from './BottomNav';
+import Login from './Pages/Login/Login';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -42,7 +43,8 @@ export default function App() {
         <AnimatedSplashScreen>
             <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
                 <NavigationContainer style={{ flex: 1 }}>
-                    <BottomNav />
+                    {/* <BottomNav /> */}
+                    <Login />
                 </NavigationContainer>
             </SafeAreaProvider>
         </AnimatedSplashScreen>
