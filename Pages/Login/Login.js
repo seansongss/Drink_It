@@ -8,17 +8,10 @@ import styles from './styles';
 import SocialButton from '../../Components/Login/SocialButton/SocialButton';
 import ImageComponent from '../../Components/utils/ImageComponent';
 
-const onPressLogin = (email, password) => {
+const onPressLogin = async (email, password) => {
     const { logIn, result } = useEmailPasswordAuth();
 
-    const performLogin = async () => {
-        try {
-            await logIn(email, password);
-            console.log("Login successful!");
-        } catch (error) {
-            console.error("Error logging in: ", error);
-        }
-    }
+    await logIn(email, password);
 
     performLogin();
 };
