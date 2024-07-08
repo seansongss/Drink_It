@@ -1,19 +1,26 @@
 import React from 'react';
 import { AppProvider, UserProvider, RealmProvider } from '@realm/react';
 
+import { SYNC_CONFIG } from '../sync.config';
 import BottomNav from '../BottomNav';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from './Login';
+import Login from './Login/Login';
 
 
 const AppWrapperSync = () => {
     return (
-        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-            <NavigationContainer style={{ flex: 1 }}>
-                <BottomNav />
-            </NavigationContainer>
-        </SafeAreaProvider>
+        <AppProvider id={SYNC_CONFIG.appId}>
+            <UserProvider fallback={Login}>
+                <RealmProvider>
+                    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
+                        <NavigationContainer style={{ flex: 1 }}>
+                            <BottomNav />
+                        </NavigationContainer>
+                    </SafeAreaProvider>
+                </RealmProvider>
+            </UserProvider>
+        </AppProvider>
     )
 }
 
