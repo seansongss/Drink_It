@@ -35,9 +35,9 @@ const LogIn = ({ navigation }) => {
     //     );
     // }
 
-    if (result.error) {
-        Alert.alert("Login Failed", result.error.message);
-    }
+    // if (result.error) {
+    //     Alert.alert("Login Failed", result.error.message);
+    // }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -58,6 +58,7 @@ const LogIn = ({ navigation }) => {
             </View>
             <Text style={[styles.text, { fontSize: 20, marginBottom: 20 }]}>OR</Text>
             {/* Login input Box */}
+            {result.error && <Text style={[styles.text, {color: 'red'}]}>{result.error.message}</Text>}
             <View style={styles.inputView}>
                 <TextInput
                     style={styles.inputText}
