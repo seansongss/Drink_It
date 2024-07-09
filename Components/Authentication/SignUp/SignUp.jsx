@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import styles from './styles';
 
-function Sign_up({ navigation }) {
+function SignUp({ navigation }) {
     const [state, setState] = useState({
         username: '',
         email: '',
@@ -88,4 +88,4 @@ function Sign_up({ navigation }) {
     );
 }
 
-export default Sign_up;
+export default SignUp;

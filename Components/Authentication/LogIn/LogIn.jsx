@@ -3,7 +3,7 @@ import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
 
-import SignUp from '../../Components/Authentication/SignUp/SignUp';
+import SignUp from '../SignUp/SignUp';
 import styles from './styles';
 import SocialButton from '../../Components/Authentication/SocialButton/SocialButton';
 import ImageComponent from '../../Components/utils/ImageComponent';
@@ -24,7 +24,7 @@ const onPressForgotEmail = () => {
     // Do something about forgot password operation
 };
 
-function Login({ navigation }) {
+function LogIn({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -92,4 +92,4 @@ function Login({ navigation }) {
     );
 }
 
-export default Login;
+export default LogIn;
