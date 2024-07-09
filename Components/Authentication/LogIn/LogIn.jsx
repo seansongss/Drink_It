@@ -1,5 +1,4 @@
-import { View, ImageBackground, StyleSheet, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
-import { Text, Divider, useTheme, Button } from '@rneui/themed';
+import { View, SafeAreaView, TouchableOpacity, Text, TextInput } from 'react-native';
 import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
 
