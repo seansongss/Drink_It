@@ -1,14 +1,19 @@
 import { View, ImageBackground, StyleSheet, SafeAreaView, TouchableOpacity, TextInput } from 'react-native';
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
+import { useEmailPasswordAuth } from '@realm/react';
 
 import Register from '../../Components/Login/Register/Register';
 import styles from './styles';
 import SocialButton from '../../Components/Login/SocialButton/SocialButton';
 import ImageComponent from '../../Components/utils/ImageComponent';
 
-const onPressLogin = () => {
-    // Do something about login operation
+const onPressLogin = async (email, password) => {
+    const { logIn, result } = useEmailPasswordAuth();
+
+    await logIn(email, password);
+
+    performLogin();
 };
 const onPressForgotPassword = () => {
     // Do something about forgot password operation
@@ -18,10 +23,9 @@ const onPressForgotEmail = () => {
 };
 
 function Login({ navigation }) {
-    const [state, setState] = useState({
-        email: '',
-        password: '',
-    })
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     return (
         <SafeAreaView style={styles.container}>
             <ImageComponent type="logo" value="logo" size={200} />
@@ -46,7 +50,7 @@ function Login({ navigation }) {
                     style={styles.inputText}
                     placeholder="email"
                     placeholderTextColor="#a6aeb4"
-                    onChangeText={text => setState({ username: text })}
+                    onChangeText={text => setEmail(text)}
                 />
             </View>
             <View style={styles.inputView}>
@@ -55,12 +59,12 @@ function Login({ navigation }) {
                     secureTextEntry
                     placeholder="password"
                     placeholderTextColor="#a6aeb4"
-                    onChangeText={text => setState({ password: text })}
+                    onChangeText={text => setPassword(text)}
                 />
             </View>
             {/* Login Button */}
             <TouchableOpacity
-                onPress={onPressLogin}
+                onPress={onPressLogin(email, password)}
                 style={styles.loginBtn}
             >
                 <Text style={styles.text}>LOG IN</Text>
