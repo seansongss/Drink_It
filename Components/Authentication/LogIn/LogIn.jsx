@@ -4,8 +4,8 @@ import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
 
 import styles from './styles';
-import SocialButton from '../../Components/Authentication/SocialButton/SocialButton';
-import ImageComponent from '../../Components/utils/ImageComponent';
+import SocialButton from '../SocialButton/SocialButton';
+import ImageComponent from '../../utils/ImageComponent';
 
 const LogIn = ({ navigation }) => {
     const [email, setEmail] = useState('');

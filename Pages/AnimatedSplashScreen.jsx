@@ -66,3 +66,5 @@ function AnimatedSplashScreen({ children }) {
         </View>
     );
 }
+
+export default AnimatedSplashScreen;

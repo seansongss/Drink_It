@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
-import MainCalendar from './pages/Main_calendar/MainCalendar';
+import MainCalendar from '../pages/MainCalendar/MainCalendar';
 import AddLive from '../pages/AddLive/AddLive';
 import My_page from '../components/My_page_view/My_page';
 import { RecordsProvider } from '../components/Context/RecordsContext';
