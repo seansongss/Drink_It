@@ -6,7 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import { RecordsContext } from '../../Context/RecordsContext';
 
-import styles from './styles';
+import styles from "./styles"
 import ImageComponent from '../../utils/ImageComponent';
 
 // Preload images

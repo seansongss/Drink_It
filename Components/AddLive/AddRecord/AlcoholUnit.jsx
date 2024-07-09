@@ -2,8 +2,9 @@ import { memo } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { Icon } from "@rneui/base";
 
-import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
+
+import styles from './styles';
 
 const AlcoholUnit = memo(({ alcohol, index, changeUnitCount }) => {
     // console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);

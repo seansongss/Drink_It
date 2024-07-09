@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RecordsContext } from '../../Components/Context/RecordsContext';
+import { RecordsContext } from '../../components/Context/RecordsContext';
 
-import AddRecord from '../../Components/AddLive/Record/AddRecord';
-import AddHeader from '../../Components/AddLive/Header/AddHeader';
+import AddRecord from '../../components/AddLive/AddRecord/AddRecord';
+import AddHeader from '../../components/AddLive/AddHeader/AddHeader';
 
 import styles from './styles';
-import RecordHeader from '../../Components/NewRecord/RecordHeader';
+import RecordHeader from '../../components/NewRecord/RecordHeader';
 
 const NewRecord = ({ navigation }) => {
     const { loadRecords } = useContext(RecordsContext); // Use context to get loadRecords

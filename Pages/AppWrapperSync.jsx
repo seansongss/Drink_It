@@ -2,10 +2,10 @@ import React from 'react';
 import { AppProvider, UserProvider, RealmProvider } from '@realm/react';
 
 import { SYNC_CONFIG } from '../sync.config';
-import BottomNav from '../BottomNav';
+import BottomNav from '../navigation/BottomNav';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
-import AuthStack from './Navigation/AuthStack';
+import AuthStack from '../navigation/AuthStack';
 
 
 const AppWrapperSync = () => {

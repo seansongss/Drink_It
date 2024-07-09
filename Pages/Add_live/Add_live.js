@@ -1,9 +1,9 @@
 import { View, SafeAreaView } from 'react-native';
 
-import Topbox from '../../Components/Add_live/Topbox/Topbox';
-import Alcohol_card from '../../Components/Add_live/Alcohol_card/Alcohol_card';
-import Condition_card from '../../Components/Add_live/Condition_card/Condition_card';
-import Note_card from '../../Components/Add_live/Note_card/Note_card';
+import Topbox from '../../components/Add_live/Topbox/Topbox';
+import Alcohol_card from '../../components/Add_live/Alcohol_card/Alcohol_card';
+import Condition_card from '../../components/Add_live/Condition_card/Condition_card';
+import Note_card from '../../components/Add_live/Note_card/Note_card';
 
 import styles from './style';
 

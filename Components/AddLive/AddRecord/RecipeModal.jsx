@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Icon } from "@rneui/base";
 import { Dropdown } from 'react-native-element-dropdown';
+
 import ImageComponent from '../../utils/ImageComponent';
 
 import modalStyles from './modalStyles';

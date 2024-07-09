@@ -8,11 +8,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RecordsContext } from '../../Context/RecordsContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import styles from './styles';
 import ImageComponent from '../../utils/ImageComponent';
 import AlcoholUnit from './AlcoholUnit';
 import FeelingUnit from './FeelingUnit';
 import RecipeModal from './RecipeModal';
+
+import styles from './styles';
 
 const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
     const { loadRecords } = useContext(RecordsContext);

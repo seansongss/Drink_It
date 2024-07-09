@@ -4,11 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
-import MainCalendar from './Pages/Main_calendar/MainCalendar';
-import AddLive from './Pages/AddLive/AddLive';
-import My_page from './Components/My_page_view/My_page';
-import { RecordsProvider } from './Components/Context/RecordsContext';
-import CalendarViewStack from './Pages/Main_calendar/MainCalendar';
+import MainCalendar from './pages/Main_calendar/MainCalendar';
+import AddLive from '../pages/AddLive/AddLive';
+import My_page from '../components/My_page_view/My_page';
+import { RecordsProvider } from '../components/Context/RecordsContext';
+import CalendarViewStack from './CalendarViewStack';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import AddHeader from '../../Components/AddLive/Header/AddHeader';
-import AddRecord from '../../Components/AddLive/Record/AddRecord';
+import AddHeader from '../../components/AddLive/AddHeader/AddHeader';
+import AddRecord from '../../components/AddLive/AddRecord/AddRecord';
 import styles from './styles';
 
 const AddLive = ({ navigation }) => {
