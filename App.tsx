@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { REALM_CONFIG } from '../realm.config';
+import { REALM_CONFIG } from './realm.config';
 import AnimatedSplashScreen from './pages/AnimatedSplashScreen';
 import AppWrapperSync from './pages/AppWrapperSync';
 import BottomNav from './navigation/BottomNav';
@@ -44,9 +44,9 @@ export default function App() {
                     <AppWrapperSync />
                 ) : (
                     <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-                        <NavigationContainer style={{ flex: 1 }}>
+                        <NavigationContainer>
                             <BottomNav />
-                            <LogIn />
+                            {/* <LogIn /> */}
                         </NavigationContainer>
                     </SafeAreaProvider>
                 )
