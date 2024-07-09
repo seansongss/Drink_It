@@ -80,11 +80,11 @@ function Login({ navigation }) {
                 onPress={onPressLogin(email, password)}
                 style={styles.loginBtn}
             >
-                {
-                    result.pending ?
-                        <ActivityIndicator /> :
-                        <Text style={styles.text}>LOG IN</Text>
-                }
+                {result.pending ? (
+                    <ActivityIndicator />
+                ) : (
+                    <Text style={styles.text}>LOG IN</Text>
+                )}
             </TouchableOpacity>
             {/* Forgot email or password */}
             <View style={styles.forgotContainer}>
