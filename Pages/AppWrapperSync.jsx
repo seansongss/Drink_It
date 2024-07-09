@@ -10,17 +10,17 @@ import AuthStack from '../navigation/AuthStack';
 
 const AppWrapperSync = () => {
     return (
-        <AppProvider id={REALM_CONFIG.appId}>
-            <UserProvider fallback={AuthStack}>
-                <RealmProvider>
-                    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-                        <NavigationContainer style={{ flex: 1 }}>
+        <NavigationContainer>
+            <AppProvider id={REALM_CONFIG.appId}>
+                <UserProvider fallback={AuthStack}>
+                    <RealmProvider>
+                        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
                             <BottomNav />
-                        </NavigationContainer>
-                    </SafeAreaProvider>
-                </RealmProvider>
-            </UserProvider>
-        </AppProvider>
+                        </SafeAreaProvider>
+                    </RealmProvider>
+                </UserProvider>
+            </AppProvider>
+        </NavigationContainer>
     )
 }
 
