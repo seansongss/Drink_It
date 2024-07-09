@@ -1,31 +1,35 @@
-import { View, SafeAreaView, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, ImageBackground, StyleSheet, SafeAreaView, TouchableOpacity, TextInput, Alert, ActivityIndicator } from 'react-native';
+import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
 
-import SignUp from '../SignUp/SignUp';
 import styles from './styles';
 import SocialButton from '../../Components/Authentication/SocialButton/SocialButton';
 import ImageComponent from '../../Components/utils/ImageComponent';
 
-const onPressLogin = async (email, password) => {
-    const { logIn, result } = useEmailPasswordAuth();
-
-    const performLogin = () => {
-        logIn({email, password});
-    };
-
-    performLogin();
-};
-const onPressForgotPassword = () => {
-    // Do something about forgot password operation
-};
-const onPressForgotEmail = () => {
-    // Do something about forgot password operation
-};
-
-function LogIn({ navigation }) {
+const LogIn = ({ navigation }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const { logIn, result } = useEmailPasswordAuth();
+
+    const onPressLogin = () => {
+        logIn({ email, password });
+    };
+
+    // // Handling different states
+    // if (result.pending) {
+    //     return (
+    //         <View style={styles.spinnerContainer}>
+    //             <Text>Loading...</Text>
+    //             {/* You can replace this with an actual spinner component */}
+    //         </View>
+    //     );
+    // }
+
+    if (result.error) {
+        Alert.alert("Login Failed", result.error.message);
+    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -36,7 +40,7 @@ function LogIn({ navigation }) {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('SignUp')}
                 >
-                    <Text style={[styles.text, {color: 'orange'}]}>Sign-up</Text>
+                    <Text style={[styles.text, { color: 'orange' }]}>Sign-up</Text>
                 </TouchableOpacity>
             </View>
             {/* Social Login */}
@@ -65,26 +69,30 @@ function LogIn({ navigation }) {
             </View>
             {/* Login Button */}
             <TouchableOpacity
-                onPress={onPressLogin(email, password)}
+                onPress={onPressLogin}
                 style={styles.loginBtn}
             >
-                <Text style={styles.text}>LOG IN</Text>
+                {result.pending ? (
+                    <ActivityIndicator />
+                ) : (
+                    <Text style={styles.text}>LOG IN</Text>
+                )}
             </TouchableOpacity>
             {/* Forgot email or password */}
-            <View style={styles.forgotContainer}>
+            {/* <View style={styles.forgotContainer}>
                 <Text style={styles.text}>Forgot</Text>
                 <TouchableOpacity
                     onPress={onPressForgotEmail}
                 >
-                    <Text style={[styles.text, {color: 'orange'}]}>email?</Text>
+                    <Text style={[styles.text, { color: 'orange' }]}>email?</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={styles.forgotContainer}>
                 <Text style={styles.text}>Forgot</Text>
                 <TouchableOpacity
-                    onPress={onPressForgotPassword}
+                    onPress={() => navigation.navigate('PasswordReset')}
                 >
-                    <Text style={[styles.text, {color: 'orange'}]}>password?</Text>
+                    <Text style={[styles.text, { color: 'orange' }]}>password?</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
