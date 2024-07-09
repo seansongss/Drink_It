@@ -17,6 +17,14 @@ const LogIn = ({ navigation }) => {
         logIn({ email, password });
     };
 
+    const onPressGoogle = async () => {
+        // logIn({ email, password });
+    };
+
+    const onPressApple = async () => {
+        // logIn({ email, password });
+    };
+
     // // Handling different states
     // if (result.pending) {
     //     return (
@@ -45,8 +53,8 @@ const LogIn = ({ navigation }) => {
             </View>
             {/* Social Login */}
             <View style={styles.socialContainer}>
-                <SocialButton name="google" />
-                <SocialButton name="apple" />
+                <SocialButton name="google" onClick={onPressGoogle} />
+                <SocialButton name="apple" onClick={onPressApple} />
             </View>
             <Text style={[styles.text, { fontSize: 20, marginBottom: 20 }]}>OR</Text>
             {/* Login input Box */}
