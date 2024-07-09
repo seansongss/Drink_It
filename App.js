@@ -5,10 +5,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { REALM_CONFIG } from '../realm.config';
 import AnimatedSplashScreen from './pages/AnimatedSplashScreen';
 import AppWrapperSync from './pages/AppWrapperSync';
 import BottomNav from './navigation/BottomNav';
-import Login from './pages/Login/Login';
+import LogIn from './components/Authentication/LogIn/LogIn';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -38,12 +39,18 @@ export default function App() {
 
     return (
         <AnimatedSplashScreen>
-            <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-                <NavigationContainer style={{ flex: 1 }}>
-                    {/* <BottomNav /> */}
-                    <Login />
-                </NavigationContainer>
-            </SafeAreaProvider>
+            {
+                REALM_CONFIG.enabled ? (
+                    <AppWrapperSync />
+                ) : (
+                    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
+                        <NavigationContainer style={{ flex: 1 }}>
+                            <BottomNav />
+                            <LogIn />
+                        </NavigationContainer>
+                    </SafeAreaProvider>
+                )
+            }
         </AnimatedSplashScreen>
     );
 }
