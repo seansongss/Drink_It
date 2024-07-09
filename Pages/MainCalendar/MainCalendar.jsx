@@ -2,8 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 
 import CalendarView from '../../components/MainCalendar/CalendarView/CalendarView';
-import FunfactCard from '../../components/MainCalendar/Funfact_card/FunfactCard';
-import StatSimple from '../../components/MainCalendar/Stat_simple/StatSimple';
+import FunfactCard from '../../components/MainCalendar/FunfactCard/FunfactCard';
+import StatSimple from '../../components/MainCalendar/StatSimple/StatSimple';
 
 import styles from './styles';
 
