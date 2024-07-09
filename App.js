@@ -8,6 +8,7 @@ import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/ja
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BottomNav from './BottomNav';
 import Login from './Pages/Login/Login';
+import Login from './Pages/Login/Login';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
