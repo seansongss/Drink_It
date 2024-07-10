@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
 
 import styles from './styles';
-import SocialButton from '../../Components/Authentication/SocialButton/SocialButton';
+import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
 import ImageComponent from '../../Components/utils/ImageComponent';
 
 const PasswordReset = ({ navigation }) => {

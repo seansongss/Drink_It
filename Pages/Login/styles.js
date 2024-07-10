@@ -11,12 +11,14 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 5,
         marginTop: -80,
+        justifyContent: "center",
     },
     socialContainer: {
         flexDirection: "row",
+        justifyContent: "center",
     },
     inputView: {
-        width: "80%",
+        // width: "80%",
         backgroundColor: "#e7eef4",
         borderRadius: 15,
         height: 50,
@@ -33,7 +35,6 @@ const styles = StyleSheet.create({
         color: "#a6aeb4",
     },
     loginBtn: {
-        width: "80%",
         backgroundColor: "#b3d8b2",
         borderRadius: 15,
         height: 50,
@@ -50,6 +51,18 @@ const styles = StyleSheet.create({
     text: {
         fontFamily: "Jaldi_400Regular",
         fontSize: 18,
+    },
+    errorText: {
+        fontFamily: "Jaldi_400Regular",
+        color: 'red',
+        fontSize: 15,
+        marginLeft: 5,
+        marginTop: -18,
+        marginBottom: 20,
+    },
+    errorBorder: {
+        borderColor: 'red',
+        borderWidth: 2,
     },
 });
 
