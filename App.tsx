@@ -9,7 +9,7 @@ import { REALM_CONFIG } from './realm.config';
 import AnimatedSplashScreen from './pages/AnimatedSplashScreen';
 import AppWrapperSync from './pages/AppWrapperSync';
 import BottomNav from './navigation/BottomNav';
-import LogIn from './components/Authentication/LogIn/LogIn';
+import LogIn from './pages/LogIn/LogIn';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
