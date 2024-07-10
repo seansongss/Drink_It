@@ -3646,6 +3646,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/validator@npm:^13":
+  version: 13.12.0
+  resolution: "@types/validator@npm:13.12.0"
+  checksum: 10c0/a539f06c840dc672dedc819c5906472561dd4269c8298f5e0b0066226a8c47e4ffd60b1c10f21b91ee3cfb591e391537f879e0524e42db7f50a61995c2b2f2ef
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 21.0.3
   resolution: "@types/yargs-parser@npm:21.0.3"
@@ -5290,6 +5297,7 @@ __metadata:
     "@types/react-native": "npm:^0.73.0"
     "@types/react-navigation": "npm:^3.4.0"
     "@types/react-test-renderer": "npm:^18.3.0"
+    "@types/validator": "npm:^13"
     eas-cli: "npm:^9.1.0"
     expo: "npm:~51.0.11"
     expo-dev-client: "npm:^4.0.19"
@@ -5309,6 +5317,7 @@ __metadata:
     react-native-screens: "npm:^3.31.1"
     realm: "npm:^12.11.1"
     typescript: "npm:^5.5.3"
+    validator: "npm:^13.12.0"
     yarn: "npm:^1.22.22"
   languageName: unknown
   linkType: soft
@@ -11815,6 +11824,13 @@ __metadata:
   dependencies:
     builtins: "npm:^1.0.3"
   checksum: 10c0/064f21f59aefae6cc286dd4a50b15d14adb0227e0facab4316197dfb8d06801669e997af5081966c15f7828a5e6ff1957bd20886aeb6b9d0fa430e4cb5db9c4a
+  languageName: node
+  linkType: hard
+
+"validator@npm:^13.12.0":
+  version: 13.12.0
+  resolution: "validator@npm:13.12.0"
+  checksum: 10c0/21d48a7947c9e8498790550f56cd7971e0e3d724c73388226b109c1bac2728f4f88caddfc2f7ed4b076f9b0d004316263ac786a17e9c4edf075741200718cd32
   languageName: node
   linkType: hard
 
