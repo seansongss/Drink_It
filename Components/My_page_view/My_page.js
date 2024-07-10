@@ -1,11 +1,31 @@
 import React from "react";
-import { View, Image, TouchableOpacity } from "react-native";
-import Profile_components from "../Profile_component/Profile_component";
+import { View, Image, TouchableOpacity, Alert } from "react-native";
 import { Icon } from "@rneui/base";
+import { useUser } from "@realm/react";
+
+import Profile_components from "../Profile_component/Profile_component";
 import Stat_card from "./Stat_card";
+
 import styles from "./styles";
 
 const UserBox = () => {
+    const user = useUser();
+
+    const logOutButton = () => {
+        Alert.alert('Logout', 'Are you sure you want to log out?', [
+            {
+                text: 'No',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            {
+                text: 'Yes',
+                onPress: () => user.logOut(),
+                style: 'destructive'
+            },
+        ]);
+    };
+
     return (
         <View style={styles.userBox}>
             <View style={styles.userInfo}>
@@ -24,7 +44,7 @@ const UserBox = () => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.button}
-                        onPress={() => alert("Button 2 pressed")}
+                        onPress={logOutButton}
                     >
                         <Image
                             style={styles.button}
