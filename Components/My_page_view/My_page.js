@@ -29,7 +29,7 @@ const UserBox = () => {
     return (
         <View style={styles.userBox}>
             <View style={styles.userInfo}>
-                <Profile_components nickname="test_id_1123" exp={0.3} />
+                <Profile_components nickname={user.customData.username} exp={0.3} />
             </View>
             <View style={styles.buttonContainer}>
                 <View style={styles.buttonsRow}>
