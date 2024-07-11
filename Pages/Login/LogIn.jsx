@@ -5,13 +5,21 @@ import {
 } from 'react-native';
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
-import { useEmailPasswordAuth } from '@realm/react';
+import { useEmailPasswordAuth, useAuth } from '@realm/react';
+import { GoogleSignin, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 import styles from './styles';
 import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
 import ImageComponent from '@components/utils/ImageComponent';
 
 const LogIn = ({ navigation }) => {
+    GoogleSignin.configure({
+        webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
+        offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+        forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+    });
+
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -27,7 +35,28 @@ const LogIn = ({ navigation }) => {
     };
 
     const onPressGoogle = async () => {
-        // logIn({ email, password });
+        try {
+            await GoogleSignin.hasPlayServices();
+            const userInfo = await GoogleSignin.signIn();
+        } catch (error) {
+            if (isErrorWithCode(error)) {
+                switch (error.code) {
+                    case statusCodes.SIGN_IN_CANCELLED:
+                        // user cancelled the login flow
+                        break;
+                    case statusCodes.IN_PROGRESS:
+                        // operation (eg. sign in) already in progress
+                        break;
+                    case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
+                        // play services not available or outdated
+                        break;
+                    default:
+                    // some other error happened
+                }
+            } else {
+                // an error that's not related to google sign in occurred
+            }
+        }
     };
 
     const onPressApple = async () => {
@@ -80,7 +109,6 @@ const LogIn = ({ navigation }) => {
                                     onChangeText={text => setPassword(text)}
                                 />
                             </View>
-                            {/* {result.error && <Text style={[styles.text, { color: 'red' }]}>{result.error.message}</Text>} */}
                             {(result.error || notMatch) && <Text style={styles.errorText}>Email or password is incorrect</Text>}
                             {/* Login Button */}
                             <TouchableOpacity
