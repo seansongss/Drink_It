@@ -1,10 +1,10 @@
 import React from 'react';
 import { AppProvider, UserProvider, RealmProvider } from '@realm/react';
+import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { REALM_CONFIG } from '../realm.config';
 import BottomNav from '../navigation/BottomNav';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
 import AuthStack from '../navigation/AuthStack';
 
 
