@@ -52,7 +52,7 @@ const LogIn = ({ navigation }) => {
                 style={styles.container}
             >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
+                    <View style={styles.fullView}>
                         <StatusBar barStyle="dark-content" backgroundColor={'#e7eef4'} />
                         <ImageComponent type="logo" value="logo" size={200} />
                         {/* Sign-up */}

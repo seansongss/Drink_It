@@ -4,8 +4,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#e7eef4',
-        alignItems: 'center',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+    fullView: {
+        flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
     },
     signUpContainer: {
         flexDirection: "row",
