@@ -2792,6 +2792,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-google-signin/google-signin@npm:^12.2.1":
+  version: 12.2.1
+  resolution: "@react-native-google-signin/google-signin@npm:12.2.1"
+  peerDependencies:
+    expo: ">=50.0.0"
+    react: "*"
+    react-dom: "*"
+    react-native: "*"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/b2f416b1546375218811d6e0dbb44d382598716ec534955017198d932d016aecd899b9eb839e2445a7aab72cf5ece168e8afeeadf2baedced1bf3a730f5e1cb8
+  languageName: node
+  linkType: hard
+
 "@react-native/assets-registry@npm:0.74.84":
   version: 0.74.84
   resolution: "@react-native/assets-registry@npm:0.74.84"
@@ -3535,6 +3552,13 @@ __metadata:
   version: 15.7.12
   resolution: "@types/prop-types@npm:15.7.12"
   checksum: 10c0/1babcc7db6a1177779f8fde0ccc78d64d459906e6ef69a4ed4dd6339c920c2e05b074ee5a92120fe4e9d9f1a01c952f843ebd550bee2332fc2ef81d1706878f8
+  languageName: node
+  linkType: hard
+
+"@types/react-native-dotenv@npm:^0.2.2":
+  version: 0.2.2
+  resolution: "@types/react-native-dotenv@npm:0.2.2"
+  checksum: 10c0/0b24dc29cf119c689c7758e5cec044c7c2c74f046150fb84b515d70ea94301fd2123343f11b7dac01bbadcc730b5405607ac2a96e39cc599e0cf197bcefa8710
   languageName: node
   linkType: hard
 
@@ -5223,7 +5247,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^16.4.4, dotenv@npm:~16.4.5":
+"dotenv@npm:^16.4.4, dotenv@npm:^16.4.5, dotenv@npm:~16.4.5":
   version: 16.4.5
   resolution: "dotenv@npm:16.4.5"
   checksum: 10c0/48d92870076832af0418b13acd6e5a5a3e83bb00df690d9812e94b24aff62b88ade955ac99a05501305b8dc8f1b0ee7638b18493deb6fe93d680e5220936292f
@@ -5239,12 +5263,14 @@ __metadata:
     "@expo/ngrok": "npm:^4.1.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@react-native-community/datetimepicker": "npm:8.0.1"
+    "@react-native-google-signin/google-signin": "npm:^12.2.1"
     "@react-navigation/bottom-tabs": "npm:^6.5.20"
     "@react-navigation/native": "npm:^6.1.9"
     "@react-navigation/native-stack": "npm:^6.9.26"
     "@realm/react": "npm:^0.8.0"
     "@rneui/base": "npm:4.0.0-rc.7"
     "@rneui/themed": "npm:^4.0.0-rc.8"
+    "@types/react-native-dotenv": "npm:^0.2.2"
     "@types/validator": "npm:^13"
     babel-plugin-module-resolver: "npm:^5.0.2"
     eas-cli: "npm:^9.1.0"
@@ -5258,6 +5284,7 @@ __metadata:
     react: "npm:18.2.0"
     react-native: "npm:0.74.2"
     react-native-date-picker: "npm:^5.0.4"
+    react-native-dotenv: "npm:^3.4.11"
     react-native-element-dropdown: "npm:^2.12.0"
     react-native-keyboard-aware-scroll-view: "npm:^0.9.5"
     react-native-modal-datetime-picker: "npm:^17.1.0"
@@ -9756,6 +9783,17 @@ __metadata:
     react: ">= 17.0.1"
     react-native: ">= 0.64.3"
   checksum: 10c0/26e630ed351f8d0a463af963da015748fdb998af2e7e1b99370af18bb8b9692772fa6184d292032973d843cb08aa0a61320922357ffa7b567f68048ae3f3f6ac
+  languageName: node
+  linkType: hard
+
+"react-native-dotenv@npm:^3.4.11":
+  version: 3.4.11
+  resolution: "react-native-dotenv@npm:3.4.11"
+  dependencies:
+    dotenv: "npm:^16.4.5"
+  peerDependencies:
+    "@babel/runtime": ^7.20.6
+  checksum: 10c0/9ed4a37fb59030706d17a1cc49d05af9d8fc57dcb2ef97e122b844f3ab6f6331ebc089afac559fe5bddf37806aa282b4118005f1b27aae5e37fdc3fc8bd7625c
   languageName: node
   linkType: hard
 
