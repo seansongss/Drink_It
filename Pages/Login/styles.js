@@ -4,8 +4,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#e7eef4',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     fullView: {
         flex: 1,
@@ -23,8 +21,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
     },
+    loginWrapper: {
+        width: "60%",
+    },
     inputView: {
-        // width: "80%",
         backgroundColor: "#e7eef4",
         borderRadius: 15,
         height: 50,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     inputText: {
         fontFamily: "Jaldi_400Regular",
         fontSize: 18,
-        height: 50,
+        height: 40,
         color: "#a6aeb4",
     },
     loginBtn: {
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     forgotContainer: {
         flexDirection: "row",
-        marginLeft: 50,
+        marginLeft: 5,
         alignSelf: "flex-start",
         gap: 5,
     },
