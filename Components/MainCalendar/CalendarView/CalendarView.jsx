@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, ImageBackground, TouchableOpacity } from 'react-native';
 import { Divider } from '@rneui/themed';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -8,19 +8,6 @@ import { RecordsContext } from '../../Context/RecordsContext';
 
 import styles from "./styles"
 import ImageComponent from '../../utils/ImageComponent';
-
-// Preload images
-const preloadImages = [
-    require('../../../assets/alcohol/beer_logo.png'),
-    require('../../../assets/alcohol/wine_logo.png'),
-    require('../../../assets/alcohol/soju_logo.png'),
-    require('../../../assets/alcohol/vodka_logo.png'),
-    require('../../../assets/Calendar_view/last_night.png'),
-];
-
-preloadImages.forEach(image => {
-    Image.prefetch(Image.resolveAssetSource(image).uri);
-});
 
 function CalendarView({ navigation }) {
     let [fontsLoaded] = useFonts({
