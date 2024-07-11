@@ -4,18 +4,24 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#e7eef4',
-        alignItems: 'center',
+    },
+    fullView: {
+        flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
     },
     title: {
-        fontWeight: "bold",
+        fontFamily: "Jaldi_700Bold",
         fontSize: 40,
         marginTop: -80,
         marginBottom: 40,
         textAlign: "center",
     },
+    signupWrapper: {
+        width: "60%",
+    },
     inputView: {
-        // width: '80%',
         backgroundColor: "#e7eef4",
         borderRadius: 15,
         height: 50,
@@ -28,7 +34,7 @@ const styles = StyleSheet.create({
     inputText: {
         fontFamily: "Jaldi_400Regular",
         fontSize: 18,
-        height: 50,
+        height: 40,
         color: "#a6aeb4",
     },
     loginBtn: {

@@ -38,55 +38,58 @@ function SignUp({ navigation }) {
         <SafeAreaView style={styles.container}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.container}
             >
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                    <View>
+                    <View style={styles.fullView}>
                         <StatusBar barStyle="dark-content" backgroundColor={'#e7eef4'} />
                         <ImageComponent type="logo" value="logo" size={200} />
                         <Text style={styles.title}>Sign Up</Text>
-                        {/* SignUp input Box */}
-                        <View style={[styles.inputView, emailError && styles.errorBorder]}>
-                            <TextInput
-                                style={styles.inputText}
-                                autoCapitalize='none'
-                                placeholder="Email"
-                                placeholderTextColor="#a6aeb4"
-                                onChangeText={text => setEmail(text)}
-                            />
+                        <View style={styles.signupWrapper}>
+                            {/* SignUp input Box */}
+                            <View style={[styles.inputView, emailError && styles.errorBorder]}>
+                                <TextInput
+                                    style={styles.inputText}
+                                    autoCapitalize='none'
+                                    placeholder="Email"
+                                    placeholderTextColor="#a6aeb4"
+                                    onChangeText={text => setEmail(text)}
+                                />
+                            </View>
+                            {emailError && <Text style={styles.errorText}>Invalid email</Text>}
+                            <View style={styles.inputView}>
+                                <TextInput
+                                    style={styles.inputText}
+                                    secureTextEntry
+                                    autoCapitalize='none'
+                                    placeholder="Password"
+                                    placeholderTextColor="#a6aeb4"
+                                    onChangeText={text => setPassword(text)}
+                                />
+                            </View>
+                            <View style={[styles.inputView, confirmError && styles.errorBorder]}>
+                                <TextInput
+                                    style={styles.inputText}
+                                    secureTextEntry
+                                    autoCapitalize='none'
+                                    placeholder="Confirm Password"
+                                    placeholderTextColor="#a6aeb4"
+                                    onChangeText={text => setConfirm(text)}
+                                />
+                            </View>
+                            {confirmError && <Text style={styles.errorText}>Passwords do not match</Text>}
+                            {/* Sign up button */}
+                            <TouchableOpacity
+                                onPress={onPressSignUp}
+                                style={styles.loginBtn}>
+                                <Text style={styles.text}>SIGN UP</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate('LogIn')}
+                                style={styles.loginBtn}>
+                                <Text style={styles.text}>BACK TO LOGIN</Text>
+                            </TouchableOpacity>
                         </View>
-                        {emailError && <Text style={styles.errorText}>Invalid email</Text>}
-                        <View style={styles.inputView}>
-                            <TextInput
-                                style={styles.inputText}
-                                secureTextEntry
-                                autoCapitalize='none'
-                                placeholder="Password"
-                                placeholderTextColor="#a6aeb4"
-                                onChangeText={text => setPassword(text)}
-                            />
-                        </View>
-                        <View style={[styles.inputView, confirmError && styles.errorBorder]}>
-                            <TextInput
-                                style={styles.inputText}
-                                secureTextEntry
-                                autoCapitalize='none'
-                                placeholder="Confirm Password"
-                                placeholderTextColor="#a6aeb4"
-                                onChangeText={text => setConfirm(text)}
-                            />
-                        </View>
-                        {confirmError && <Text style={styles.errorText}>Passwords do not match</Text>}
-                        {/* Sign up button */}
-                        <TouchableOpacity
-                            onPress={onPressSignUp}
-                            style={styles.loginBtn}>
-                            <Text style={styles.text}>SIGN UP</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate('LogIn')}
-                            style={styles.loginBtn}>
-                            <Text style={styles.text}>BACK TO LOGIN</Text>
-                        </TouchableOpacity>
                     </View>
                 </TouchableWithoutFeedback>
             </KeyboardAvoidingView>
