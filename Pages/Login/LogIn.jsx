@@ -1,7 +1,7 @@
 import {
     View, ImageBackground, StyleSheet, SafeAreaView, TouchableWithoutFeedback,
     TouchableOpacity, TextInput, Alert, Keyboard, Platform,
-    ActivityIndicator, StatusBar, KeyboardAvoidingView,
+    ActivityIndicator, StatusBar, KeyboardAvoidingView, Image
 } from 'react-native';
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
@@ -9,7 +9,7 @@ import { useEmailPasswordAuth } from '@realm/react';
 
 import styles from './styles';
 import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
-import ImageComponent from '../../components/utils/ImageComponent';
+import ImageComponent from '@components/utils/ImageComponent';
 
 const LogIn = ({ navigation }) => {
     const [email, setEmail] = useState('');
@@ -20,6 +20,9 @@ const LogIn = ({ navigation }) => {
     const { logIn, result } = useEmailPasswordAuth();
 
     const onPressLogin = () => {
+        if (!email || !password) {
+            return alert('Please fill all fields');
+        }
         logIn({ email, password });
     };
 
@@ -30,20 +33,6 @@ const LogIn = ({ navigation }) => {
     const onPressApple = async () => {
         // logIn({ email, password });
     };
-
-    // // Handling different states
-    // if (result.pending) {
-    //     return (
-    //         <View style={styles.spinnerContainer}>
-    //             <Text>Loading...</Text>
-    //             {/* You can replace this with an actual spinner component */}
-    //         </View>
-    //     );
-    // }
-
-    // if (result.error) {
-    //     Alert.alert("Login Failed", result.error.message);
-    // }
 
     return (
         <SafeAreaView style={styles.container}>

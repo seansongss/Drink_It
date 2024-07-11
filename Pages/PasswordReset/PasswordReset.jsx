@@ -2,9 +2,9 @@ import { View, ImageBackground, StyleSheet, SafeAreaView, TouchableOpacity, Text
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
 import { useEmailPasswordAuth } from '@realm/react';
+import validator from 'validator';
 
 import styles from './styles';
-import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
 import ImageComponent from '../../components/utils/ImageComponent';
 
 const PasswordReset = ({ navigation }) => {
@@ -12,14 +12,18 @@ const PasswordReset = ({ navigation }) => {
     const [isSent, setIsSent] = useState(false);
 
     const sendPasswordReset = () => {
-
+        if (!validator.isEmail(email)) {
+            Alert.alert('Invalid email');
+        } else {
+            setIsSent(true);
+        }
     };
 
     return (
         <SafeAreaView style={styles.container}>
             <ImageComponent type="logo" value="logo" size={200} />
             {/* Email input Box */}
-            <Text style={styles.text}>
+            <Text style={[styles.text, {marginTop: -40, marginBottom: 10}]}>
                 Enter email to reset password
             </Text>
             <View style={styles.inputView}>
@@ -35,7 +39,13 @@ const PasswordReset = ({ navigation }) => {
                 onPress={sendPasswordReset}
                 style={styles.sendBtn}
             >
-                <Text style={styles.text}>Send password reset</Text>
+                <Text style={styles.text}>SEND EMAIL</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('LogIn')}
+                style={styles.sendBtn}
+            >
+                <Text style={styles.text}>GO BACK</Text>
             </TouchableOpacity>
         </SafeAreaView>
     );

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     inputText: {
         fontFamily: "Jaldi_400Regular",
         fontSize: 18,
-        height: 50,
+        height: 40,
         color: "#a6aeb4",
     },
     sendBtn: {

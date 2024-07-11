@@ -5,7 +5,7 @@ export const getImage = (type, value) => {
   switch (type) {
     case 'logo':
       switch (value) {
-        case 'logo': return require('../../assets/main_logo.png');
+        case 'logo': return require('@assets/main_logo.png');
         default:
           console.error('Invalid logo name:', value);
           return null;
