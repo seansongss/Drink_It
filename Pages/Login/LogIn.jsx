@@ -8,6 +8,7 @@ import React, { useState } from 'react';
 import { useEmailPasswordAuth, useAuth } from '@realm/react';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
+import Realm from 'realm';
 
 import styles from './styles';
 import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
@@ -15,12 +16,11 @@ import ImageComponent from '@components/utils/ImageComponent';
 
 const LogIn = ({ navigation }) => {
     GoogleSignin.configure({
-        webClientId: GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
+        webClientId: process.env.GOOGLE_WEB_CLIENT_ID, // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
         offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
         forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
-        iosClientId: GOOGLE_IOS_CLIENT_ID, // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+        iosClientId: process.env.GOOGLE_IOS_CLIENT_ID, // [iOS] if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
     });
-
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -28,6 +28,7 @@ const LogIn = ({ navigation }) => {
     const [notMatch, setNotMatch] = useState(false);
 
     const { logIn, result } = useEmailPasswordAuth();
+    const { logInWithGoogle } = useAuth();
 
     const onPressLogin = () => {
         if (!email || !password) {
@@ -40,7 +41,9 @@ const LogIn = ({ navigation }) => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
+            logInWithGoogle({ authCode: userInfo.serverAuthCode});
         } catch (error) {
+            console.log(error);
             if (isErrorWithCode(error)) {
                 switch (error.code) {
                     case statusCodes.SIGN_IN_CANCELLED:
@@ -89,7 +92,9 @@ const LogIn = ({ navigation }) => {
                             <SocialButton name="google" onClick={onPressGoogle} />
                             <SocialButton name="apple" onClick={onPressApple} />
                         </View>
-                        <Text style={[styles.text, { fontSize: 20, marginBottom: 20, textAlign: 'center' }]}>OR</Text>
+                        <View>
+                            <Text style={[styles.text, { fontSize: 20, marginBottom: 20, textAlign: 'center' }]}>OR</Text>
+                        </View>
                         <View style={styles.loginWrapper}>
                             {/* LogIn input Box */}
                             <View style={[styles.inputView, notMatch && styles.errorBorder]}>
