@@ -10,7 +10,7 @@ import styles from "./styles";
 
 const UserBox = () => {
     const user = useUser();
-
+    
     const logOutButton = () => {
         Alert.alert('Logout', 'Are you sure you want to log out?', [
             {
@@ -25,7 +25,7 @@ const UserBox = () => {
             },
         ]);
     };
-
+    
     return (
         <View style={styles.userBox}>
             <View style={styles.userInfo}>
