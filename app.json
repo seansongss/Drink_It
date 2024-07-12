@@ -2,7 +2,7 @@
   "expo": {
     "name": "Drink It",
     "slug": "Drink_It",
-    "runtimeVersion": "1.0.2" ,
+    "runtimeVersion": "1.0.2",
     "version": "1.0.2",
     "jsEngine": "hermes",
     "orientation": "portrait",
@@ -13,7 +13,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.sean5132.Drink-it"
@@ -34,7 +36,13 @@
       }
     },
     "plugins": [
-      "expo-font"
+      "expo-font",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.994789065459-k5kt1h8jufg3ejr4ofu7svipdq1p3cnl"
+        }
+      ]
     ],
     "updates": {
       "url": "https://u.expo.dev/e2e7f6f5-b3c9-4f14-a831-52bac6c5d5a4"
