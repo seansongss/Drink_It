@@ -6,7 +6,7 @@ import {
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
 import { useEmailPasswordAuth, useAuth } from '@realm/react';
-import { GoogleSignin, GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
+import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 
 import styles from './styles';
 import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
@@ -14,7 +14,7 @@ import ImageComponent from '@components/utils/ImageComponent';
 
 const LogIn = ({ navigation }) => {
     GoogleSignin.configure({
-        webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
+        webClientId: 'GOOGLE_WEB_CLIENT_ID', // client ID of type WEB for your server. Required to get the `idToken` on the user object, and for offline access.
         offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
         forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
     });
