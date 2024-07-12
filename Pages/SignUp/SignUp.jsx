@@ -44,7 +44,9 @@ function SignUp({ navigation }) {
                     <View style={styles.fullView}>
                         <StatusBar barStyle="dark-content" backgroundColor={'#e7eef4'} />
                         <ImageComponent type="logo" value="logo" size={200} />
-                        <Text style={styles.title}>Sign Up</Text>
+                        <View>
+                            <Text style={styles.title}>Sign Up</Text>
+                        </View>
                         <View style={styles.signupWrapper}>
                             {/* SignUp input Box */}
                             <View style={[styles.inputView, emailError && styles.errorBorder]}>
