@@ -1101,6 +1101,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/runtime@npm:^7.24.8":
+  version: 7.24.8
+  resolution: "@babel/runtime@npm:7.24.8"
+  dependencies:
+    regenerator-runtime: "npm:^0.14.0"
+  checksum: 10c0/f24b30af6b3ecae19165b3b032f9bc37b2d1769677bd63b69a6f81061967cfc847aa822518402ea6616b1d301d7eb46986b99c9f69cdb5880834fca2e6b34881
+  languageName: node
+  linkType: hard
+
 "@babel/template@npm:^7.0.0, @babel/template@npm:^7.22.15, @babel/template@npm:^7.24.0":
   version: 7.24.0
   resolution: "@babel/template@npm:7.24.0"
@@ -3591,6 +3600,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react@npm:^18.3.3":
+  version: 18.3.3
+  resolution: "@types/react@npm:18.3.3"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10c0/fe455f805c5da13b89964c3d68060cebd43e73ec15001a68b34634604a78140e6fc202f3f61679b9d809dde6d7a7c2cb3ed51e0fd1462557911db09879b55114
+  languageName: node
+  linkType: hard
+
 "@types/responselike@npm:^1.0.0":
   version: 1.0.3
   resolution: "@types/responselike@npm:1.0.3"
@@ -5259,6 +5278,7 @@ __metadata:
   resolution: "drink_it@workspace:."
   dependencies:
     "@babel/core": "npm:^7.24.0"
+    "@babel/runtime": "npm:^7.24.8"
     "@expo-google-fonts/jaldi": "npm:^0.2.3"
     "@expo/ngrok": "npm:^4.1.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
@@ -5270,9 +5290,11 @@ __metadata:
     "@realm/react": "npm:^0.8.0"
     "@rneui/base": "npm:4.0.0-rc.7"
     "@rneui/themed": "npm:^4.0.0-rc.8"
+    "@types/react": "npm:^18.3.3"
     "@types/react-native-dotenv": "npm:^0.2.2"
     "@types/validator": "npm:^13"
     babel-plugin-module-resolver: "npm:^5.0.2"
+    dtrace-provider: "npm:^0.8.8"
     eas-cli: "npm:^9.1.0"
     expo: "npm:~51.0.11"
     expo-dev-client: "npm:~4.0.15"
@@ -5293,12 +5315,12 @@ __metadata:
     react-native-screens: "npm:^3.31.1"
     react-native-vector-icons: "npm:^10.1.0"
     realm: "npm:^12.11.1"
-    typescript: "npm:~5.3.3"
+    typescript: "npm:^5.5.3"
     validator: "npm:^13.12.0"
   languageName: unknown
   linkType: soft
 
-"dtrace-provider@npm:~0.8":
+"dtrace-provider@npm:^0.8.8, dtrace-provider@npm:~0.8":
   version: 0.8.8
   resolution: "dtrace-provider@npm:0.8.8"
   dependencies:
@@ -11579,23 +11601,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:~5.3.3":
-  version: 5.3.3
-  resolution: "typescript@npm:5.3.3"
+"typescript@npm:^5.5.3":
+  version: 5.5.3
+  resolution: "typescript@npm:5.5.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/e33cef99d82573624fc0f854a2980322714986bc35b9cb4d1ce736ed182aeab78e2cb32b385efa493b2a976ef52c53e20d6c6918312353a91850e2b76f1ea44f
+  checksum: 10c0/f52c71ccbc7080b034b9d3b72051d563601a4815bf3e39ded188e6ce60813f75dbedf11ad15dd4d32a12996a9ed8c7155b46c93a9b9c9bad1049766fe614bbdd
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A~5.3.3#optional!builtin<compat/typescript>":
-  version: 5.3.3
-  resolution: "typescript@patch:typescript@npm%3A5.3.3#optional!builtin<compat/typescript>::version=5.3.3&hash=e012d7"
+"typescript@patch:typescript@npm%3A^5.5.3#optional!builtin<compat/typescript>":
+  version: 5.5.3
+  resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/1d0a5f4ce496c42caa9a30e659c467c5686eae15d54b027ee7866744952547f1be1262f2d40de911618c242b510029d51d43ff605dba8fb740ec85ca2d3f9500
+  checksum: 10c0/911c7811d61f57f07df79c4a35f56a0f426a65426a020e5fcd792f66559f399017205f5f10255329ab5a3d8c2d1f1d19530aeceffda70758a521fae1d469432e
   languageName: node
   linkType: hard
 
