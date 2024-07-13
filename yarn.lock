@@ -5297,6 +5297,7 @@ __metadata:
     dtrace-provider: "npm:^0.8.8"
     eas-cli: "npm:^9.1.0"
     expo: "npm:~51.0.11"
+    expo-apple-authentication: "npm:^6.4.1"
     expo-dev-client: "npm:~4.0.15"
     expo-font: "npm:~12.0.7"
     expo-image: "npm:^1.12.11"
@@ -5787,6 +5788,15 @@ __metadata:
   version: 2.0.3
   resolution: "expand-template@npm:2.0.3"
   checksum: 10c0/1c9e7afe9acadf9d373301d27f6a47b34e89b3391b1ef38b7471d381812537ef2457e620ae7f819d2642ce9c43b189b3583813ec395e2938319abe356a9b2f51
+  languageName: node
+  linkType: hard
+
+"expo-apple-authentication@npm:^6.4.1":
+  version: 6.4.1
+  resolution: "expo-apple-authentication@npm:6.4.1"
+  peerDependencies:
+    expo: "*"
+  checksum: 10c0/0bc9bd96b6151b2819168f0d2f35f2406f61fb3ce6380f3a8734e3a8e0dd5dc432816395df52e62866487dfb81dc4b2fa7d48596a355b7acb53b2a2e4bc20a7e
   languageName: node
   linkType: hard
 
