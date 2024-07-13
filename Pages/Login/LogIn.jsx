@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { useEmailPasswordAuth, useAuth } from '@realm/react';
 import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-signin';
 import { GOOGLE_IOS_CLIENT_ID, GOOGLE_WEB_CLIENT_ID } from '@env';
-import Realm from 'realm';
+import * as AppleAuthentication from 'expo-apple-authentication';
 
 import styles from './styles';
 import SocialButton from '../../components/LogIn/SocialButton/SocialButton';
@@ -28,7 +28,7 @@ const LogIn = ({ navigation }) => {
     const [notMatch, setNotMatch] = useState(false);
 
     const { logIn, result } = useEmailPasswordAuth();
-    const { logInWithGoogle } = useAuth();
+    const { logInWithGoogle, logInWithApple } = useAuth();
 
     const onPressLogin = () => {
         if (!email || !password) {
@@ -41,9 +41,9 @@ const LogIn = ({ navigation }) => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
-            logInWithGoogle({ authCode: userInfo.serverAuthCode});
+            logInWithGoogle({ authCode: userInfo.serverAuthCode });
         } catch (error) {
-            console.log(error);
+            console.log("google error: ", error);
             if (isErrorWithCode(error)) {
                 switch (error.code) {
                     case statusCodes.SIGN_IN_CANCELLED:
@@ -65,7 +65,22 @@ const LogIn = ({ navigation }) => {
     };
 
     const onPressApple = async () => {
-        // logIn({ email, password });
+        try {
+            const credential = await AppleAuthentication.signInAsync({
+                requestedScopes: [
+                    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                ],
+            });
+            console.log("credential: ", credential);
+            logInWithApple(credential.identityToken);
+        } catch (error) {
+            console.log("apple error: ", error);
+            if (error.code === 'ERR_CANCELED') {
+                // handle that the user canceled the sign-in flow
+            } else {
+                // handle other errors
+            }
+        }
     };
 
     return (
@@ -90,6 +105,7 @@ const LogIn = ({ navigation }) => {
                         {/* Social Login */}
                         <View style={styles.socialContainer}>
                             <SocialButton name="google" onClick={onPressGoogle} />
+                            {/* follow apple guideline for creating custom button */}
                             <SocialButton name="apple" onClick={onPressApple} />
                         </View>
                         <View>
