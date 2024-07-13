@@ -64,7 +64,6 @@ const ImageComponent = memo(({ type, value, size = 30 }) => {
   }
 
   console.log(`Image rendered: ${type} ${value}`);
-  console.log(`Image rendered: ${source}`);
 
   return (
     <Image
