@@ -18,7 +18,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.sean5132.Drink-it"
+      "bundleIdentifier": "com.sean5132.Drink-it",
+      "usesAppleSignIn": true
     },
     "android": {
       "adaptiveIcon": {
@@ -37,6 +38,7 @@
     },
     "plugins": [
       "expo-font",
+      "expo-apple-authentication",
       [
         "@react-native-google-signin/google-signin",
         {
