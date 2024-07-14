@@ -28,6 +28,7 @@ module.exports = function (api) {
             "@components": "./components",
             "@pages": "./pages",
             "@assets": "./assets",
+            "^realm(.*)$": "./node_modules/realm/lib/browser$1",
           }
         }
       ]
