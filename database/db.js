@@ -1,6 +1,5 @@
 import { useRealm, useObject, useQuery } from '@realm/react';
 import Realm from 'realm';
-import { ObjectId } from 'bson';
 
 const db = {
     create: (realm, schemaName, object) => {
@@ -21,6 +20,15 @@ const db = {
             return result;
         } catch (err) {
             console.error('Error reading object:', err);
+        }
+    },
+
+    readAll: (realm, schemaName) => {
+        try {
+            const result = realm.objects(schemaName);
+            return result;
+        } catch (err) {
+            console.log('Error reading objects:', err);
         }
     },
 
