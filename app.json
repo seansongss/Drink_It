@@ -4,7 +4,6 @@
     "slug": "Drink_It",
     "runtimeVersion": "1.0.2",
     "version": "1.0.2",
-    "jsEngine": "hermes",
     "orientation": "portrait",
     "icon": "./assets/main-logo.png",
     "userInterfaceStyle": "light",

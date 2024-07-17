@@ -3,6 +3,7 @@ module.exports = function (api) {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
+      "@realm/babel-plugin",
       // react-native-dotenv
       [
         'module:react-native-dotenv',
@@ -28,7 +29,6 @@ module.exports = function (api) {
             "@components": "./components",
             "@pages": "./pages",
             "@assets": "./assets",
-            "^realm(.*)$": "./node_modules/realm/lib/browser$1",
           }
         }
       ]
