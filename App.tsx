@@ -1,4 +1,6 @@
+import 'expo-dev-client';
 import React from 'react';
+import { registerRootComponent } from 'expo';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -54,3 +56,5 @@ export default function App() {
         </AnimatedSplashScreen>
     );
 }
+
+registerRootComponent(App);
