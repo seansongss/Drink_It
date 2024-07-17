@@ -15,7 +15,7 @@ import RecipeModal from './RecipeModal';
 
 import styles from './styles';
 
-const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
+const AddRecord = ({ children, containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
     const { loadRecords } = useContext(RecordsContext);
     const scrollRef = useRef(null);
     const [addAlcoholList, setAddAlcoholList] = useState([
@@ -156,6 +156,7 @@ const AddRecord = ({ containerStyle, startTime, endTime, location, navigation, r
                 extraHeight={300}
                 extraScrollHeight={-70}
             >
+                {children}
                 {addAlcoholList.map((item, i) => (
                     <AlcoholUnit key={`${item.name}`} index={i} alcohol={item} changeUnitCount={changeUnitCount} />
                 ))}
