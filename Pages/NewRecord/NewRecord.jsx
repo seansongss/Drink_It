@@ -54,14 +54,6 @@ const NewRecord = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-            <RecordHeader
-                startTime={startTime}
-                setStartTime={setStartTime}
-                endTime={endTime}
-                setEndTime={setEndTime}
-                location={location}
-                setLocation={setLocation}
-            />
             <AddRecord
                 containerStyle={{ flex: 1 }}
                 startTime={startTime}
@@ -70,7 +62,16 @@ const NewRecord = ({ navigation }) => {
                 navigation={navigation}
                 recipeList={recipeList}
                 updateRecipeList={updateRecipeList}
-            />
+            >
+                <RecordHeader
+                    startTime={startTime}
+                    setStartTime={setStartTime}
+                    endTime={endTime}
+                    setEndTime={setEndTime}
+                    location={location}
+                    setLocation={setLocation}
+                />
+            </AddRecord>
         </View>
     );
 };
