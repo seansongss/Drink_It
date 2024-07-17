@@ -29,7 +29,7 @@ const DailyView = ({ navigation, route }) => {
                         endDate: 'No Entry',
                         addAlcoholList: [],
                         location: 'No Entry',
-                        feelings: { before: 3, during: 3, after: 3 },
+                        feelings: { Before: 3, During: 3, After: 3 },
                         memo: 'No entry for the selected date.',
                     });
                 }
@@ -127,9 +127,9 @@ const DailyView = ({ navigation, route }) => {
                         <Text style={styles.text}> {record.location}</Text>
                     </View>
                     <View style={styles.dailyViewFeeling}>
-                        <Feeling name='Before' feelingValue={record.feelings.before} />
-                        <Feeling name='During' feelingValue={record.feelings.during} />
-                        <Feeling name='After' feelingValue={record.feelings.after} />
+                        <Feeling name='Before' feelingValue={record.feelings['Before']} />
+                        <Feeling name='During' feelingValue={record.feelings['During']} />
+                        <Feeling name='After' feelingValue={record.feelings['After']} />
                     </View>
                     <View style={styles.dailyViewNote}>
                         <View style={styles.dailyViewNoteHeader}>
