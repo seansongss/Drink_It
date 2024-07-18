@@ -15,7 +15,7 @@ import RecipeModal from './RecipeModal';
 
 import styles from './styles';
 
-const AddRecord = ({ children, containerStyle, startTime, endTime, location, navigation, recipeList, updateRecipeList }) => {
+const AddRecord = ({ children, containerStyle, startTime, endTime, location, navigation, recipeTests }) => {
     const { loadRecords } = useContext(RecordsContext);
     const scrollRef = useRef(null);
     const [addAlcoholList, setAddAlcoholList] = useState([
@@ -190,9 +190,8 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
             <RecipeModal
                 modalVisible={modalVisible}
                 setModalVisible={setModalVisible}
-                recipeList={recipeList}
                 addNewUnit={addNewUnit}
-                updateRecipeList={updateRecipeList}
+                recipeTests={recipeTests}
             />
         </View>
     );
