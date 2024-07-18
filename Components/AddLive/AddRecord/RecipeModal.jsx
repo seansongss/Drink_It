@@ -9,9 +9,8 @@ import { Dropdown } from 'react-native-element-dropdown';
 import ImageComponent from '../../utils/ImageComponent';
 
 import modalStyles from './modalStyles';
-import { useQuery } from '@realm/react';
 
-const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, updateRecipeList }) => {
+const RecipeModal = ({ modalVisible, setModalVisible, addNewUnit, recipeTests }) => {
     const [actionTriggered, setActionTriggered] = useState('SELECT_RECIPE');
     const [newRecipe, setNewRecipe] = useState({
         icon: 'soju',
@@ -20,36 +19,26 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
         description: ''
     });
 
-    const handleAddNewRecipe = () => {
-        if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
-            Alert.alert("Error", "Please fill out all fields.");
-            return;
-        }
+    // const handleAddNewRecipe = () => {
+    //     if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
+    //         Alert.alert("Error", "Please fill out all fields.");
+    //         return;
+    //     }
 
-        if (recipeList[newRecipe.name]) {
-            Alert.alert("Error", "Recipe exists.");
-        }
+    //     if (recipeList[newRecipe.name]) {
+    //         Alert.alert("Error", "Recipe exists.");
+    //     }
 
-        const newRecipeObj = {
-            icon: newRecipe.icon,
-            alcohol: parseFloat(newRecipe.alcohol),
-            description: newRecipe.description,
-        };
-        const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
-        updateRecipeList(updatedRecipeList);
-        setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
-        setActionTriggered('SELECT_RECIPE');
-    };
-
-    const alcoholOptions = [
-        { label: 'Soju', value: 'soju' },
-        { label: 'Beer', value: 'beer' },
-        { label: 'Wine', value: 'wine' },
-        { label: 'Vodka', value: 'vodka' },
-    ];
-
-    const recipeTests = useQuery('recipeTest');
-    console.log('recipeTests:', recipeTests);
+    //     const newRecipeObj = {
+    //         icon: newRecipe.icon,
+    //         alcohol: parseFloat(newRecipe.alcohol),
+    //         description: newRecipe.description,
+    //     };
+    //     const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
+    //     updateRecipeList(updatedRecipeList);
+    //     setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
+    //     setActionTriggered('SELECT_RECIPE');
+    // };
 
     return (
         <Modal
@@ -63,26 +52,8 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
                     <View style={[modalStyles.modalView, { width: '90%', height: '70%' }]}>
                         {actionTriggered === 'SELECT_RECIPE' ? (
                             <View style={{ width: '100%', height: '100%' }}>
-                                <Text style={[modalStyles.text, modalStyles.modalText]}>Select a Recipe</Text>
+                                <Text style={[modalStyles.text, modalStyles.modalText]}>Add a Recipe</Text>
                                 <ScrollView>
-                                    {/* {Object.keys(recipeList).map((recipeName, index) => (
-                                        <View key={index} style={modalStyles.recipeContainer}>
-                                            <ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
-                                            <View style={modalStyles.recipeDetails}>
-                                                <Text>{recipeName}</Text>
-                                                <Text>{recipeList[recipeName].alcohol}%</Text>
-                                            </View>
-                                            <TouchableOpacity
-                                                style={modalStyles.addButton}
-                                                onPress={() => {
-                                                    addNewUnit(recipeName);
-                                                    setModalVisible(false);
-                                                }}
-                                            >
-                                                <Text style={modalStyles.addButtonText}>Add</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    ))} */}
                                     {recipeTests.map((recipe, index) => (
                                         <View key={index} style={modalStyles.recipeContainer}>
                                             <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
@@ -117,7 +88,7 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
                             </View>
                         ) : (
                             <View style={{ width: '100%', height: '100%' }}>
-                                <Text style={[modalStyles.text, modalStyles.modalText]}>Add New Recipe</Text>
+                                <Text style={[modalStyles.text, modalStyles.modalText]}>Create New Recipe</Text>
                                 <ScrollView style={{ paddingHorizontal: 5 }}>
                                     <View style={modalStyles.itemContainer}>
                                         <Text style={modalStyles.text}>Name</Text>
