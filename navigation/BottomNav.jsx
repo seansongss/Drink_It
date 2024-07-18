@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { createElement, useEffect, useState } from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,25 +25,25 @@ const BottomNav = () => {
                 _id: new Realm.BSON.ObjectId(),
                 alcohol: 17,
                 description: 'A test recipe with alcohol',
-                recipeName: 'chamisul',
+                recipeName: 'cheongha',
                 recipeType: 'soju',
                 createdAt: new Date(),
                 creator: user.id,
             });
-            realm.create('recipeTest', {
-                _id: new Realm.BSON.ObjectId(),
-                alcohol: 5.5,
-                description: 'A test recipe with alcohol',
-                recipeName: 'cass',
-                recipeType: 'beer',
-                createdAt: new Date(),
-                creator: user.id,
-            });
+            // realm.create('recipeTest', {
+            //     _id: new Realm.BSON.ObjectId(),
+            //     alcohol: 5.5,
+            //     description: 'A test recipe with alcohol',
+            //     recipeName: 'hite',
+            //     recipeType: 'beer',
+            //     createdAt: new Date(),
+            //     creator: user.id,
+            // });
             realm.create('recipeTest', {
                 _id: new Realm.BSON.ObjectId(),
                 alcohol: 23,
                 description: 'A test recipe with alcohol',
-                recipeName: 'hite',
+                recipeName: 'vodka1',
                 recipeType: 'vodka',
                 createdAt: new Date(),
                 creator: user.id,
@@ -52,15 +52,15 @@ const BottomNav = () => {
     };
     const inset = useSafeAreaInsets();
 
-    useEffect(() => {
-        const subscribe = async () => {
-            await realm.subscriptions.update((mutableSubs) => {
-                mutableSubs.add(realm.objects('recipeTest'), { name: 'allRecipes' });
-            });
-            setSubscriptionReady(true);
-        };
-        subscribe().catch(console.error);
-    }, [realm]);
+    // useEffect(() => {
+    //     const subscribe = async () => {
+    //         await realm.subscriptions.update((mutableSubs) => {
+    //             mutableSubs.add(realm.objects('recipeTest'), { name: 'allRecipes' });
+    //         });
+    //         setSubscriptionReady(true);
+    //     };
+    //     subscribe().catch(console.error);
+    // }, [realm]);
 
     // useEffect(() => {
     //     if (isSubscriptionReady) {
