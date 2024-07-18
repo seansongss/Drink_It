@@ -22,3 +22,19 @@ export const user_preferenceSchema = {
         preferRegion: 'string?',
     },
 };
+
+export const recipeTestSchema = {
+    name: 'recipeTest',
+    properties: {
+        _id: 'objectId',
+        alcohol: 'double',
+        createdAt: 'date',
+        creator: 'string',
+        description: 'string?',
+        modifiedAt: 'date?',
+        recipeName: 'string',
+        recipeType: 'string',
+    },
+    primaryKey: '_id',
+};
+

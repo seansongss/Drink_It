@@ -14,3 +14,14 @@ export type user_preference = {
   preferLanguage?: string;
   preferRegion?: string;
 };
+
+export type recipeTest = {
+  _id: Realm.BSON.ObjectId;
+  alcohol: number;
+  createdAt: Date;
+  creator: string;
+  description?: string;
+  modifiedAt?: Date;
+  recipeName: string;
+  recipeType: string;
+};
