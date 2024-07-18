@@ -9,6 +9,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 import ImageComponent from '../../utils/ImageComponent';
 
 import modalStyles from './modalStyles';
+import { useQuery } from '@realm/react';
 
 const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, updateRecipeList }) => {
     const [actionTriggered, setActionTriggered] = useState('SELECT_RECIPE');
@@ -47,6 +48,9 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
         { label: 'Vodka', value: 'vodka' },
     ];
 
+    const recipeTests = useQuery('recipeTest');
+    console.log('recipeTests:', recipeTests);
+
     return (
         <Modal
             animationType="slide"
@@ -61,7 +65,7 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
                             <View style={{ width: '100%', height: '100%' }}>
                                 <Text style={[modalStyles.text, modalStyles.modalText]}>Select a Recipe</Text>
                                 <ScrollView>
-                                    {Object.keys(recipeList).map((recipeName, index) => (
+                                    {/* {Object.keys(recipeList).map((recipeName, index) => (
                                         <View key={index} style={modalStyles.recipeContainer}>
                                             <ImageComponent type={'alcohol'} value={recipeList[recipeName].icon} size={30} />
                                             <View style={modalStyles.recipeDetails}>
@@ -72,6 +76,24 @@ const RecipeModal = ({ modalVisible, setModalVisible, recipeList, addNewUnit, up
                                                 style={modalStyles.addButton}
                                                 onPress={() => {
                                                     addNewUnit(recipeName);
+                                                    setModalVisible(false);
+                                                }}
+                                            >
+                                                <Text style={modalStyles.addButtonText}>Add</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    ))} */}
+                                    {recipeTests.map((recipe, index) => (
+                                        <View key={index} style={modalStyles.recipeContainer}>
+                                            <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
+                                            <View style={modalStyles.recipeDetails}>
+                                                <Text>{recipe.recipeName}</Text>
+                                                <Text>{recipe.alcohol}%</Text>
+                                            </View>
+                                            <TouchableOpacity
+                                                style={modalStyles.addButton}
+                                                onPress={() => {
+                                                    addNewUnit(recipe.recipeName);
                                                     setModalVisible(false);
                                                 }}
                                             >

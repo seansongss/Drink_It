@@ -6,14 +6,25 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { REALM_CONFIG } from '../realm.config';
 import BottomNav from '../navigation/BottomNav';
 import AuthStack from '../navigation/AuthStack';
-
+import { recipeTestSchema } from 'models/schemas';
+import { recipeTest } from 'models/models';
 
 const AppWrapperSync = () => {
     return (
         <NavigationContainer>
             <AppProvider id={REALM_CONFIG.appId}>
                 <UserProvider fallback={AuthStack}>
-                    <RealmProvider>
+                    <RealmProvider
+                        schema={[recipeTestSchema]}
+                        sync={{
+                            flexible: true,
+                            initialSubscriptions: {
+                                update(subs, realm) {
+                                    subs.add(realm.objects('recipeTest'), { name: 'allRecipes' });
+                                },
+                            },
+                        }}
+                    >
                         <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
                             <BottomNav />
                         </SafeAreaProvider>
