@@ -30,24 +30,6 @@ const BottomNav = () => {
                 createdAt: new Date(),
                 creator: user.id,
             });
-            // realm.create('recipeTest', {
-            //     _id: new Realm.BSON.ObjectId(),
-            //     alcohol: 5.5,
-            //     description: 'A test recipe with alcohol',
-            //     recipeName: 'hite',
-            //     recipeType: 'beer',
-            //     createdAt: new Date(),
-            //     creator: user.id,
-            // });
-            realm.create('recipeTest', {
-                _id: new Realm.BSON.ObjectId(),
-                alcohol: 23,
-                description: 'A test recipe with alcohol',
-                recipeName: 'vodka1',
-                recipeType: 'vodka',
-                createdAt: new Date(),
-                creator: user.id,
-            });
         });
     };
     const inset = useSafeAreaInsets();
