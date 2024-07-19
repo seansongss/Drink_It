@@ -25,7 +25,7 @@ const BottomNav = () => {
                 _id: new Realm.BSON.ObjectId(),
                 alcohol: 17,
                 description: 'A test recipe with alcohol',
-                recipeName: 'cheongha',
+                recipeName: 'cheoumcheoum',
                 recipeType: 'soju',
                 createdAt: new Date(),
                 creator: user.id,
@@ -50,6 +50,7 @@ const BottomNav = () => {
     //         console.log('RecipeTest created');
     //     }
     // }, [isSubscriptionReady]);
+    // createRecipeTest();
     return (
         <RecordsProvider>
             <Tab.Navigator
