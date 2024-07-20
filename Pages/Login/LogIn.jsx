@@ -1,7 +1,7 @@
 import {
     View, ImageBackground, StyleSheet, SafeAreaView, TouchableWithoutFeedback,
     TouchableOpacity, TextInput, Alert, Keyboard, Platform,
-    ActivityIndicator, StatusBar, KeyboardAvoidingView, Image
+    ActivityIndicator, StatusBar, KeyboardAvoidingView, Image,
 } from 'react-native';
 import { Text, Divider, useTheme, Button } from '@rneui/themed';
 import React, { useState } from 'react';
@@ -44,23 +44,7 @@ const LogIn = ({ navigation }) => {
             logInWithGoogle({ authCode: userInfo.serverAuthCode });
         } catch (error) {
             console.log("google error: ", error);
-            if (isErrorWithCode(error)) {
-                switch (error.code) {
-                    case statusCodes.SIGN_IN_CANCELLED:
-                        // user cancelled the login flow
-                        break;
-                    case statusCodes.IN_PROGRESS:
-                        // operation (eg. sign in) already in progress
-                        break;
-                    case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
-                        // play services not available or outdated
-                        break;
-                    default:
-                    // some other error happened
-                }
-            } else {
-                // an error that's not related to google sign in occurred
-            }
+            Alert.alert('Google Sign-In Error', error.message);
         }
     };
 

@@ -34,22 +34,6 @@ const BottomNav = () => {
     };
     const inset = useSafeAreaInsets();
 
-    // useEffect(() => {
-    //     const subscribe = async () => {
-    //         await realm.subscriptions.update((mutableSubs) => {
-    //             mutableSubs.add(realm.objects('recipeTest'), { name: 'allRecipes' });
-    //         });
-    //         setSubscriptionReady(true);
-    //     };
-    //     subscribe().catch(console.error);
-    // }, [realm]);
-
-    // useEffect(() => {
-    //     if (isSubscriptionReady) {
-    //         createRecipeTest();
-    //         console.log('RecipeTest created');
-    //     }
-    // }, [isSubscriptionReady]);
     // createRecipeTest();
     return (
         <RecordsProvider>

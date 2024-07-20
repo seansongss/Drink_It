@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 import * as SplashScreen from 'expo-splash-screen';
 
 function AnimatedSplashScreen({ children }) {
-    const image = require("../assets/main-logo.png");
+    const image = require("@assets/main-logo.png");
     const animation = useMemo(() => new Animated.Value(1), []);
     const [isAppReady, setAppReady] = useState(false);
     const [isSplashAnimationComplete, setAnimationComplete] = useState(false);
