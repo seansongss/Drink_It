@@ -42,18 +42,7 @@ export default function App() {
 
     return (
         <AnimatedSplashScreen>
-            {
-                REALM_CONFIG.enabled ? (
-                    <AppWrapperSync />
-                ) : (
-                    <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-                        <NavigationContainer>
-                            <BottomNav />
-                            {/* <LogIn /> */}
-                        </NavigationContainer>
-                    </SafeAreaProvider>
-                )
-            }
+            <AppWrapperSync />
         </AnimatedSplashScreen>
     );
 }
