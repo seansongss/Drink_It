@@ -2,18 +2,12 @@ import 'expo-dev-client';
 import 'react-native-get-random-values'
 import React from 'react';
 import { registerRootComponent } from 'expo';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ActivityIndicator, View } from 'react-native';
 
-import { REALM_CONFIG } from './realm.config';
 import AnimatedSplashScreen from './pages/AnimatedSplashScreen';
 import AppWrapperSync from './pages/AppWrapperSync';
-import BottomNav from './navigation/BottomNav';
-import LogIn from './pages/LogIn/LogIn';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
