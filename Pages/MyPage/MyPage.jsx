@@ -3,8 +3,8 @@ import { View, Image, TouchableOpacity, Alert } from "react-native";
 import { Icon } from "@rneui/base";
 import { useUser } from "@realm/react";
 
-import UserProfile from "../../components/MyPage/UserProfile/UserProfile";
-import Stat_card from "./Stat_card";
+import UserProfile from "@components/MyPage/UserProfile/UserProfile";
+import Stat_card from "@components/My_page_view/Stat_card";
 
 import styles from "./styles";
 
