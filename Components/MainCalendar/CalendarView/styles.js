@@ -6,11 +6,6 @@ const styles = StyleSheet.create({
     calendarViewContainer: {
         flex: 2.5,
     },
-    calendar: {
-        flex: 1,
-        marginHorizontal: 20,
-        backgroundColor: 'yellow',
-    },
     monthRow: {
         flex: 1,
         flexDirection: 'row',
