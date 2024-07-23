@@ -3,34 +3,29 @@ import { Avatar, Icon } from "@rneui/base";
 import { LinearProgress } from "@rneui/themed";
 
 import styles from "./styles";
+import ImageComponent from "@components/utils/ImageComponent";
 
 const UserProfile = ({ username, exp }) => {
     return (
-        <View style={styles.profile}>
-            <View style={styles.profile_box}>
-                <View style={styles.profie_info}>
-                    <Text style={styles.nickname_text}>{username}</Text>
-                    <LinearProgress
-                        value={exp}
-                        color="#FFFAE0"
-                        style={{
-                            height: 12,
-                            borderRadius: 8,
-                            borderColor: "#FFFAE0",
-                            borderWidth: 1,
-                        }}
-                    />
-                </View>
-                <View style={styles.profie_info}>
-                    <TouchableOpacity style={styles.button}>
-                        <Icon name="settings" color="white" />
-                    </TouchableOpacity>
-                </View>
+        <View style={styles.profileContainer}>
+            <View style={styles.avatarWrapper}>
+                <ImageComponent
+                    type="badge"
+                    value="whale"
+                    size={50}
+                />
             </View>
-            <View style={styles.avatar_circle}>
-                <Image
-                    source={require("@assets/badge/whale.png")}
-                    style={{ width: 50, height: 50, margin: 10 }}
+            <View style={styles.profileWrapper}>
+                <Text style={styles.text}>{username}</Text>
+                <LinearProgress
+                    value={exp}
+                    color="#FFFAE0"
+                    style={{
+                        height: 12,
+                        borderRadius: 8,
+                        borderColor: "#FFFAE0",
+                        borderWidth: 1,
+                    }}
                 />
             </View>
         </View>
