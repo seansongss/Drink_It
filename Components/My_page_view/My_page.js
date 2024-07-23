@@ -63,7 +63,7 @@ const StatBox = () => {
         <View style={styles.statBox}>
             <View style={styles.statTop}>
                 <Image
-                    source={require("../../assets/my_page/stat.png")}
+                    source={require("@assets/my_page/stat.png")}
                     style={{ width: 60, height: 45 }}
                     resizeMode="stretch"
                 />
