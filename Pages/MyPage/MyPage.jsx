@@ -39,7 +39,7 @@ const UserBox = () => {
                     >
                         <Image
                             style={styles.button}
-                            source={require("../../assets/my_page/my_favorites.png")}
+                            source={require("@assets/my_page/my_favorites.png")}
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -48,7 +48,7 @@ const UserBox = () => {
                     >
                         <Image
                             style={styles.button}
-                            source={require("../../assets/my_page/my_combinations.png")}
+                            source={require("@assets/my_page/my_combinations.png")}
                         />
                     </TouchableOpacity>
                 </View>
@@ -63,7 +63,7 @@ const StatBox = () => {
         <View style={styles.statBox}>
             <View style={styles.statTop}>
                 <Image
-                    source={require("../../assets/my_page/stat.png")}
+                    source={require("@assets/my_page/stat.png")}
                     style={{ width: 60, height: 45 }}
                     resizeMode="stretch"
                 />
@@ -81,7 +81,7 @@ const StatBox = () => {
 const MyPage = () => {
     return (
         <View style={styles.container}>
-            <UserBox />
+            <UserProfile username={'d'} exp={0.3} />
             <StatBox />
         </View>
     );
