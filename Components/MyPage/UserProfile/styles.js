@@ -1,42 +1,35 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-    profile: {
+    profileContainer: {
         flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    nickname_text: {
-        fontFamily: "Jaldi-bold",
-        color: "white",
-        fontSize: 15,
+    avatarWrapper: {
+        zIndex: 10,
+        right: -15,
+        width: 75,
+        height: 75,
+        borderRadius: 75,
+        backgroundColor: "#FFFAE0",
+        justifyContent: "center",
+        alignItems: "center",
     },
-    profile_box: {
-        position: "absolute",
-        left: 30,
-        top: -45,
+    profileWrapper: {
         height: 60,
-        marginVertical: 10,
-        paddingLeft: 50,
-        paddingRight: 10,
-        flexDirection: "row",
+        justifyContent: "center",
+        paddingHorizontal: 30,
         backgroundColor: "#587A83",
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
     },
-    profie_info: {
-        justifyContent: "center",
-    },
-    button: {
-        marginTop: 5,
-        width: 30,
-        height: 30,
-    },
-    avatar_circle: {
-        borderRadius: 200,
-        backgroundColor: "#FFFAE0",
-        position: "absolute",
-        left: 5,
-        top: -40,
-    },
+    text: {
+        color: "black",
+        fontSize: 20,
+        fontFamily: "Jaldi_700Bold",
+        marginLeft: 10,
+    }
 });
 
 export default styles;
