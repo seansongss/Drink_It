@@ -12,6 +12,7 @@ import AddLive from '../pages/AddLive/AddLive';
 import My_page from '../components/My_page_view/My_page';
 import { RecordsProvider } from '../components/Context/RecordsContext';
 import CalendarViewStack from './CalendarViewStack';
+import MyPage from '@pages/MyPage/MyPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -67,7 +68,7 @@ const BottomNav = () => {
                 />
                 <Tab.Screen
                     name="My_page"
-                    component={My_page}
+                    component={MyPage}
                     options={{
                         tabBarIcon: ({ color }) => (
                             <Ionicons name="person" size={45} color={color} />
