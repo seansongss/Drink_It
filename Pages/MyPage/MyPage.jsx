@@ -79,10 +79,30 @@ const StatBox = () => {
 };
 
 const MyPage = () => {
+    const user = useUser();
+
+    const logOutButton = () => {
+        Alert.alert('Logout', 'Are you sure you want to log out?', [
+            {
+                text: 'No',
+                onPress: () => console.log('Cancel Pressed'),
+                style: 'cancel',
+            },
+            {
+                text: 'Yes',
+                onPress: () => user.logOut(),
+                style: 'destructive'
+            },
+        ]);
+    };
+
     return (
         <View style={styles.container}>
-            <UserProfile username={'d'} exp={0.3} />
-            <TouchableOpacity>
+            <UserProfile username={user.customData.username} exp={0.3} />
+            <TouchableOpacity
+                style={styles.settingsButton}
+                onPress={logOutButton}
+            >
                 <Icon name="settings" color="white" size={50} />
             </TouchableOpacity>
             <StatBox />
