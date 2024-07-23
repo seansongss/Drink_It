@@ -29,7 +29,7 @@ const UserProfile = ({ username, exp }) => {
             </View>
             <View style={styles.avatar_circle}>
                 <Image
-                    source={require("../../assets/badge/whale.png")}
+                    source={require("@assets/badge/whale.png")}
                     style={{ width: 50, height: 50, margin: 10 }}
                 />
             </View>
