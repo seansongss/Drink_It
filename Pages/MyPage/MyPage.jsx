@@ -82,6 +82,9 @@ const MyPage = () => {
     return (
         <View style={styles.container}>
             <UserProfile username={'d'} exp={0.3} />
+            <TouchableOpacity>
+                <Icon name="settings" color="white" size={50} />
+            </TouchableOpacity>
             <StatBox />
         </View>
     );
