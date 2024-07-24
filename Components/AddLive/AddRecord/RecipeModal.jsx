@@ -23,10 +23,10 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
     });
 
     const alcoholOptions = [
-        {label: 'Soju', value: 'soju'},
-        {label: 'Beer', value: 'beer'},
-        {label: 'Wine', value: 'wine'},
-        {label: 'Vodka', value: 'vodka'},
+        { label: 'Soju', value: 'soju' },
+        { label: 'Beer', value: 'beer' },
+        { label: 'Wine', value: 'wine' },
+        { label: 'Vodka', value: 'vodka' },
     ]
 
     const handleAddNewRecipe = () => {
@@ -70,39 +70,20 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                         {actionTriggered === 'SELECT_RECIPE' ? (
                             <View style={{ width: '100%', height: '100%' }}>
                                 <Text style={[modalStyles.text, modalStyles.modalText]}>Add a Recipe</Text>
-                                {/* <ScrollView>
-                                    {recipeTests.map((recipe, index) => (
-                                        <View key={index} style={modalStyles.recipeContainer}>
-                                            <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
-                                            <View style={modalStyles.recipeDetails}>
-                                                <Text>{recipe.recipeName}</Text>
-                                                <Text>{recipe.alcohol}%</Text>
-                                            </View>
-                                            <TouchableOpacity
-                                                style={modalStyles.addButton}
-                                                onPress={() => {
-                                                    addNewUnit(recipe.recipeName);
-                                                    setModalVisible(false);
-                                                }}
-                                            >
-                                                <Text style={modalStyles.addButtonText}>Add</Text>
-                                            </TouchableOpacity>
-                                        </View>
-                                    ))}
-                                </ScrollView> */}
                                 <FlatList
                                     data={recipeTests}
-                                    renderItem={({recipe}) => (
-                                        <View key={recipe.id} style={modalStyles.recipeContainer}>
-                                            <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
+                                    keyExtractor={(item) => item._id.toString()}
+                                    renderItem={({ item }) => (
+                                        <View key={item._id} style={modalStyles.recipeContainer}>
+                                            <ImageComponent type={'alcohol'} value={item.recipeType} size={30} />
                                             <View style={modalStyles.recipeDetails}>
-                                                <Text>{recipe.recipeName}</Text>
-                                                <Text>{recipe.alcohol}%</Text>
+                                                <Text>{item.recipeName}</Text>
+                                                <Text>{item.alcohol}%</Text>
                                             </View>
                                             <TouchableOpacity
                                                 style={modalStyles.addButton}
                                                 onPress={() => {
-                                                    addNewUnit(recipe.recipeName, recipe.recipeType);
+                                                    addNewUnit(item.recipeName, item.recipeType);
                                                     setModalVisible(false);
                                                 }}
                                             >
@@ -149,7 +130,9 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                                                 setNewRecipe({ ...newRecipe, icon: item.value });
                                             }}
                                             renderLeftIcon={() => (
-                                                <ImageComponent type={'alcohol'} value={newRecipe.icon} size={20} />
+                                                <View style={{ marginHorizontal: 7 }}>
+                                                    <ImageComponent type={'alcohol'} value={newRecipe.icon} size={25} />
+                                                </View>
                                             )}
                                             renderItem={item => (
                                                 <View style={modalStyles.dropdownItem}>

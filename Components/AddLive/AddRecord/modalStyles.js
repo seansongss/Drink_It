@@ -30,10 +30,10 @@ const modalStyles = StyleSheet.create({
 	},
 	recipeContainer: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
 		alignItems: 'center',
-		width: '100%',
+		// width: '100%',
 		padding: 10,
+		// marginHorizontal: 10,
         borderWidth: 2,
         borderRadius: 15,
         borderColor: '#c1dfb0',
