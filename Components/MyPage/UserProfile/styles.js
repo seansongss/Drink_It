@@ -9,8 +9,8 @@ const styles = StyleSheet.create({
     avatarWrapper: {
         zIndex: 10,
         right: -15,
-        width: 75,
-        height: 75,
+        width: 70,
+        height: 70,
         borderRadius: 75,
         backgroundColor: "#FFFAE0",
         justifyContent: "center",

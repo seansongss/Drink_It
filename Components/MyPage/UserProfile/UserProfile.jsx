@@ -12,7 +12,7 @@ const UserProfile = ({ username, exp }) => {
                 <ImageComponent
                     type="badge"
                     value="whale"
-                    size={50}
+                    size={45}
                 />
             </View>
             <View style={styles.profileWrapper}>
