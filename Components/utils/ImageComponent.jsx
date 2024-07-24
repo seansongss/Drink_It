@@ -1,4 +1,4 @@
-import React, { useMemo, memo } from 'react';
+import React, { memo } from 'react';
 import { Image } from 'expo-image';
 
 export const getImage = (type, value) => {
@@ -79,6 +79,6 @@ const ImageComponent = memo(({ style, type, value, size = 30 }) => {
       contentFit="contain"
     />
   );
-}, (prevProps, nextProps) => prevProps.value === nextProps.value && prevProps.size === nextProps.size);
+}, (prevProps, nextProps) => prevProps.type === nextProps.type && prevProps.value === nextProps.value && prevProps.size === nextProps.size);
 
 export default ImageComponent;
