@@ -4,13 +4,15 @@ import {
     TextInput, TouchableWithoutFeedback, Keyboard, Alert
 } from 'react-native';
 import { Icon } from "@rneui/base";
+import { Realm } from 'realm';
+import { useRealm } from '@realm/react';
 import { Dropdown } from 'react-native-element-dropdown';
 
-import ImageComponent from '../../utils/ImageComponent';
+import ImageComponent from '@components/utils/ImageComponent';
 
 import modalStyles from './modalStyles';
 
-const RecipeModal = ({ modalVisible, setModalVisible, addNewUnit, recipeTests }) => {
+const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, recipeTests }) => {
     const [actionTriggered, setActionTriggered] = useState('SELECT_RECIPE');
     const [newRecipe, setNewRecipe] = useState({
         icon: 'soju',
@@ -19,26 +21,33 @@ const RecipeModal = ({ modalVisible, setModalVisible, addNewUnit, recipeTests })
         description: ''
     });
 
-    // const handleAddNewRecipe = () => {
-    //     if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
-    //         Alert.alert("Error", "Please fill out all fields.");
-    //         return;
-    //     }
+    const handleAddNewRecipe = () => {
+        if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
+            Alert.alert("Error", "Please fill out all fields.");
+            return;
+        }
 
-    //     if (recipeList[newRecipe.name]) {
-    //         Alert.alert("Error", "Recipe exists.");
-    //     }
+        const recipeExists = recipeTests.some(recipe => recipe.recipeName === newRecipe.name);
+        if (recipeExists) {
+            Alert.alert("Error", "Recipe exists.");
+            return;
+        }
 
-    //     const newRecipeObj = {
-    //         icon: newRecipe.icon,
-    //         alcohol: parseFloat(newRecipe.alcohol),
-    //         description: newRecipe.description,
-    //     };
-    //     const updatedRecipeList = { ...recipeList, [newRecipe.name]: newRecipeObj };
-    //     updateRecipeList(updatedRecipeList);
-    //     setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
-    //     setActionTriggered('SELECT_RECIPE');
-    // };
+        realm.write(() => {
+            realm.create('recipeTest', {
+                _id: new Realm.BSON.ObjectId(),
+                recipeName: newRecipe.name,
+                recipeType: newRecipe.icon,
+                alcohol: parseFloat(newRecipe.alcohol),
+                description: newRecipe.description,
+                createdAt: new Date(),
+                creator: user.id,
+            });
+        });
+
+        setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
+        setActionTriggered('SELECT_RECIPE');
+    };
 
     return (
         <Modal
