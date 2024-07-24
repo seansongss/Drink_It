@@ -3,6 +3,7 @@
     "name": "Drink It",
     "slug": "Drink_It",
     "runtimeVersion": "1.0.2",
+    "scheme": "DrinkIt",
     "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/main-logo.png",
