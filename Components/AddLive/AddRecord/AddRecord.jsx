@@ -19,8 +19,8 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
     const { loadRecords } = useContext(RecordsContext);
     const scrollRef = useRef(null);
     const [addAlcoholList, setAddAlcoholList] = useState([
-        { name: 'soju', icon: 'soju', count: 0 },
-        { name: 'beer', icon: 'beer', count: 0 }
+        { name: recipeTests[0].recipeName, icon: recipeTests[0].recipeType, count: 0 },
+        { name: recipeTests[1].recipeName, icon: recipeTests[1].recipeType, count: 0 },
     ]);
     const [modalVisible, setModalVisible] = useState(false);
     const [feelings, setFeelings] = useState({
