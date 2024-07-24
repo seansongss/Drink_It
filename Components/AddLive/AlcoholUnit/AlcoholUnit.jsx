@@ -1,16 +1,43 @@
 import { memo } from 'react';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { Icon, ListItem } from "@rneui/base";
+import { View, TouchableOpacity, Text, Alert } from 'react-native';
+import { Button, Icon, ListItem } from "@rneui/base";
 
 import ImageComponent from '../../utils/ImageComponent';
 
 import styles from './styles';
 
-const AlcoholUnit = memo(({ alcohol, index, changeUnitCount }) => {
+const AlcoholUnit = memo(({ alcohol, index, changeUnitCount, setAddAlcoholList }) => {
     // console.log('AlcoholUnit rendered for', alcohol.name, 'count:', alcohol.count);
+    const onDelete = () => {
+        Alert.alert(`Delete ${alcohol.name}`, 'Are you sure you want to delete this?', [
+            {
+                text: 'Cancel',
+                style: 'cancel'
+            },
+            {
+                text: 'Delete',
+                onPress: () => {
+                    setAddAlcoholList((prev) => [...prev.slice(0, index), ...prev.slice(index + 1)]);
+                },
+                style: 'destructive'
+            },
+        ]);
+    };
+        
     return (
-        <ListItem.Swipeable>
-            <View style={styles.addUnitContainer}>
+        <ListItem.Swipeable
+            rightContent={() => (
+                <Button
+                    onPress={onDelete}
+                    icon={{ name: 'delete', color: 'white' }}
+                    buttonStyle={{ backgroundColor: 'red' }}
+                />
+            )}
+            containerStyle={styles.addUnitContainer}
+            rightStyle={styles.deleteContainer}
+            rightWidth={75}
+            minSlideWidth={50}
+        >
                 <TouchableOpacity onPress={() => changeUnitCount(index, -1)}>
                     <Icon name="remove" color={"#c1dfb0"} size={50} />
                 </TouchableOpacity>
@@ -22,7 +49,6 @@ const AlcoholUnit = memo(({ alcohol, index, changeUnitCount }) => {
                 <TouchableOpacity onPress={() => changeUnitCount(index, 1)}>
                     <Icon name="add" color={"#c1dfb0"} size={50} />
                 </TouchableOpacity>
-            </View>
         </ListItem.Swipeable>
     );
 });
