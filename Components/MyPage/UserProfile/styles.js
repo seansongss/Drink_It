@@ -3,8 +3,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     profileContainer: {
         flexDirection: "row",
-        justifyContent: "center",
         alignItems: "center",
+        // borderWidth: 1,
     },
     avatarWrapper: {
         zIndex: 10,
@@ -18,17 +18,17 @@ const styles = StyleSheet.create({
     },
     profileWrapper: {
         height: 60,
-        justifyContent: "center",
-        paddingHorizontal: 30,
+        justifyContent: "space-evenly",
+        paddingHorizontal: 20,
+        paddingVertical: 10,
         backgroundColor: "#587A83",
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
     },
     text: {
         color: "black",
-        fontSize: 20,
+        fontSize: 15,
         fontFamily: "Jaldi_700Bold",
-        marginLeft: 10,
     }
 });
 

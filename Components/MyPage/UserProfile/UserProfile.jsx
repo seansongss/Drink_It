@@ -21,7 +21,7 @@ const UserProfile = ({ username, exp }) => {
                     value={exp}
                     color="#FFFAE0"
                     style={{
-                        height: 12,
+                        height: 10,
                         borderRadius: 8,
                         borderColor: "#FFFAE0",
                         borderWidth: 1,
