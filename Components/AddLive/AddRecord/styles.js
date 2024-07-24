@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     },
     addFeeling: {
         alignItems: "center",
+		justifyContent: "center",
     },
     addFeelingImage: {
         marginBottom: 5,
