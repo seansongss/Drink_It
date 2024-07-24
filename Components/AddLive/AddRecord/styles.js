@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     },
     addUnit: {
         alignItems: "center",
+		justifyContent: "center",
     },
     addFeelingContainer: {
         padding: 15,
