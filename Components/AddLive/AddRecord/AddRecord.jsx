@@ -7,15 +7,19 @@ import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { RecordsContext } from '../../Context/RecordsContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { useRealm, useUser } from '@realm/react';
 
 import ImageComponent from '../../utils/ImageComponent';
-import AlcoholUnit from './AlcoholUnit';
+// import AlcoholUnit from './AlcoholUnit';
+import AlcoholUnit from '@components/AddLive/AlcoholUnit/AlcoholUnit';
 import FeelingUnit from './FeelingUnit';
 import RecipeModal from './RecipeModal';
 
 import styles from './styles';
 
 const AddRecord = ({ children, containerStyle, startTime, endTime, location, navigation, recipeTests }) => {
+    const realm = useRealm();
+    const user = useUser();
     const { loadRecords } = useContext(RecordsContext);
     const scrollRef = useRef(null);
     const [addAlcoholList, setAddAlcoholList] = useState([
@@ -80,7 +84,7 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
     }, []);
 
     const addNewUnit = (name, icon) => {
-        if (!recipe) {
+        if (!name) {
             Alert.alert("Error", "Recipe not found.");
             return;
         }
@@ -157,7 +161,13 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
             >
                 {children}
                 {addAlcoholList.map((item, i) => (
-                    <AlcoholUnit key={`${item.name}`} index={i} alcohol={item} changeUnitCount={changeUnitCount} />
+                    <AlcoholUnit
+                        key={`${item.name}`}
+                        index={i}
+                        alcohol={item}
+                        changeUnitCount={changeUnitCount}
+                        setAddAlcoholList={setAddAlcoholList}
+                    />
                 ))}
                 <NewUnitButton />
                 <View style={styles.addFeelingContainer}>
@@ -187,6 +197,8 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
             </KeyboardAwareScrollView>
 
             <RecipeModal
+                realm={realm}
+                user={user}
                 modalVisible={modalVisible}
                 setModalVisible={setModalVisible}
                 addNewUnit={addNewUnit}
