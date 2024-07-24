@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
     View, Text, TouchableOpacity, ScrollView, Modal,
-    TextInput, TouchableWithoutFeedback, Keyboard, Alert
+    TextInput, TouchableWithoutFeedback, Keyboard, Alert,
+    FlatList
 } from 'react-native';
 import { Icon } from "@rneui/base";
 import { Realm } from 'realm';
@@ -20,6 +21,13 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
         alcohol: '',
         description: ''
     });
+
+    const alcoholOptions = [
+        {label: 'Soju', value: 'soju'},
+        {label: 'Beer', value: 'beer'},
+        {label: 'Wine', value: 'wine'},
+        {label: 'Vodka', value: 'vodka'},
+    ]
 
     const handleAddNewRecipe = () => {
         if (!newRecipe.name || !newRecipe.alcohol || !newRecipe.description) {
@@ -62,7 +70,7 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                         {actionTriggered === 'SELECT_RECIPE' ? (
                             <View style={{ width: '100%', height: '100%' }}>
                                 <Text style={[modalStyles.text, modalStyles.modalText]}>Add a Recipe</Text>
-                                <ScrollView>
+                                {/* <ScrollView>
                                     {recipeTests.map((recipe, index) => (
                                         <View key={index} style={modalStyles.recipeContainer}>
                                             <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
@@ -81,7 +89,28 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                                             </TouchableOpacity>
                                         </View>
                                     ))}
-                                </ScrollView>
+                                </ScrollView> */}
+                                <FlatList
+                                    data={recipeTests}
+                                    renderItem={({recipe}) => (
+                                        <View key={recipe.id} style={modalStyles.recipeContainer}>
+                                            <ImageComponent type={'alcohol'} value={recipe.recipeType} size={30} />
+                                            <View style={modalStyles.recipeDetails}>
+                                                <Text>{recipe.recipeName}</Text>
+                                                <Text>{recipe.alcohol}%</Text>
+                                            </View>
+                                            <TouchableOpacity
+                                                style={modalStyles.addButton}
+                                                onPress={() => {
+                                                    addNewUnit(recipe.recipeName, recipe.recipeType);
+                                                    setModalVisible(false);
+                                                }}
+                                            >
+                                                <Text style={modalStyles.addButtonText}>Add</Text>
+                                            </TouchableOpacity>
+                                        </View>
+                                    )}
+                                />
                                 <TouchableOpacity
                                     style={[modalStyles.button, { backgroundColor: '#c1dfb0' }]}
                                     onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
@@ -120,7 +149,7 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                                                 setNewRecipe({ ...newRecipe, icon: item.value });
                                             }}
                                             renderLeftIcon={() => (
-                                                <ImageComponent type={'alcohol'} value={newRecipe.icon} size={30} />
+                                                <ImageComponent type={'alcohol'} value={newRecipe.icon} size={20} />
                                             )}
                                             renderItem={item => (
                                                 <View style={modalStyles.dropdownItem}>
