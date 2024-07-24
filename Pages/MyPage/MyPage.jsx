@@ -7,6 +7,7 @@ import UserProfile from "@components/MyPage/UserProfile/UserProfile";
 import Stat_card from "@components/My_page_view/Stat_card";
 
 import styles from "./styles";
+import ImageComponent from "@components/utils/ImageComponent";
 
 const UserBox = () => {
     const user = useUser();
@@ -98,13 +99,27 @@ const MyPage = () => {
 
     return (
         <View style={styles.container}>
-            <UserProfile username={user.customData.username} exp={0.3} />
-            <TouchableOpacity
-                style={styles.settingsButton}
-                onPress={logOutButton}
-            >
-                <Icon name="settings" color="white" size={50} />
-            </TouchableOpacity>
+            <View style={styles.userContainer}>
+                <UserProfile username={user.customData.username} exp={0.5} />
+                <View style={styles.userSetting}>
+                    <TouchableOpacity
+                        style={styles.settingsButton}
+                        onPress={logOutButton}
+                    >
+                        <Icon name="settings" color="white" size={40} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.settingsButton}
+                        onPress={logOutButton}
+                    >
+                        <ImageComponent
+                            type="calendar"
+                            value="rankings"
+                            size={40}
+                        />
+                    </TouchableOpacity>
+                </View>
+            </View>
             <StatBox />
         </View>
     );

@@ -5,6 +5,18 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: "center",
     },
+    userContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: -15,
+        marginBottom: 10,
+    },
+    userSetting: {
+        marginLeft: 10,
+        flexDirection: "row",
+        gap: 5,
+    },
     statTop: {
         flexDirection: "row",
         justifyContent: "space-between",
