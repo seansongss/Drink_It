@@ -79,8 +79,7 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
         });
     }, []);
 
-    const addNewUnit = (name) => {
-        const recipe = recipeList[name];
+    const addNewUnit = (name, icon) => {
         if (!recipe) {
             Alert.alert("Error", "Recipe not found.");
             return;
@@ -89,7 +88,7 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
         if (existingIndex >= 0) {
             changeUnitCount(existingIndex, 1);
         } else {
-            setAddAlcoholList(prev => [...prev, { name, icon: recipe.icon, count: 1 }]);
+            setAddAlcoholList(prev => [...prev, { name, icon, count: 1 }]);
         }
     };
 
