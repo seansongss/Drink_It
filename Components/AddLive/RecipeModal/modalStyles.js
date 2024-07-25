@@ -22,12 +22,6 @@ const modalStyles = StyleSheet.create({
 		shadowRadius: 4,
 		elevation: 5,
 	},
-	button: {
-		borderRadius: 20,
-		padding: 5,
-		elevation: 2,
-		marginTop: 10,
-	},
 	recipeContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
@@ -50,6 +44,13 @@ const modalStyles = StyleSheet.create({
 	},
 	addButtonText: {
 		color: 'white',
+		fontFamily: 'Jaldi_400Regular',
+	},
+	button: {
+		borderRadius: 20,
+		padding: 5,
+		elevation: 2,
+		marginTop: 10,
 	},
 	input: {
 		borderColor: '#ccc',
@@ -104,6 +105,8 @@ const modalStyles = StyleSheet.create({
 	modalText: {
 		marginBottom: 15,
 		textAlign: 'center',
+		fontFamily: 'Jaldi_400Regular',
+        fontSize: 16,
 	},
     text: {
         fontFamily: 'Jaldi_400Regular',

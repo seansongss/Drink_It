@@ -69,7 +69,7 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                     <View style={[modalStyles.modalView, { width: '90%', height: '70%' }]}>
                         {actionTriggered === 'SELECT_RECIPE' ? (
                             <View style={{ width: '100%', height: '100%' }}>
-                                <Text style={[modalStyles.text, modalStyles.modalText]}>Add a Recipe</Text>
+                                <Text style={modalStyles.modalText}>Add a Recipe</Text>
                                 <FlatList
                                     data={recipeTests}
                                     keyExtractor={(item) => item._id.toString()}
@@ -107,7 +107,7 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                             </View>
                         ) : (
                             <View style={{ width: '100%', height: '100%' }}>
-                                <Text style={[modalStyles.text, modalStyles.modalText]}>Create New Recipe</Text>
+                                <Text style={modalStyles.modalText}>Create New Recipe</Text>
                                 <ScrollView style={{ paddingHorizontal: 5 }}>
                                     <View style={modalStyles.itemContainer}>
                                         <Text style={modalStyles.text}>Name</Text>
