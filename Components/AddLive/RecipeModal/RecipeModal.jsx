@@ -64,48 +64,48 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
             visible={modalVisible}
             onRequestClose={() => setModalVisible(false)}
         >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                <View style={modalStyles.centeredView}>
-                    <View style={[modalStyles.modalView, { width: '90%', height: '70%' }]}>
-                        {actionTriggered === 'SELECT_RECIPE' ? (
-                            <View style={{ width: '100%', height: '100%' }}>
-                                <Text style={modalStyles.modalText}>Add a Recipe</Text>
-                                <FlatList
-                                    data={recipeTests}
-                                    keyExtractor={(item) => item._id.toString()}
-                                    renderItem={({ item }) => (
-                                        <View key={item._id} style={modalStyles.recipeContainer}>
-                                            <ImageComponent type={'alcohol'} value={item.recipeType} size={30} />
-                                            <View style={modalStyles.recipeDetails}>
-                                                <Text>{item.recipeName}</Text>
-                                                <Text>{item.alcohol}%</Text>
-                                            </View>
-                                            <TouchableOpacity
-                                                style={modalStyles.addButton}
-                                                onPress={() => {
-                                                    addNewUnit(item.recipeName, item.recipeType);
-                                                    setModalVisible(false);
-                                                }}
-                                            >
-                                                <Text style={modalStyles.addButtonText}>Add</Text>
-                                            </TouchableOpacity>
+            <View style={modalStyles.centeredView}>
+                <View style={[modalStyles.modalView, { width: '90%', height: '70%' }]}>
+                    {actionTriggered === 'SELECT_RECIPE' ? (
+                        <View style={{ width: '100%', height: '100%' }}>
+                            <Text style={modalStyles.modalText}>Add a Recipe</Text>
+                            <FlatList
+                                data={recipeTests}
+                                keyExtractor={(item) => item._id.toString()}
+                                renderItem={({ item }) => (
+                                    <View key={item._id} style={modalStyles.recipeContainer}>
+                                        <ImageComponent type={'alcohol'} value={item.recipeType} size={30} />
+                                        <View style={modalStyles.recipeDetails}>
+                                            <Text>{item.recipeName}</Text>
+                                            <Text>{item.alcohol}%</Text>
                                         </View>
-                                    )}
-                                />
-                                <TouchableOpacity
-                                    style={[modalStyles.button, { backgroundColor: '#c1dfb0' }]}
-                                    onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
-                                >
-                                    <Text style={modalStyles.textStyle}>Add new recipe</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    style={[modalStyles.button, { backgroundColor: '#2196F3' }]}
-                                    onPress={() => setModalVisible(false)}
-                                >
-                                    <Text style={modalStyles.textStyle}>Close</Text>
-                                </TouchableOpacity>
-                            </View>
-                        ) : (
+                                        <TouchableOpacity
+                                            style={modalStyles.addButton}
+                                            onPress={() => {
+                                                addNewUnit(item.recipeName, item.recipeType);
+                                                setModalVisible(false);
+                                            }}
+                                        >
+                                            <Text style={modalStyles.addButtonText}>Add</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                )}
+                            />
+                            <TouchableOpacity
+                                style={[modalStyles.button, { backgroundColor: '#c1dfb0' }]}
+                                onPress={() => setActionTriggered('ADD_NEW_RECIPE')}
+                            >
+                                <Text style={modalStyles.textStyle}>Add new recipe</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[modalStyles.button, { backgroundColor: '#2196F3' }]}
+                                onPress={() => setModalVisible(false)}
+                            >
+                                <Text style={modalStyles.textStyle}>Close</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                             <View style={{ width: '100%', height: '100%' }}>
                                 <Text style={modalStyles.modalText}>Create New Recipe</Text>
                                 <ScrollView style={{ paddingHorizontal: 5 }}>
@@ -177,10 +177,10 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                                     <Text style={modalStyles.textStyle}>Back</Text>
                                 </TouchableOpacity>
                             </View>
-                        )}
-                    </View>
+                        </TouchableWithoutFeedback>
+                    )}
                 </View>
-            </TouchableWithoutFeedback>
+            </View>
         </Modal>
     );
 };

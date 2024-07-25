@@ -12,6 +12,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
     },
+    addUnitContainer: {
+        flexDirection: "row",
+        justifyContent: "space-around",
+        width: "100%",
+        alignItems: "center",
+        paddingVertical: 10,
+        marginVertical: 10,
+        borderRadius: 20,
+        borderWidth: 3,
+        borderColor: "black",
+        backgroundColor: "white",
+    },
     addFeeling: {
         alignItems: "center",
 		justifyContent: "center",
