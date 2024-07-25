@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 
-import ImageComponent from '../../utils/ImageComponent';
+import ImageComponent from '@components/utils/ImageComponent';
 
 import styles from './styles';
 
