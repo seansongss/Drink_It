@@ -11,8 +11,8 @@ import { useRealm, useUser } from '@realm/react';
 
 import ImageComponent from '@components/utils/ImageComponent';
 import AlcoholUnit from '@components/AddLive/AlcoholUnit/AlcoholUnit';
-import FeelingUnit from './FeelingUnit';
-import RecipeModal from './RecipeModal';
+import FeelingUnit from '@components/AddLive/FeelingUnit/FeelingUnit';
+import RecipeModal from '@components/AddLive/RecipeModal/RecipeModal';
 
 import styles from './styles';
 
