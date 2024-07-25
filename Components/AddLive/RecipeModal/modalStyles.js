@@ -6,12 +6,13 @@ const modalStyles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginTop: 22,
+		// backgroundColor: 'rgba(0,0,0,0.5)',
 	},
 	modalView: {
 		margin: 20,
 		backgroundColor: 'white',
 		borderRadius: 20,
-		padding: 35,
+		padding: 25,
 		alignItems: 'center',
 		shadowColor: '#000',
 		shadowOffset: {
@@ -25,9 +26,8 @@ const modalStyles = StyleSheet.create({
 	recipeContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		// width: '100%',
 		padding: 10,
-		// marginHorizontal: 10,
+		marginHorizontal: 10,
         borderWidth: 2,
         borderRadius: 15,
         borderColor: '#c1dfb0',
@@ -51,6 +51,7 @@ const modalStyles = StyleSheet.create({
 		padding: 5,
 		elevation: 2,
 		marginTop: 10,
+		marginHorizontal: 10,
 	},
 	input: {
 		borderColor: '#ccc',
