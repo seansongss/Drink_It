@@ -60,7 +60,7 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
     return (
         <Modal
             animationType="slide"
-            transparent={true}
+            transparent
             visible={modalVisible}
             onRequestClose={() => setModalVisible(false)}
         >
@@ -109,59 +109,61 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                             <View style={{ width: '100%', height: '100%' }}>
                                 <Text style={modalStyles.modalText}>Create New Recipe</Text>
                                 <ScrollView style={{ paddingHorizontal: 5 }}>
-                                    <View style={modalStyles.itemContainer}>
-                                        <Text style={modalStyles.text}>Name</Text>
-                                        <TextInput
-                                            style={modalStyles.input}
-                                            placeholder="Name"
-                                            value={newRecipe.name}
-                                            onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
-                                        />
-                                    </View>
-                                    <View style={modalStyles.itemContainer}>
-                                        <Text style={modalStyles.text}>Type</Text>
-                                        <Dropdown
-                                            data={alcoholOptions}
-                                            labelField="label"
-                                            valueField="value"
-                                            placeholder="Select Icon"
-                                            value={newRecipe.icon}
-                                            onChange={item => {
-                                                setNewRecipe({ ...newRecipe, icon: item.value });
-                                            }}
-                                            renderLeftIcon={() => (
-                                                <View style={{ marginHorizontal: 7 }}>
-                                                    <ImageComponent type={'alcohol'} value={newRecipe.icon} size={25} />
-                                                </View>
-                                            )}
-                                            renderItem={item => (
-                                                <View style={modalStyles.dropdownItem}>
-                                                    <ImageComponent type={'alcohol'} value={item.value} size={30} />
-                                                    <Text style={modalStyles.dropdownText}>{item.label}</Text>
-                                                </View>
-                                            )}
-                                            style={modalStyles.dropdown}
-                                        />
-                                    </View>
-                                    <View style={modalStyles.itemContainer}>
-                                        <Text style={modalStyles.text}>Alcohol Percentage</Text>
-                                        <TextInput
-                                            style={modalStyles.input}
-                                            placeholder="Alcohol Percentage (e.g., 4)"
-                                            value={newRecipe.alcohol}
-                                            keyboardType='decimal-pad'
-                                            onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
-                                        />
-                                    </View>
-                                    <View style={modalStyles.itemContainer}>
-                                        <Text style={modalStyles.text}>Description</Text>
-                                        <TextInput
-                                            style={[modalStyles.input, { height: 100 }]}
-                                            placeholder="Description"
-                                            value={newRecipe.description}
-                                            multiline
-                                            onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
-                                        />
+                                    <View onStartShouldSetResponder={() => true}>
+                                        <View style={modalStyles.itemContainer}>
+                                            <Text style={modalStyles.text}>Name</Text>
+                                            <TextInput
+                                                style={modalStyles.input}
+                                                placeholder="Name"
+                                                value={newRecipe.name}
+                                                onChangeText={(text) => setNewRecipe({ ...newRecipe, name: text })}
+                                            />
+                                        </View>
+                                        <View style={modalStyles.itemContainer}>
+                                            <Text style={modalStyles.text}>Type</Text>
+                                            <Dropdown
+                                                data={alcoholOptions}
+                                                labelField="label"
+                                                valueField="value"
+                                                placeholder="Select Icon"
+                                                value={newRecipe.icon}
+                                                onChange={item => {
+                                                    setNewRecipe({ ...newRecipe, icon: item.value });
+                                                }}
+                                                renderLeftIcon={() => (
+                                                    <View style={{ marginHorizontal: 7 }}>
+                                                        <ImageComponent type={'alcohol'} value={newRecipe.icon} size={25} />
+                                                    </View>
+                                                )}
+                                                renderItem={item => (
+                                                    <View style={modalStyles.dropdownItem}>
+                                                        <ImageComponent type={'alcohol'} value={item.value} size={30} />
+                                                        <Text style={modalStyles.dropdownText}>{item.label}</Text>
+                                                    </View>
+                                                )}
+                                                style={modalStyles.dropdown}
+                                            />
+                                        </View>
+                                        <View style={modalStyles.itemContainer}>
+                                            <Text style={modalStyles.text}>Alcohol Percentage</Text>
+                                            <TextInput
+                                                style={modalStyles.input}
+                                                placeholder="Alcohol Percentage (e.g., 4)"
+                                                value={newRecipe.alcohol}
+                                                keyboardType='decimal-pad'
+                                                onChangeText={(text) => setNewRecipe({ ...newRecipe, alcohol: text })}
+                                            />
+                                        </View>
+                                        <View style={modalStyles.itemContainer}>
+                                            <Text style={modalStyles.text}>Description</Text>
+                                            <TextInput
+                                                style={[modalStyles.input, { height: 100 }]}
+                                                placeholder="Description"
+                                                value={newRecipe.description}
+                                                multiline
+                                                onChangeText={(text) => setNewRecipe({ ...newRecipe, description: text })}
+                                            />
+                                        </View>
                                     </View>
                                 </ScrollView>
                                 <TouchableOpacity
