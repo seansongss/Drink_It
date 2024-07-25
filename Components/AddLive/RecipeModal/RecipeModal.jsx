@@ -174,7 +174,10 @@ const RecipeModal = ({ user, realm, modalVisible, setModalVisible, addNewUnit, r
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={[modalStyles.button, { backgroundColor: '#2196F3' }]}
-                                    onPress={() => setActionTriggered('SELECT_RECIPE')}
+                                    onPress={() => {
+                                        setNewRecipe({ name: '', icon: 'soju', alcohol: '', description: '' });
+                                        setActionTriggered('SELECT_RECIPE')
+                                    }}
                                 >
                                     <Text style={modalStyles.textStyle}>Back</Text>
                                 </TouchableOpacity>
