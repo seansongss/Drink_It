@@ -5,10 +5,10 @@ import {
 } from 'react-native';
 import { Icon } from "@rneui/base";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { RecordsContext } from '../../Context/RecordsContext';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useRealm, useUser } from '@realm/react';
 
+import { RecordsContext } from '@components/Context/RecordsContext';
 import ImageComponent from '@components/utils/ImageComponent';
 import AlcoholUnit from '@components/AddLive/AlcoholUnit/AlcoholUnit';
 import FeelingUnit from '@components/AddLive/FeelingUnit/FeelingUnit';
