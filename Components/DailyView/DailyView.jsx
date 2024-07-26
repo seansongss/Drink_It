@@ -112,7 +112,7 @@ const DailyView = ({ navigation, route }) => {
                 <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
                 <View style={styles.editContainer}>
                     <TouchableOpacity onPress={() => console.log('edit button pressed')}>
-                        <ImageComponent type={'calendar'} value={'last_night'} size={40} />
+                        <ImageComponent type={'calendar'} value={'edit_pen'} size={40} />
                     </TouchableOpacity>
                 </View>
                 <ScrollView>
