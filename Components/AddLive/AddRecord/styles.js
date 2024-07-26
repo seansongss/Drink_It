@@ -26,39 +26,31 @@ const styles = StyleSheet.create({
     },
     addFeeling: {
         alignItems: "center",
-		justifyContent: "center",
+        justifyContent: "center",
     },
     addFeelingImage: {
         marginBottom: 5,
     },
-	image: {
-		width: 50,
-		height: 50,
-		resizeMode: 'center',
-	},
-	memoContainer: {
-		flex: 1,
-		marginVertical: 10,
-		padding: 20,
-		backgroundColor: 'white',
-		borderRadius: 10,
-	},
-	memoInput: {
-		flex: 1,
-		width: '100%',
-		padding: 10,
-	},
+    image: {
+        width: 50,
+        height: 50,
+        resizeMode: 'center',
+    },
+    memoContainer: {
+        flex: 1,
+        marginVertical: 10,
+        padding: 20,
+        backgroundColor: 'white',
+        borderRadius: 10,
+    },
+    memoInput: {
+        flex: 1,
+        width: '100%',
+        padding: 10,
+    },
     text: {
         fontSize: 18,
         fontFamily: 'Jaldi_700Bold',
-    },
-    recordButton: {
-        marginVertical: 10,
-        alignItems: "center",
-        padding: 10,
-        borderRadius: 20,
-        borderWidth: 3,
-        backgroundColor: "#E69C4D",
     },
     centeredView: {
         flex: 1,
@@ -94,7 +86,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         textAlign: 'center',
-      },
+    },
     recipeContainer: {
         flexDirection: "row",
         justifyContent: "space-between",
@@ -106,6 +98,15 @@ const styles = StyleSheet.create({
         backgroundColor: "#c1dfb0",
         padding: 10,
         borderRadius: 5,
+    },
+    recordButton: {
+        marginVertical: 10,
+        marginBottom: 30,
+        alignItems: "center",
+        padding: 10,
+        borderRadius: 20,
+        borderWidth: 3,
+        backgroundColor: "white",
     },
     addButtonText: {
         color: "white",

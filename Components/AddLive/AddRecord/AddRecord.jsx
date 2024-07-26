@@ -153,7 +153,6 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
     return (
         <View style={containerStyle}>
             <KeyboardAwareScrollView
-                style={{ paddingHorizontal: 30 }}
                 keyboardShouldPersistTaps="never"
                 extraHeight={300}
                 extraScrollHeight={-70}
@@ -188,7 +187,7 @@ const AddRecord = ({ children, containerStyle, startTime, endTime, location, nav
                     />
                 </View>
                 <TouchableOpacity
-                    style={styles.addUnitContainer}
+                    style={styles.recordButton}
                     onPress={saveRecord}
                 >
                     <Text style={styles.text}>Record</Text>
