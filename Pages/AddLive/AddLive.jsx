@@ -6,6 +6,7 @@ import { useQuery } from '@realm/react';
 import AddHeader from '../../components/AddLive/AddHeader/AddHeader';
 import AddRecord from '../../components/AddLive/AddRecord/AddRecord';
 import styles from './styles';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const AddLive = ({ navigation }) => {
     const startTime = new Date();
@@ -15,7 +16,7 @@ const AddLive = ({ navigation }) => {
     console.log('recipeTests:', recipeTests);
 
     return (
-        <View style={styles.addLiveContainer}>
+        <SafeAreaView edges={["top", "left", "right"]} style={styles.addLiveContainer}>
             <AddHeader
                 containerStyle={styles.addHeaderContainer}
                 location={location}
@@ -29,7 +30,7 @@ const AddLive = ({ navigation }) => {
                 navigation={navigation}
                 recipeTests={recipeTests}
             />
-        </View>
+        </SafeAreaView>
     );
 };
 
