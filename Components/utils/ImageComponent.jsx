@@ -38,6 +38,7 @@ export const getImage = (type, value) => {
         case 'clock': return require('@assets/calendar/clock.png');
         case 'location': return require('@assets/calendar/mapPin.png');
         case 'note': return require('@assets/calendar/note.png');
+        case 'edit_pen': return require('@assets/calendar/edit_pen.png');
         default:
           console.error('Invalid calendar icon:', value);
           return null;
