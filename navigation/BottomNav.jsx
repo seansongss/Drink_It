@@ -66,7 +66,7 @@ const BottomNav = () => {
                     }}
                 />
                 <Tab.Screen
-                    name="My_page"
+                    name="MyPage"
                     component={MyPage}
                     options={{
                         tabBarIcon: ({ color }) => (
