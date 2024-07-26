@@ -3,8 +3,11 @@ import { View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-na
 import { Divider, Button } from '@rneui/themed';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useFonts, Jaldi_400Regular, Jaldi_700Bold } from '@expo-google-fonts/jaldi';
-import ImageComponent from '../utils/ImageComponent';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import ImageComponent from '../utils/ImageComponent';
+
 import styles from './styles';
 
 const DailyView = ({ navigation, route }) => {
@@ -89,7 +92,7 @@ const DailyView = ({ navigation, route }) => {
     }
 
     return (
-        <View style={styles.dailyViewContainer}>
+        <SafeAreaView edges={["top", "right", "left"]} style={styles.dailyViewContainer}>
             <View style={styles.dailyViewWrapper}>
                 <View style={styles.dailyViewHeader}>
                     <MaterialIcons
@@ -141,7 +144,7 @@ const DailyView = ({ navigation, route }) => {
                     <Button title="Go back" onPress={() => navigation.navigate('CalendarView')} />
                 </ScrollView>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
