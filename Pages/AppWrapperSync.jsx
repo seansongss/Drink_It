@@ -32,9 +32,7 @@ const AppWrapperSync = () => {
                             },
                         }}
                     >
-                        <SafeAreaProvider style={{ flex: 1, backgroundColor: '#A2B69F' }}>
-                            <BottomNav />
-                        </SafeAreaProvider>
+                        <BottomNav />
                     </RealmProvider>
                 </UserProvider>
             </AppProvider>

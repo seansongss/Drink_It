@@ -33,14 +33,13 @@ const BottomNav = () => {
             });
         });
     };
-    const inset = useSafeAreaInsets();
 
     // createRecipeTest();
     return (
         <RecordsProvider>
             <Tab.Navigator
                 backBehavior='history'
-                sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F", marginTop: inset.top }}
+                sceneContainerStyle={{ flex: 1, backgroundColor: "#A2B69F" }}
                 screenOptions={{
                     tabBarActiveTintColor: "#e69138",
                     tabBarItemStyle: { marginHorizontal: 20, marginTop: 10 },
