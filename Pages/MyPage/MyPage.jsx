@@ -8,6 +8,7 @@ import Stat_card from "@components/My_page_view/Stat_card";
 
 import styles from "./styles";
 import ImageComponent from "@components/utils/ImageComponent";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const UserBox = () => {
     const user = useUser();
@@ -68,13 +69,12 @@ const StatBox = () => {
                     style={{ width: 60, height: 45 }}
                     resizeMode="stretch"
                 />
-                <TouchableOpacity>
-                    <Icon name="navigate-next" size={50} />
-                </TouchableOpacity>
             </View>
-            <Stat_card />
-            <Stat_card />
-            <Stat_card />
+            <View style={styles.statList}>
+                <Stat_card />
+                <Stat_card />
+                <Stat_card />
+            </View>
         </View>
     );
 };
@@ -98,7 +98,7 @@ const MyPage = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView edges={["top", "left", "right"]} style={styles.container}>
             <View style={styles.userContainer}>
                 <UserProfile username={user.customData.username} exp={0.5} />
                 <View style={styles.userSetting}>
@@ -120,8 +120,10 @@ const MyPage = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <StatBox />
-        </View>
+            <View style={styles.statContainer}>
+                <StatBox />
+            </View>
+        </SafeAreaView>
     );
 };
 

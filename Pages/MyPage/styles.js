@@ -4,12 +4,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        backgroundColor: "#e6eef4",
+        backgroundColor: "#b2d8b2",
     },
     userContainer: {
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
+        paddingVertical: 10,
         marginLeft: -15,
         marginBottom: 10,
     },
@@ -18,19 +19,30 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         gap: 5,
     },
+    statContainer: {
+        flex: 1,
+        width: "100%",
+        backgroundColor: "#e6eef4",
+    },
+    statBox: {
+        width: "80%",
+        backgroundColor: "white",
+        marginHorizontal: "10%",
+        marginTop: 30,
+        padding: "5%",
+        borderRadius: 20,
+        borderWidth: 3,
+        borderColor: "#fff9d4",
+        gap: 20,
+    },
     statTop: {
         flexDirection: "row",
         justifyContent: "space-between",
     },
-    statBox: {
-        width: "80%",
-        height: "70%",
-        backgroundColor: "#CCE2B1",
-        padding: "10%",
-        marginHorizontal: "10%",
-        borderRadius: 20,
+    statList: {
         justifyContent: "space-between",
-    },
+        gap: 20,
+    },  
     userBox: {
         flexDirection: "row", // Horizontal layout
         width: "90%",
