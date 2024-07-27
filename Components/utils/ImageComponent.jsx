@@ -71,7 +71,7 @@ const ImageComponent = memo(({ style, type, value, size = 30 }) => {
     return null; // Return null if the source is invalid
   }
 
-  console.log(`Image rendered: ${type} ${value}`);
+  // console.log(`Image rendered: ${type} ${value}`);
 
   return (
     <Image
