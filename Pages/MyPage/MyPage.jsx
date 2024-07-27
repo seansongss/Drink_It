@@ -13,21 +13,6 @@ import styles from "./styles";
 const MyPage = ({navigation}) => {
     const user = useUser();
 
-    const logOutButton = () => {
-        Alert.alert('Logout', 'Are you sure you want to log out?', [
-            {
-                text: 'No',
-                onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
-            },
-            {
-                text: 'Yes',
-                onPress: () => user.logOut(),
-                style: 'destructive'
-            },
-        ]);
-    };
-
     return (
         <SafeAreaView edges={["top", "left", "right"]} style={styles.container}>
             <View style={styles.userContainer}>
@@ -41,7 +26,6 @@ const MyPage = ({navigation}) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.settingsButton}
-                        onPress={logOutButton}
                     >
                         <ImageComponent
                             type="calendar"
