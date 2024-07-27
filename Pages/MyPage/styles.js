@@ -7,17 +7,17 @@ const styles = StyleSheet.create({
         backgroundColor: "#b2d8b2",
     },
     userContainer: {
+        height: "13%",
+        width: "100%",
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         alignItems: "center",
-        paddingVertical: 10,
-        marginLeft: -15,
-        marginBottom: 10,
+        // borderWidth: 1,
     },
     userSetting: {
-        marginLeft: 10,
         flexDirection: "row",
         gap: 5,
+        // borderWidth: 1,
     },
     statContainer: {
         flex: 1,
