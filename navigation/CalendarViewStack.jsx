@@ -1,9 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import MainCalendar from '../pages/MainCalendar/MainCalendar';
-import DailyView from '../components/DailyView/DailyView';
-import NewRecord from '../pages/NewRecord/NewRecord';
+import MainCalendar from '@pages/MainCalendar/MainCalendar';
+import DailyView from '@pages/DailyView/DailyView';
+import NewRecord from '@pages/NewRecord/NewRecord';
 
 const Stack = createNativeStackNavigator();
 
