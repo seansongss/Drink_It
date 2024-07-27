@@ -5,30 +5,10 @@ import { useUser } from "@realm/react";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import UserProfile from "@components/MyPage/UserProfile/UserProfile";
-import Stat_card from "@components/My_page_view/Stat_card";
+import StatBox from "@components/MyPage/StatBox/StatBox";
 import ImageComponent from "@components/utils/ImageComponent";
 
 import styles from "./styles";
-
-// Sub-component StatBox
-const StatBox = () => {
-    return (
-        <View style={styles.statBox}>
-            <View style={styles.statTop}>
-                <Image
-                    source={require("@assets/my_page/stat.png")}
-                    style={{ width: 60, height: 45 }}
-                    resizeMode="stretch"
-                />
-            </View>
-            <View style={styles.statList}>
-                <Stat_card />
-                <Stat_card />
-                <Stat_card />
-            </View>
-        </View>
-    );
-};
 
 const MyPage = ({navigation}) => {
     const user = useUser();

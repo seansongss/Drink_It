@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     },
     statBox: {
         width: "80%",
+        height: "90%",
         backgroundColor: "white",
         marginHorizontal: "10%",
         marginTop: 30,
