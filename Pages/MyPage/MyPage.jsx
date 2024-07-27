@@ -79,7 +79,7 @@ const StatBox = () => {
     );
 };
 
-const MyPage = () => {
+const MyPage = ({navigation}) => {
     const user = useUser();
 
     const logOutButton = () => {
@@ -104,7 +104,7 @@ const MyPage = () => {
                 <View style={styles.userSetting}>
                     <TouchableOpacity
                         style={styles.settingsButton}
-                        onPress={logOutButton}
+                        onPress={() => navigation.navigate('SettingView')}
                     >
                         <Icon name="settings" color="white" size={40} />
                     </TouchableOpacity>
