@@ -58,6 +58,10 @@ export const getImage = (type, value) => {
           console.error('Invalid badge name:', value);
           return null;
       }
+    case 'utils':
+      switch (value) {
+        case 'stat': return require('@assets/utils/stat.png');
+      }
     default:
       console.error('Invalid type:', type);
       return null;
