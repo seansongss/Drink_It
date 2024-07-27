@@ -66,7 +66,7 @@ const DailyView = ({ navigation, route }) => {
         );
     };
 
-    const Feeling = ({ name, feelingValue }) => {
+    const FeelingUnit = ({ name, feelingValue }) => {
         return (
             <View style={styles.Feeling}>
                 <View style={styles.FeelingImage}>
@@ -111,6 +111,10 @@ const DailyView = ({ navigation, route }) => {
                 </View>
                 <Divider orientation='horizontal' style={styles.divider} width={3} color='#E69C4D' />
                 <View style={styles.editContainer}>
+                    {/* change for delete icon */}
+                    <TouchableOpacity onPress={() => console.log('edit button pressed')}>
+                        <ImageComponent type={'calendar'} value={'edit_pen'} size={40} />
+                    </TouchableOpacity>
                     <TouchableOpacity onPress={() => console.log('edit button pressed')}>
                         <ImageComponent type={'calendar'} value={'edit_pen'} size={40} />
                     </TouchableOpacity>
@@ -130,9 +134,9 @@ const DailyView = ({ navigation, route }) => {
                         <Text style={styles.text}> {record.location}</Text>
                     </View>
                     <View style={styles.dailyViewFeeling}>
-                        <Feeling name='Before' feelingValue={record.feelings['Before']} />
-                        <Feeling name='During' feelingValue={record.feelings['During']} />
-                        <Feeling name='After' feelingValue={record.feelings['After']} />
+                        <FeelingUnit name='During' feelingValue={record.feelings['During']} />
+                        <FeelingUnit name='Before' feelingValue={record.feelings['Before']} />
+                        <FeelingUnit name='After' feelingValue={record.feelings['After']} />
                     </View>
                     <View style={styles.dailyViewNote}>
                         <View style={styles.dailyViewNoteHeader}>
