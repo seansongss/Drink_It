@@ -7,12 +7,10 @@ import { useRealm, useUser } from '@realm/react';
 import { Realm } from 'realm';
 import { recipeTest } from '../models/models';
 
-import MainCalendar from '../pages/MainCalendar/MainCalendar';
-import AddLive from '../pages/AddLive/AddLive';
-import My_page from '../components/My_page_view/My_page';
+import AddLive from '@pages/AddLive/AddLive';
 import { RecordsProvider } from '../components/Context/RecordsContext';
-import CalendarViewStack from './CalendarViewStack';
-import MyPage from '@pages/MyPage/MyPage';
+import CalendarViewStack from '@navigation/CalendarViewStack';
+import MyPageStack from '@navigation/MyPageStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -66,8 +64,8 @@ const BottomNav = () => {
                     }}
                 />
                 <Tab.Screen
-                    name="MyPage"
-                    component={MyPage}
+                    name="MyPageStack"
+                    component={MyPageStack}
                     options={{
                         tabBarIcon: ({ color }) => (
                             <Ionicons name="person" size={45} color={color} />
