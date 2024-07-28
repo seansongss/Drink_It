@@ -79,6 +79,17 @@ const SettingView = ({ navigation }) => {
                             color="#b2d8b2"
                         />
                     </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.settingWrapper}
+                        onPress={logOutButton}
+                    >
+                        <Text style={styles.text}>LOGOUT</Text>
+                        <MaterialIcons
+                            name='keyboard-arrow-right'
+                            size={50}
+                            color="#b2d8b2"
+                        />
+                    </TouchableOpacity>
                 </View>
                 <Divider color='white' width={5} style={styles.divider} />
                 <View style={styles.personalSetting}>
@@ -104,20 +115,9 @@ const SettingView = ({ navigation }) => {
                         />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.settingWrapper}
+                        style={[styles.settingWrapper, {marginBottom: 20}]}
                     >
                         <Text style={styles.text}>THEMES</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.settingWrapper, {marginBottom: 50}]}
-                        onPress={logOutButton}
-                    >
-                        <Text style={styles.text}>LOGOUT</Text>
                         <MaterialIcons
                             name='keyboard-arrow-right'
                             size={50}
