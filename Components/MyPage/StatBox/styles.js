@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "10%",
         marginVertical: 30,
         paddingHorizontal: "5%",
-        borderRadius: 20,
+        borderRadius: 25,
         borderWidth: 3,
         borderColor: "#fff9d4",
         gap: 20,
