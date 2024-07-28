@@ -10,7 +10,7 @@ import styles from './styles';
 
 const MainCalendar = ({ navigation, records, updateRecords }) => {
     return (
-        <SafeAreaView edges={["top", "right", "left"]} style={styles.wrapper}>
+        <SafeAreaView edges={["top"]} style={styles.wrapper}>
             <View style={styles.container}>
                 <CalendarView navigation={navigation} records={records} updateRecords={updateRecords} />
                 <View style={styles.cards}>
