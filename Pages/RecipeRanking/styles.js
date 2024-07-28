@@ -13,11 +13,22 @@ const styles = StyleSheet.create({
         marginHorizontal: "7%",
     },
     filterContainer: {
-        flexDirection: "row",
-        alignItems: "center",
         padding: 5,
         backgroundColor: "#2e4689",
         borderRadius: 20,
+    },
+    filterText: {
+        fontSize: 22,
+        color: "white",
+        alignSelf: "center",
+        justifyContent: "center",
+        fontFamily: "Jaldi_700Bold",
+        marginRight: 5,
+    },
+    renderItemContainer: {
+        padding: 10,
+        backgroundColor: "#2e4689",
+        borderWidth: 1,
     },
     contentContainer: {
         width: "90%",
@@ -52,11 +63,6 @@ const styles = StyleSheet.create({
     flatList: {
         padding: 20,
         gap: 20,
-    },
-    filterText: {
-        fontSize: 22,
-        color: "white",
-        fontFamily: "Jaldi_700Bold",
     },
 });
 
