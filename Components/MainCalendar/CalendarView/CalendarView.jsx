@@ -141,7 +141,7 @@ function CalendarView({ navigation }) {
                     <TouchableOpacity style={styles.rankingItem} onPress={() => navigation.navigate('NewRecord')}>
                         <ImageComponent type='calendar' value='last_night' size={40} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.rankingItem} onPress={() => loadRecords()}>
+                    <TouchableOpacity style={styles.rankingItem} onPress={() => navigation.navigate('RecipeRanking')}>
                         <ImageComponent type='calendar' value='rankings' size={35} />
                     </TouchableOpacity>
                 </View>
