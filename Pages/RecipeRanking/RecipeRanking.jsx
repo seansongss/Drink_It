@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Dropdown } from 'react-native-element-dropdown';
@@ -14,12 +14,30 @@ import styles from './styles';
 const RecipeRanking = ({ navigation }) => {
     const rankingItem = useQuery('recipeTest');
     const [filter, setFilter] = useState("TOTAL");
+    const [stringFilter, setStringFilter] = useState('');
+    const [filteredData, setFilteredData] = useState(rankingItem);
+
+    useEffect(() => {
+        if (stringFilter === '') {
+            setFilteredData(rankingItem);
+        } else {
+            const filtered = rankingItem.filter(item =>
+                item.recipeName.toLowerCase().includes(stringFilter.toLowerCase())
+            );
+            setFilteredData(filtered);
+        }
+    }, [stringFilter, rankingItem]);
 
     const filterData = [
         { label: "TOTAL", value: "TOTAL" },
         { label: "MONTHLY", value: "MONTHLY" },
         { label: "WEEKLY", value: "WEEKLY" },
     ];
+
+    const onChangeSearch = (text) => {
+        setStringFilter(text);
+    };
+
     return (
         <SafeAreaView edges={["top"]} style={styles.container}>
             <View style={styles.header}>
@@ -58,6 +76,7 @@ const RecipeRanking = ({ navigation }) => {
                     <TextInput
                         style={styles.searchBar}
                         placeholder="Search"
+                        onChangeText={onChangeSearch}
                     />
                     <View style={styles.searchFilter}>
                         <View>
@@ -69,7 +88,7 @@ const RecipeRanking = ({ navigation }) => {
                 <Divider width={3} color="#fff9d4" />
                 <FlatList
                     contentContainerStyle={styles.flatList}
-                    data={rankingItem}
+                    data={filteredData}
                     keyExtractor={(item) => item._id.toString()}
                     renderItem={({ item }) => (
                         <RankingItem
@@ -85,4 +104,4 @@ const RecipeRanking = ({ navigation }) => {
     )
 }
 
-export default RecipeRanking
+export default RecipeRanking;
