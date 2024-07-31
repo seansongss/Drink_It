@@ -5,7 +5,7 @@ import { useEmailPasswordAuth } from '@realm/react';
 import validator from 'validator';
 
 import styles from './styles';
-import ImageComponent from '../../components/utils/ImageComponent';
+import ImageComponent from '@components/utils/ImageComponent';
 
 const PasswordReset = ({ navigation }) => {
     const [email, setEmail] = useState('');
