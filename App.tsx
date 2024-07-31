@@ -12,13 +12,6 @@ import AppWrapperSync from './pages/AppWrapperSync';
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
 
-// Hide the splash screen after fetching resources (set to 2 seconds by default)
-//  later need edit to hide splash screen after fetching all resources from server
-// Add animation when hiding splash screen
-setTimeout(async () => {
-    await SplashScreen.hideAsync();
-}, 2000);
-
 // Clear storage for development purposes
 const clearLocalStorage = async () => {
     try {
