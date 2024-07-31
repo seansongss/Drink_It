@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
     },
-    text: {
-        color: "black",
-        fontSize: 15,
-        fontFamily: "Jaldi_700Bold",
-    }
 });
 
 export default styles;
