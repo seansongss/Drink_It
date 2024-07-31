@@ -2,13 +2,20 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        height: "100%",
+        width: "100%",
         backgroundColor: '#e7eef4',
         alignItems: 'center',
         justifyContent: 'center',
     },
+    wrapper: {
+        height: "100%",
+        width: "100%",
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     inputView: {
-        width: "80%",
+        width: "60%",
         backgroundColor: "#e7eef4",
         borderRadius: 15,
         height: 50,
@@ -25,17 +32,13 @@ const styles = StyleSheet.create({
         color: "#a6aeb4",
     },
     sendBtn: {
-        width: "80%",
+        width: "60%",
         backgroundColor: "#b3d8b2",
         borderRadius: 15,
         height: 50,
         alignItems: "center",
         justifyContent: "center",
         marginBottom: 10
-    },
-    text: {
-        fontFamily: "Jaldi_400Regular",
-        fontSize: 18,
     },
 });
 

@@ -1,9 +1,11 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Image, TouchableOpacity } from "react-native";
 import { Avatar, Icon } from "@rneui/base";
 import { LinearProgress } from "@rneui/themed";
 
-import styles from "./styles";
 import ImageComponent from "@components/utils/ImageComponent";
+import Text from "@components/utils/Text";
+
+import styles from "./styles";
 
 const UserProfile = ({ username, exp }) => {
     return (
@@ -16,7 +18,7 @@ const UserProfile = ({ username, exp }) => {
                 />
             </View>
             <View style={styles.profileWrapper}>
-                <Text style={styles.text}>{username}</Text>
+                <Text fontSize={15} fontWeight="bold">{username}</Text>
                 <LinearProgress
                     value={exp}
                     color="#FFFAE0"
