@@ -26,7 +26,7 @@ const MyPage = ({navigation}) => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.settingsButton}
-                        onPress={() => navigation.navigate('RecipeRanking')}
+                        onPress={() => navigation.navigate('RecipeRankingView')}
                     >
                         <ImageComponent
                             type="calendar"
