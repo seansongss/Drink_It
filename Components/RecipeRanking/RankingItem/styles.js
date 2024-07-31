@@ -7,27 +7,20 @@ const styles = StyleSheet.create({
         alignItems: "center",
         backgroundColor: "#fff9d4",
         borderWidth: 3,
-        padding: 15,
+        paddingVertical: 10,
+        paddingHorizontal: 15,
         borderRadius: 25,
         borderColor: "#e6eef4",
     },
     itemContent: {
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
         gap: 10,
     },
     likeContainer: {
         alignItems: "center",
     },
-    text: {
-        fontSize: 26,
-        fontFamily: "Jaldi_400Regular",
-    },
-    likeText: {
-        fontSize: 14,
-        fontFamily: "Jaldi_400Regular",
-        marginTop: -3,
-    }
 });
 
 export default styles;
