@@ -9,10 +9,6 @@ const styles = StyleSheet.create({
         borderColor: "#e5eef4",
         borderWidth: 3,
     },
-    text: {
-        fontSize: 18,
-        fontFamily: "Jaldi_400Regular",
-    }
 });
 
 export default styles;
