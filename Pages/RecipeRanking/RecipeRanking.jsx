@@ -43,7 +43,7 @@ const RecipeRanking = ({ navigation }) => {
         <SafeAreaView edges={["top"]} style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity
-                    onPress={() => navigation.navigate('CalendarView')}
+                    onPress={() => navigation.goBack()}
                 >
                     <MaterialIcons
                         name='keyboard-arrow-left'
