@@ -90,7 +90,7 @@ const LogIn = ({ navigation }) => {
                         <View style={styles.socialContainer}>
                             <SocialButton name="google" onClick={onPressGoogle} />
                             {/* follow apple guideline for creating custom button */}
-                            <SocialButton name="apple" onClick={onPressApple} />
+                            {Platform.OS === "ios" && <SocialButton name="apple" onClick={onPressApple} />}
                         </View>
                         <View>
                             <Text style={[styles.text, { fontSize: 20, marginBottom: 20, textAlign: 'center' }]}>OR</Text>
