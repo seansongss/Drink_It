@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
+import { View, TextInput, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Dropdown } from 'react-native-element-dropdown';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,7 @@ import { useQuery } from '@realm/react';
 
 import ImageComponent from '@components/utils/ImageComponent';
 import RankingItem from '@components/RecipeRanking/RankingItem/RankingItem';
+import Text from '@components/utils/Text';
 
 import styles from './styles';
 
@@ -90,12 +91,13 @@ const RecipeRanking = ({ navigation }) => {
                     contentContainerStyle={styles.flatList}
                     data={filteredData}
                     keyExtractor={(item) => item._id.toString()}
-                    renderItem={({ item }) => (
+                    renderItem={({ item, index }) => (
                         <RankingItem
                             key={item._id}
                             id={item._id}
                             name={item.recipeName}
                             type={item.recipeType}
+                            index={index}
                         />
                     )}
                 />

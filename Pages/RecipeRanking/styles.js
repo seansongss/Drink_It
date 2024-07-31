@@ -44,11 +44,10 @@ const styles = StyleSheet.create({
         paddingHorizontal: "5%",
         marginTop: 15,
         marginBottom: 10,
-        gap: 10,
+        gap: 5,
     },
     searchBar: {
-        width: "100%",
-        height: 50,
+        height: 45,
         borderRadius: 30,
         paddingHorizontal: 20,
         borderWidth: 2,
