@@ -78,6 +78,7 @@ const RecipeRanking = ({ navigation }) => {
                         style={styles.searchBar}
                         placeholder="Search"
                         onChangeText={onChangeSearch}
+                        autoCapitalize='none'
                     />
                     <View style={styles.searchFilter}>
                         <View>
