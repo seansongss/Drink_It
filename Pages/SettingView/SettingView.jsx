@@ -28,6 +28,7 @@ const SettingView = ({ navigation }) => {
 
     return (
         <SafeAreaView edges={["top"]} style={styles.container}>
+            {/* header section */}
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.backButton}
@@ -43,6 +44,7 @@ const SettingView = ({ navigation }) => {
                     <Icon name="settings" color="white" size={50} />
                 </View>
             </View>
+            {/* setting content */}
             <ScrollView
                 style={styles.contentContainer}
             >
