@@ -1,11 +1,9 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { View, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Icon, Divider } from "@rneui/base";
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useUser } from '@realm/react';
-
-import ImageComponent from '@components/utils/ImageComponent'
 
 import styles from './styles'
 import SettingItem from '@components/SettingView/SettingItem/SettingItem';
