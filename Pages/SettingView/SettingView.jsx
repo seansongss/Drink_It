@@ -1,13 +1,12 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { View, TouchableOpacity, ScrollView, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Icon, Divider } from "@rneui/base";
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useUser } from '@realm/react';
 
-import ImageComponent from '@components/utils/ImageComponent'
-
 import styles from './styles'
+import SettingItem from '@components/SettingView/SettingItem/SettingItem';
 
 const SettingView = ({ navigation }) => {
     const user = useUser();
@@ -29,6 +28,7 @@ const SettingView = ({ navigation }) => {
 
     return (
         <SafeAreaView edges={["top"]} style={styles.container}>
+            {/* header section */}
             <View style={styles.header}>
                 <TouchableOpacity
                     style={styles.backButton}
@@ -44,86 +44,23 @@ const SettingView = ({ navigation }) => {
                     <Icon name="settings" color="white" size={50} />
                 </View>
             </View>
+            {/* setting content */}
             <ScrollView
                 style={styles.contentContainer}
             >
                 <View style={styles.personalSetting}>
                     <Ionicons name="person" size={45} color={"#b2d8b2"} />
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                    >
-                        <Text style={styles.text}>PROFILE</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                    >
-                        <Text style={styles.text}>PERSONAL INFO</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                    >
-                        <Text style={styles.text}>SECURITY</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                        onPress={logOutButton}
-                    >
-                        <Text style={styles.text}>LOGOUT</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
+                    <SettingItem name="ACCOUNT" onPress={() => navigation.navigate('Account')} />
+                    <SettingItem name="PERSONAL INFO" onPress={() => navigation.navigate('PersonalInfo')} />
+                    <SettingItem name="SECURITY" onPress={() => navigation.navigate('Security')} />
+                    <SettingItem name="LOGOUT" onPress={logOutButton} />
                 </View>
                 <Divider color='white' width={5} style={styles.divider} />
                 <View style={styles.personalSetting}>
                     <Ionicons name="person" size={45} color={"#b2d8b2"} />
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                    >
-                        <Text style={styles.text}>LAGUAGE</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.settingWrapper}
-                    >
-                        <Text style={styles.text}>NOTIFICATIONS</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[styles.settingWrapper, {marginBottom: 20}]}
-                    >
-                        <Text style={styles.text}>THEMES</Text>
-                        <MaterialIcons
-                            name='keyboard-arrow-right'
-                            size={50}
-                            color="#b2d8b2"
-                        />
-                    </TouchableOpacity>
+                    <SettingItem name="LANGUAGE" onPress={() => navigation.navigate('Language')} />
+                    <SettingItem name="NOTIFICATIONS" onPress={() => navigation.navigate('Notifications')} />
+                    <SettingItem name="THEMES" onPress={() => navigation.navigate('Themes')} />
                 </View>
             </ScrollView>
         </SafeAreaView>
