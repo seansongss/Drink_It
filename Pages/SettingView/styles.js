@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#e6eef4",
         paddingTop: 10,
+        // paddingHorizontal: "15%",
     },
     personalSetting: {
         marginHorizontal: "15%",

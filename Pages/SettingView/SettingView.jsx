@@ -1,12 +1,14 @@
 import React from 'react'
-import { View, TouchableOpacity, ScrollView, Alert } from 'react-native'
+import { View, TouchableOpacity, ScrollView, Alert, SectionList } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Icon, Divider } from "@rneui/base";
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import { useUser } from '@realm/react';
 
-import styles from './styles'
+import Text from '@components/utils/Text'
 import SettingItem from '@components/SettingView/SettingItem/SettingItem';
+
+import styles from './styles'
 
 const SettingView = ({ navigation }) => {
     const user = useUser();
@@ -25,6 +27,47 @@ const SettingView = ({ navigation }) => {
             },
         ]);
     };
+
+    sectionData = [
+        {
+            title: 'First section',
+            data: [
+                {
+                    name: 'ACCOUNT',
+                    onPress: () => navigation.navigate('Account'),
+                },
+                {
+                    name: 'PERSONAL INFO',
+                    onPress: () => navigation.navigate('PersonalInfo'),
+                },
+                {
+                    name: 'SECURITY',
+                    onPress: () => navigation.navigate('Security'),
+                },
+                {
+                    name: 'LOGOUT',
+                    onPress: logOutButton,
+                }
+            ]
+        },
+        {
+            title: 'Second section',
+            data: [
+                {
+                    name: 'LANGUAGE',
+                    onPress: () => navigation.navigate('Language'),
+                },
+                {
+                    name: 'NOTIFICATIONS',
+                    onPress: () => navigation.navigate('Notifications'),
+                },
+                {
+                    name: 'THEMES',
+                    onPress: () => navigation.navigate('Themes'),
+                }
+            ]
+        },
+    ]
 
     return (
         <SafeAreaView edges={["top"]} style={styles.container}>
@@ -63,6 +106,18 @@ const SettingView = ({ navigation }) => {
                     <SettingItem name="THEMES" onPress={() => navigation.navigate('Themes')} />
                 </View>
             </ScrollView>
+            {/* <SectionList
+                contentContainerStyle={styles.contentContainer}
+                sections={sectionData}
+                renderItem={({ item }) => (
+                    <SettingItem name={item.name} onPress={item.onPress} />
+                )}
+                renderSectionHeader={({ section }) => (
+                    <Ionicons name="person" size={45} color={"#b2d8b2"} />
+                )}
+                keyExtractor={(item, index) => item.name + index}
+                SectionSeparatorComponent={() => <Divider color='white' width={5} style={styles.divider} />}
+            /> */}
         </SafeAreaView>
     )
 }
