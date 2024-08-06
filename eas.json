@@ -6,7 +6,11 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+      "env": {
+        "GOOGLE_WEB_CLIENT_ID": "994789065459-as0kq4i6139dblp69t812t77kr50p9qp.apps.googleusercontent.com",
+        "GOOGLE_IOS_CLIENT_ID": "994789065459-k5kt1h8jufg3ejr4ofu7svipdq1p3cnl.apps.googleusercontent.com"
+      }
     },
     "development-simulator": {
       "developmentClient": true,
