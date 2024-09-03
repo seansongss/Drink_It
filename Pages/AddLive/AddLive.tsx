@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useQuery } from '@realm/react';
+import { useQuery, Realm } from '@realm/react';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -8,9 +8,13 @@ import AddRecord from '@components/AddLive/AddRecord/AddRecord';
 
 import styles from './styles';
 
-const AddLive = ({ navigation }) => {
+interface AddLiveProps {
+    navigation: any; // Ideally, replace `any` with a more specific type from your navigation setup
+}
+
+const AddLive: React.FC<AddLiveProps> = ({ navigation }) => {
     const startTime = new Date();
-    const [location, setLocation] = useState('DC Davis, Waterloo');
+    const [location, setLocation] = useState<string>('DC Davis, Waterloo');
 
     const recipeTests = useQuery('recipeTest');
     console.log('recipeTests:', recipeTests);
@@ -35,4 +39,3 @@ const AddLive = ({ navigation }) => {
 };
 
 export default AddLive;
- 

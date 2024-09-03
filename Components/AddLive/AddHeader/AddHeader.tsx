@@ -28,8 +28,8 @@ const AddHeader: React.FC<AddHeaderProps> = ({ containerStyle, location, setLoca
         return () => clearInterval(interval);
     }, [today]);
 
-    const minutes = Math.floor(timer / 60);
-    const seconds = timer % 60;
+    const minutes: number = Math.floor(timer / 60);
+    const seconds: number = timer % 60;
 
     return (
         <View style={containerStyle}>
