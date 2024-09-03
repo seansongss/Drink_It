@@ -1,10 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput } from 'react-native';
 
+import { StyleProp, ViewStyle } from 'react-native';
+
 import styles from './styles';
 
-const AddHeader = ({ containerStyle, location, setLocation, today }) => {
-    const [timer, setTimer] = useState(0);
+export interface AddHeaderProps {
+    containerStyle: StyleProp<ViewStyle>;
+    location: string;
+    setLocation: (location: string) => void;
+    today: Date;
+}
+
+
+const AddHeader: React.FC<AddHeaderProps> = ({ containerStyle, location, setLocation, today }) => {
+    const [timer, setTimer] = useState<number>(0);
 
     useEffect(() => {
         // Set up timer
@@ -42,6 +52,6 @@ const AddHeader = ({ containerStyle, location, setLocation, today }) => {
             </View>
         </View>
     );
-};
+}
 
-export default AddHeader;
+export default AddHeader
