@@ -1,11 +1,6 @@
-import React, { createElement, useEffect, useState } from 'react';
-import { Image } from 'react-native';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { useRealm, useUser } from '@realm/react';
-import { Realm } from 'realm';
-import { recipeTest } from '../models/models';
 
 import AddLive from '@pages/AddLive/AddLive';
 import { RecordsProvider } from '../components/Context/RecordsContext';
@@ -15,24 +10,6 @@ import MyPageStack from '@navigation/MyPageStack';
 const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
-    const realm = useRealm();
-    const user = useUser();
-    const [isSubscriptionReady, setSubscriptionReady] = useState(false);
-    const createRecipeTest = () => {
-        realm.write(() => {
-            realm.create('recipeTest', {
-                _id: new Realm.BSON.ObjectId(),
-                alcohol: 17,
-                description: 'A test recipe with alcohol',
-                recipeName: 'cheoumcheoum',
-                recipeType: 'soju',
-                createdAt: new Date(),
-                creator: user.id,
-            });
-        });
-    };
-
-    // createRecipeTest();
     return (
         <RecordsProvider>
             <Tab.Navigator
